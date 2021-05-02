@@ -1,35 +1,35 @@
 #include "../template.hpp"
 
-template <typename M> struct segtree {
-    using T = typename M::type;
+template <typename S> struct segtree {
+    using V = typename S::value_t;
     int n, size;
-    vector<T> vec;
-    segtree(int n) : segtree(vector<T>(n, M::e())) {}
-    segtree(vector<T> &src) : n(src.size()) {
+    vector<V> vec;
+    segtree(int n) : segtree(vector<V>(n, S::e())) {}
+    segtree(vector<V> &src) : n(src.size()) {
         for (size = 1; size < n; size <<= 1) {}
         vec.resize(size << 1);
         copy(all(src), vec.begin() + size);
-        for (int i = size - 1; i > 0; i--) vec[i] = M::op(vec[i << 1 | 0], vec[i << 1 | 1]);
+        for (int i = size - 1; i > 0; i--) vec[i] = S::op(vec[i << 1 | 0], vec[i << 1 | 1]);
     }
-    void set(int i, T x) {
+    void set(int i, V x) {
         vec[i += size] = x;
-        while (i >>= 1) vec[i] = M::op(vec[i << 1 | 0], vec[i << 1 | 1]);
+        while (i >>= 1) vec[i] = S::op(vec[i << 1 | 0], vec[i << 1 | 1]);
     }
-    T get(int i) { return vec[i + size]; }
-    T prod(int l, int r) {
-        T a = M::e(), b = M::e();
+    V get(int i) { return vec[i + size]; }
+    V prod(int l, int r) {
+        T a = S::e(), b = S::e();
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) a = M::op(a, vec[l++]);
-            if (r & 1) b = M::op(vec[--r], b);
+            if (l & 1) a = S::op(a, vec[l++]);
+            if (r & 1) b = S::op(vec[--r], b);
         }
-        return M::op(a, b);
+        return S::op(a, b);
     }
     template <typename F> int max_right(int l, F f) {
         if (l == n) return n;
-        T a = M::e();
+        V a = S::e();
         l += size;
         do {
-            T na = M::op(a, vec[l]);
+            V na = S::op(a, vec[l]);
             if (f(na)) {
                 a = na;
                 l++;
@@ -44,10 +44,10 @@ template <typename M> struct segtree {
     }
     template <typename F> int min_left(int r, F f) {
         if (r == 0) return 0;
-        T a = M::e();
+        V a = S::e();
         r += size;
         do {
-            T na = M::op(vec[r - 1], a);
+            V na = S::op(vec[r - 1], a);
             if (f(na)) {
                 a = na;
                 r--;
@@ -63,13 +63,13 @@ template <typename M> struct segtree {
 };
 
 struct min_monoid {
-    using type = ll;
-    static type op(type &a, type &b) { return min(a, b); }
-    static type e() { return numeric_limits<type>::max(); }
+    using value_t = ll;
+    static value_t op(value_t &a, value_t &b) { return min(a, b); }
+    static value_t e() { return LLONG_MAX; }
 };
 
 struct plus_monoid {
-    using type = ll;
-    static type op(type &a, type &b) { return a + b; }
-    static type e() { return 0; }
+    using value_t = ll;
+    static value_t op(value_t &a, value_t &b) { return a + b; }
+    static value_t e() { return 0; }
 };
