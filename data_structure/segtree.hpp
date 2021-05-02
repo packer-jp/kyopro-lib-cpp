@@ -6,8 +6,7 @@ template <typename M> struct segtree {
     vector<T> vec;
     segtree(int n) : segtree(vector<T>(n, M::e())) {}
     segtree(vector<T> &src) : n(src.size()) {
-        size = 1;
-        while (size < n) size <<= 1;
+        for (size = 1; size < n; size <<= 1) {}
         vec.resize(size << 1);
         copy(all(src), vec.begin() + size);
         for (int i = size - 1; i > 0; i--) vec[i] = M::op(vec[i << 1 | 0], vec[i << 1 | 1]);
