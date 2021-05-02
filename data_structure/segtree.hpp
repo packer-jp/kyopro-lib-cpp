@@ -55,7 +55,7 @@ template <typename M> struct segtree {
                 if (~r & 1) r >>= 1;
             } else {
                 int nr = r << 1;
-                if (nr > vec.size()) return r - size;
+                if (nr >= vec.size()) return r - size;
                 r = nr;
             }
         } while ((r & -r) != r);
