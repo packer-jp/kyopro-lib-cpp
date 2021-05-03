@@ -6,3 +6,4 @@ using namespace std;
 #define bit(n) (1LL << (n))
 using ll = long long;
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
+template <typename T> T sq(T a) { return a * a; }

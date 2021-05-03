@@ -1,7 +1,7 @@
 #include "../template.hpp"
 
 template <typename S> struct dijkstra {
-    using D = typename S::distance_t;
+    using D = typename S::dist_t;
     using C = typename S::cost_t;
     struct edge {
         int to;
@@ -36,7 +36,7 @@ template <typename S> struct dijkstra {
 };
 
 struct ll_dij {
-    using distance_t = ll;
+    using dist_t = ll;
     using cost_t = ll;
-    static distance_t inf() { return LLONG_MAX; }
+    static dist_t inf() { return LLONG_MAX; }
 };
