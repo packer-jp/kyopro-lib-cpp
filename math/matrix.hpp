@@ -13,8 +13,8 @@ template <typename S> struct matrix {
         rep(i, n) ret[i][i] = S::one();
         return ret;
     }
-    void row_add(int from, int to, V a) {
-        rep(i, width()) { val[to][i] += val[from][i] * a; }
+    void row_add(int i, int j, V a) {
+        rep(k, width()) { val[i][k] += val[j][k] * a; }
     }
     void place_nonzero(int i, int j) {
         for (int k = i; k < height(); k++) {
@@ -29,7 +29,7 @@ template <typename S> struct matrix {
         for (int i = 0, j = 0; i < height() && j < width(); j++) {
             ret.place_nonzero(i, j);
             if (ret[i][j] == S::zero()) continue;
-            for (int k = i + 1; k < height(); k++) { ret.row_add(i, k, -ret[k][j] / ret[i][j]); }
+            for (int k = i + 1; k < height(); k++) { ret.row_add(k, i, -ret[k][j] / ret[i][j]); }
             i++;
         }
         return ret;
@@ -49,7 +49,7 @@ template <typename S> struct matrix {
         matrix ut = ex.upper_triangular();
         for (int i = height() - 1; i >= 0; i--) {
             ut.row_add(i, i, S::one() / ut[i][i] - S::one());
-            rep(j, i) ut.row_add(i, j, -ut[j][i] / ut[i][i]);
+            rep(j, i) ut.row_add(j, i, -ut[j][i] / ut[i][i]);
         }
         matrix ret(height(), width());
         rep(i, height()) {
