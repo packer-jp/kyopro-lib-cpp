@@ -64,12 +64,12 @@ template <typename S> struct segtree {
 
 struct min_monoid {
     using val_t = ll;
-    static val_t op(val_t &a, val_t &b) { return min(a, b); }
+    static val_t op(val_t a, val_t b) { return min(a, b); }
     static val_t e() { return LLONG_MAX; }
 };
 
 struct plus_monoid {
     using val_t = ll;
-    static val_t op(val_t &a, val_t &b) { return a + b; }
+    static val_t op(val_t a, val_t b) { return a + b; }
     static val_t e() { return 0; }
 };
