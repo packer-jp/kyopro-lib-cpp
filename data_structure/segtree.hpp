@@ -17,7 +17,7 @@ template <typename S> struct segtree {
     }
     V get(int i) { return val[i + size]; }
     V prod(int l, int r) {
-        T a = S::e(), b = S::e();
+        V a = S::e(), b = S::e();
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) a = S::op(a, val[l++]);
             if (r & 1) b = S::op(val[--r], b);
@@ -68,7 +68,7 @@ struct min_monoid {
     static val_t e() { return LLONG_MAX; }
 };
 
-struct plus_monoid {
+struct sum_monoid {
     using val_t = ll;
     static val_t op(val_t a, val_t b) { return a + b; }
     static val_t e() { return 0; }
