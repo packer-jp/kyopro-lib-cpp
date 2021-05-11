@@ -80,6 +80,7 @@ template <typename S> struct lazy_segtree {
         thrust(r += size);
         V a = S::e();
         do {
+            r--;
             while (r > 1 && r & 1) r >>= 1;
             if (!g(S::op(reflect(r), a))) {
                 while (r < size) {
@@ -89,7 +90,7 @@ template <typename S> struct lazy_segtree {
                 }
                 return r + 1 - size;
             }
-            a = S::op(reflect(r--), a);
+            a = S::op(reflect(r), a);
         } while ((r & -r) != r);
         return 0;
     }
