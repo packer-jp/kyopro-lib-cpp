@@ -1,4 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/beta/room.html#HUPC2020Day2/problems/I"
+#define ERROR "1e-4"
 #include "../../math/matrix.hpp"
 
 int main() {
