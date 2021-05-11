@@ -29,16 +29,15 @@ template <typename S> struct segtree {
         V a = S::e();
         l += size;
         do {
-            V na = S::op(a, val[l]);
-            if (f(na)) {
-                a = na;
-                l++;
-                if (~l & 1) l >>= 1;
-            } else {
-                int nl = l << 1;
-                if (nl >= val.size()) return l - size;
-                l = nl;
+            while (~l & 1) l >>= 1;
+            if (!f(S::op(a, val[l]))) {
+                while (l < size) {
+                    l = l << 1;
+                    if (f(S::op(a, val[l]))) a = S::op(a, val[l++]);
+                }
+                return l - size;
             }
+            a = S::op(a, val[l++]);
         } while ((l & -l) != l);
         return n;
     }
@@ -47,16 +46,16 @@ template <typename S> struct segtree {
         V a = S::e();
         r += size;
         do {
-            V na = S::op(val[r - 1], a);
-            if (f(na)) {
-                a = na;
-                r--;
-                if (~r & 1) r >>= 1;
-            } else {
-                int nr = r << 1;
-                if (nr >= val.size()) return r - size;
-                r = nr;
+            r--;
+            while (r > 1 && r & 1) r >>= 1;
+            if (!f(S::op(val[r], a))) {
+                while (r < size) {
+                    r = r << 1 | 1;
+                    if (f(S::op(val[r], a))) a = S::op(val[r--], a);
+                }
+                return r + 1 - size;
             }
+            a = S::op(val[r], a);
         } while ((r & -r) != r);
         return 0;
     }
