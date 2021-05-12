@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/system_of_linear_equations"
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 #include "../../math/matrix.hpp"
 #include "../../math/modint.hpp"
 
