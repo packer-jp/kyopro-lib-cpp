@@ -1,3 +1,6 @@
+#ifndef PWMTREE_LAZY_SEGTREE_HPP
+#define PWMTREE_LAZY_SEGTREE_HPP 1
+
 #include "../template.hpp"
 
 template <typename S> struct lazy_segtree {
@@ -135,3 +138,5 @@ struct sum_monoid_with_update {
     static fn_t composition(fn_t f, fn_t g) { return f == id() ? g : f; }
     static fn_t id() { return LLONG_MIN; };
 };
+
+#endif

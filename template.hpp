@@ -1,3 +1,6 @@
+#ifndef PWMTREE_TEMPLATE_HPP
+#define PWMTREE_TEMPLATE_HPP 1
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -27,3 +30,5 @@ template <typename T> ostream &operator<<(ostream &os, vector<T> a) {
     os << ")";
     return os;
 }
+
+#endif

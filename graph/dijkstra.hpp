@@ -1,3 +1,6 @@
+#ifndef PWMTREE_DIJKSTRA_HPP
+#define PWMTREE_DIJKSTRA_HPP 1
+
 #include "../template.hpp"
 
 template <typename S> struct dijkstra {
@@ -40,3 +43,5 @@ struct ll_dij {
     using cost_t = ll;
     static dist_t inf() { return LLONG_MAX; }
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef PWMTREE_MATRIX_HPP
+#define PWMTREE_MATRIX_HPP 1
+
 #include "../template.hpp"
 
 template <typename S> struct matrix {
@@ -6,8 +9,8 @@ template <typename S> struct matrix {
     matrix(int n, int m) : matrix(vector(n, vector(m, S::zero()))) {}
     matrix(vector<vector<V>> src) : val(src) {}
     vector<V> &operator[](int i) { return val[i]; }
-    int height() { return val.size(); }
-    int width() { return val[0].size(); }
+    int height() const { return val.size(); }
+    int width() const { return val[0].size(); }
     static matrix id(int n) {
         matrix ret(n, n);
         rep(i, n) ret[i][i] = S::one();
@@ -16,31 +19,31 @@ template <typename S> struct matrix {
     void row_add(int i, int j, V a) {
         rep(k, width()) { val[i][k] += val[j][k] * a; }
     }
-    void place_nonzero(int i, int j) {
+    bool place_nonzero(int i, int j) {
         for (int k = i; k < height(); k++) {
             if (val[k][j] != S::zero()) {
-                val[i].swap(val[k]);
+                if (k > i) row_add(i, k, S::one());
                 break;
             }
         }
+        return val[i][j] != S::zero();
     }
-    matrix upper_triangular() {
+    matrix upper_triangular() const {
         matrix ret(val);
         for (int i = 0, j = 0; i < height() && j < width(); j++) {
-            ret.place_nonzero(i, j);
-            if (ret[i][j] == S::zero()) continue;
+            if (!ret.place_nonzero(i, j)) continue;
             for (int k = i + 1; k < height(); k++) { ret.row_add(k, i, -ret[k][j] / ret[i][j]); }
             i++;
         }
         return ret;
     }
-    V det() {
+    V det() const {
         V ret = S::one();
         matrix ut = upper_triangular();
         rep(i, height()) ret *= ut[i][i];
         return ret;
     }
-    matrix inv() {
+    matrix inv() const {
         matrix ex(height(), width() << 1);
         rep(i, height()) {
             rep(j, width()) { ex[i][j] = val[i][j]; }
@@ -57,19 +60,19 @@ template <typename S> struct matrix {
         }
         return ret;
     }
-    matrix &operator+=(matrix a) {
+    matrix &operator+=(const matrix &a) {
         rep(i, height()) {
             rep(j, width()) { val[i][j] += a[i][j]; }
         }
         return *this;
     }
-    matrix &operator-=(matrix a) {
+    matrix &operator-=(const matrix &a) {
         rep(i, height()) {
             rep(j, width()) { val[i][j] -= a[i][j]; }
         }
         return *this;
     }
-    matrix &operator*=(matrix a) {
+    matrix &operator*=(const matrix &a) {
         matrix res(height(), a.width());
         rep(i, height()) {
             rep(j, a.width()) {
@@ -79,7 +82,7 @@ template <typename S> struct matrix {
         val.swap(res.val);
         return *this;
     }
-    matrix &operator/=(matrix a) { return *this *= a.inv(); }
+    matrix &operator/=(const matrix &a) { return *this *= a.inv(); }
     matrix &operator^=(ll p) {
         matrix res = matrix::id(height());
         while (p) {
@@ -90,10 +93,14 @@ template <typename S> struct matrix {
         val.swap(res.val);
         return *this;
     }
-    matrix operator+() { return *this; }
-    matrix operator-() { return matrix(height(), width()) -= *this; }
-    matrix operator*(matrix a) { return matrix(val) *= a; }
-    matrix operator/(matrix a) { return matrix(val) /= a; }
+    matrix operator+() const { return *this; }
+    matrix operator-() const { return matrix(height(), width()) -= *this; }
+    bool operator==(const matrix &a) const { return val == a.val; }
+    bool operator!=(const matrix &a) const { return rel_ops::operator!=(*this, a); }
+    matrix operator+(const matrix &a) const { return matrix(*this) += a; }
+    matrix operator-(const matrix &a) const { return matrix(*this) -= a; }
+    matrix operator*(const matrix &a) const { return matrix(*this) *= a; }
+    matrix operator/(const matrix &a) const { return matrix(*this) /= a; }
 };
 
 struct double_field {
@@ -102,8 +109,15 @@ struct double_field {
     static val_t one() { return 1.0; }
 };
 
-template <> void matrix<double_field>::place_nonzero(int i, int j) {
+template <> bool matrix<double_field>::place_nonzero(int i, int j) {
+    static double EPS = 1e-12;
     for (int k = i + 1; k < height(); k++) {
-        if (abs(val[k][j]) > abs(val[i][j])) val[i].swap(val[k]);
+        if (abs(val[k][j]) > abs(val[i][j])) {
+            val[i].swap(val[k]);
+            row_add(i, i, -2.0);
+        }
     }
+    return abs(val[i][j]) > EPS;
 };
+
+#endif
