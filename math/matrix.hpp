@@ -110,7 +110,7 @@ struct double_field {
 };
 
 template <> bool matrix<double_field>::place_nonzero(int i, int j) {
-    static double EPS = 1e-12;
+    static constexpr double EPS = 1e-12;
     for (int k = i + 1; k < height(); k++) {
         if (abs(val[k][j]) > abs(val[i][j])) {
             val[i].swap(val[k]);
