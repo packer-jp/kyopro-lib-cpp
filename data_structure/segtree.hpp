@@ -14,12 +14,12 @@ template <typename S> struct segtree {
         copy(all(src), val.begin() + size);
         for (int i = size - 1; i > 0; i--) val[i] = S::op(val[i << 1 | 0], val[i << 1 | 1]);
     }
-    void set(int i, V a) {
+    void set(int i, const V &a) {
         val[i += size] = a;
         while (i >>= 1) val[i] = S::op(val[i << 1 | 0], val[i << 1 | 1]);
     }
-    V get(int i) { return val[i + size]; }
-    V prod(int l, int r) {
+    V get(int i) const { return val[i + size]; }
+    V prod(int l, int r) const {
         V a = S::e(), b = S::e();
         for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
             if (l & 1) a = S::op(a, val[l++]);
@@ -27,7 +27,7 @@ template <typename S> struct segtree {
         }
         return S::op(a, b);
     }
-    template <typename F> int max_right(int l, F f) {
+    template <typename F> int max_right(int l, F f) const {
         if (l == n) return n;
         V a = S::e();
         l += size;
@@ -44,7 +44,7 @@ template <typename S> struct segtree {
         } while ((l & -l) != l);
         return n;
     }
-    template <typename F> int min_left(int r, F f) {
+    template <typename F> int min_left(int r, F f) const {
         if (r == 0) return 0;
         V a = S::e();
         r += size;

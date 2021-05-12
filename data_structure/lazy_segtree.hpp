@@ -30,7 +30,7 @@ template <typename S> struct lazy_segtree {
     void recalc(int i) {
         while (i >>= 1) val[i] = S::op(reflect(i << 1 | 0), reflect(i << 1 | 1));
     }
-    void set(int i, V a) {
+    void set(int i, const V &a) {
         thrust(i += size);
         val[i] = a;
         lazy[i] = S::id();
