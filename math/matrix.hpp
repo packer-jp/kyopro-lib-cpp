@@ -93,10 +93,10 @@ template <typename S> struct matrix {
         val.swap(res.val);
         return *this;
     }
-    matrix operator+() const { return *this; }
-    matrix operator-() const { return matrix(height(), width()) -= *this; }
     bool operator==(const matrix &a) const { return val == a.val; }
     bool operator!=(const matrix &a) const { return rel_ops::operator!=(*this, a); }
+    matrix operator+() const { return *this; }
+    matrix operator-() const { return matrix(height(), width()) -= *this; }
     matrix operator+(const matrix &a) const { return matrix(*this) += a; }
     matrix operator-(const matrix &a) const { return matrix(*this) -= a; }
     matrix operator*(const matrix &a) const { return matrix(*this) *= a; }

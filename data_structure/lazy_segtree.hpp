@@ -80,7 +80,7 @@ template <typename S> struct lazy_segtree {
     }
     template <typename G> int min_left(int r, G g) {
         if (r == 0) return 0;
-        thrust(r += size);
+        thrust((r += size) - 1);
         V a = S::e();
         do {
             r--;
