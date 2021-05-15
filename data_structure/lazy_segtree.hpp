@@ -104,7 +104,7 @@ struct min_monoid_with_addition {
     using fn_t = ll;
     static val_t op(val_t a, val_t b) { return min(a, b); }
     static val_t e() { return LLONG_MAX; }
-    static val_t mapping(fn_t f, val_t a) { return f + a; }
+    static val_t mapping(fn_t f, val_t a) { return a == e() ? a : f + a; }
     static fn_t composition(fn_t f, fn_t g) { return f + g; }
     static fn_t id() { return 0; }
 };
