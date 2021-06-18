@@ -15,6 +15,15 @@ template <ll MOD = 1000000007> struct modint {
         }
         return modint(u);
     }
+    modint pow(ll p) const {
+        modint res = 1, mul = val;
+        while (p) {
+            if (p & 1) res *= mul;
+            mul *= mul;
+            p >>= 1;
+        }
+        return res;
+    }
     modint &operator+=(const modint &a) {
         if ((val += a.val) >= MOD) val -= MOD;
         return *this;
@@ -28,16 +37,6 @@ template <ll MOD = 1000000007> struct modint {
         return *this;
     }
     modint &operator/=(const modint &a) { return *this *= a.inv(); }
-    modint &operator^=(ll p) {
-        modint res = 1;
-        while (p) {
-            if (p & 1) res *= *this;
-            *this *= *this;
-            p >>= 1;
-        }
-        val = res.val;
-        return *this;
-    }
     bool operator==(const modint &a) const { return val == a.val; }
     bool operator!=(const modint &a) const { return rel_ops::operator!=(*this, a); }
     modint operator+() const { return *this; }

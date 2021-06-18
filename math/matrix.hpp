@@ -9,6 +9,7 @@ template <typename S> struct matrix {
     matrix(int n, int m) : matrix(vector(n, vector(m, S::zero()))) {}
     matrix(vector<vector<V>> src) : val(src) {}
     vector<V> &operator[](int i) { return val[i]; }
+    const vector<V> &operator[](int i) const { return val[i]; }
     int height() const { return val.size(); }
     int width() const { return val[0].size(); }
     static matrix id(int n) {
@@ -60,6 +61,15 @@ template <typename S> struct matrix {
         }
         return ret;
     }
+    matrix pow(ll p) const {
+        matrix res = matrix::id(height()), mul = matrix(*this);
+        while (p) {
+            if (p & 1) res *= mul;
+            mul *= mul;
+            p >>= 1;
+        }
+        return res;
+    }
     matrix &operator+=(const matrix &a) {
         rep(i, height()) {
             rep(j, width()) { val[i][j] += a[i][j]; }
@@ -83,16 +93,6 @@ template <typename S> struct matrix {
         return *this;
     }
     matrix &operator/=(const matrix &a) { return *this *= a.inv(); }
-    matrix &operator^=(ll p) {
-        matrix res = matrix::id(height());
-        while (p) {
-            if (p & 1) res *= *this;
-            *this *= *this;
-            p >>= 1;
-        }
-        val.swap(res.val);
-        return *this;
-    }
     bool operator==(const matrix &a) const { return val == a.val; }
     bool operator!=(const matrix &a) const { return rel_ops::operator!=(*this, a); }
     matrix operator+() const { return *this; }
