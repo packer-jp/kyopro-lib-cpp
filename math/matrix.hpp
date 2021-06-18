@@ -30,7 +30,7 @@ template <typename S> struct matrix {
         return val[i][j] != S::zero();
     }
     matrix upper_triangular() const {
-        matrix ret(val);
+        matrix ret(*this);
         for (int i = 0, j = 0; i < height() && j < width(); j++) {
             if (!ret.place_nonzero(i, j)) continue;
             for (int k = i + 1; k < height(); k++) { ret.row_add(k, i, -ret[k][j] / ret[i][j]); }
@@ -62,7 +62,7 @@ template <typename S> struct matrix {
         return ret;
     }
     matrix pow(ll p) const {
-        matrix res = matrix::id(height()), mul = matrix(*this);
+        matrix res = matrix::id(height()), mul(*this);
         while (p) {
             if (p & 1) res *= mul;
             mul *= mul;
