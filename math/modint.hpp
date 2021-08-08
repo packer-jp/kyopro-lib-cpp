@@ -6,6 +6,7 @@
 template <ll MOD = 1000000007> struct modint {
     ll val;
     modint(ll val = 0) : val(val >= 0 ? val % MOD : (MOD - (-val) % MOD) % MOD) {}
+    static ll mod() { return MOD; }
     modint inv() const {
         ll a = val, b = MOD, u = 1, v = 0, t;
         while (b > 0) {
