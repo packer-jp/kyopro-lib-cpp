@@ -1,12 +1,4 @@
 {
-"test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp": "2021-06-18 11:22:31 +0900",
-"test/judge.yosupo.jp/Shortest_Path.0.test.cpp": "2021-05-12 23:06:51 +0900",
-"test/onlinejudge.u-aizu.ac.jp/RMQ_and_RAQ.0.test.cpp": "2021-05-15 23:16:06 +0900",
-"test/onlinejudge.u-aizu.ac.jp/RMQ_and_RUQ.0.test.cpp": "2021-05-15 23:16:06 +0900",
-"test/onlinejudge.u-aizu.ac.jp/RSQ_and_RAQ.0.test.cpp": "2021-05-15 23:16:06 +0900",
-"test/onlinejudge.u-aizu.ac.jp/RSQ_and_RUQ.0.test.cpp": "2021-05-15 23:16:06 +0900",
-"test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp": "2021-05-12 23:06:51 +0900",
-"test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp": "2021-05-12 23:06:51 +0900",
-"test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.3.test.cpp": "2021-05-15 23:16:06 +0900",
-"test/onlinejudge.u-aizu.ac.jp/The_smallest_Window_I.2.test.cpp": "2021-05-15 23:16:06 +0900"
+"test/judge.yosupo.jp/Convolution.0.test.cpp": "2021-08-08 16:58:14 +0900",
+"test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp": "2021-08-08 16:58:14 +0900"
 }
