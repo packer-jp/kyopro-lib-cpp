@@ -1,5 +1,5 @@
-#ifndef PWMTREE_XOR_BASIS_HPP
-#define PWMTREE_XOR_BASIS_HPP 1
+#ifndef PWMTREE_INNER_BASIS_HPP
+#define PWMTREE_INNER_BASIS_HPP 1
 
 #include "../template.hpp"
 

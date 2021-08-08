@@ -1,8 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 #include "../../graph/dijkstra.hpp"
+#include "../template.hpp"
 
 int main() {
-    int n, m, s, t;
+    ll n, m, s, t;
     cin >> n >> m >> s >> t;
     dijkstra<ll_dij> dij(n);
     while (m--) {
@@ -15,9 +16,9 @@ int main() {
         cout << -1 << endl;
         return 0;
     }
-    vector<int> vs{t};
+    vector<ll> vs{t};
     do {
-        int back = vs.back();
+        ll back = vs.back();
         vs.push_back(prev[back]);
     } while (vs.back() != s);
     reverse(all(vs));
