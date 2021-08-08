@@ -3,9 +3,9 @@
 
 #include "../template.hpp"
 
-template <typename S> struct dijkstra {
-    using D = typename S::dist_t;
-    using C = typename S::cost_t;
+template <class S> struct dijkstra {
+    using D = class S::dist_t;
+    using C = class S::cost_t;
     struct edge {
         int to;
         C cost;

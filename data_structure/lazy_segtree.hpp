@@ -3,9 +3,9 @@
 
 #include "../template.hpp"
 
-template <typename S> struct lazy_segtree {
-    using V = typename S::val_t;
-    using F = typename S::fn_t;
+template <class S> struct lazy_segtree {
+    using V = class S::val_t;
+    using F = class S::fn_t;
     int n, size, log;
     vector<V> val;
     vector<F> lazy;
@@ -60,7 +60,7 @@ template <typename S> struct lazy_segtree {
         }
         return S::op(a, b);
     }
-    template <typename G> int max_right(int l, G g) {
+    template <class G> int max_right(int l, G g) {
         if (l == n) return n;
         thrust(l += size);
         V a = S::e();
@@ -78,7 +78,7 @@ template <typename S> struct lazy_segtree {
         } while ((l & -l) != l);
         return n;
     }
-    template <typename G> int min_left(int r, G g) {
+    template <class G> int min_left(int r, G g) {
         if (r == 0) return 0;
         thrust((r += size) - 1);
         V a = S::e();

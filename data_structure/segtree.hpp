@@ -3,8 +3,8 @@
 
 #include "../template.hpp"
 
-template <typename S> struct segtree {
-    using V = typename S::val_t;
+template <class S> struct segtree {
+    using V = class S::val_t;
     int n, size;
     vector<V> val;
     segtree(int n) : segtree(vector(n, S::e())) {}
@@ -27,7 +27,7 @@ template <typename S> struct segtree {
         }
         return S::op(a, b);
     }
-    template <typename F> int max_right(int l, F f) const {
+    template <class F> int max_right(int l, F f) const {
         if (l == n) return n;
         V a = S::e();
         l += size;
@@ -44,7 +44,7 @@ template <typename S> struct segtree {
         } while ((l & -l) != l);
         return n;
     }
-    template <typename F> int min_left(int r, F f) const {
+    template <class F> int min_left(int r, F f) const {
         if (r == 0) return 0;
         V a = S::e();
         r += size;
