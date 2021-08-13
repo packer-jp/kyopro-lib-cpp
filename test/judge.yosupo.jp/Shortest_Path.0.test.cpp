@@ -1,6 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 #include "../../graph/dijkstra.hpp"
-#include "../template.hpp"
 
 int main() {
     ll n, m, s, t;
