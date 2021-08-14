@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
+#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
 #include "../../math/fps_friendly.hpp"
 
 int main() {
