@@ -18,14 +18,17 @@ template <typename mint> void ntt(vector<mint> &a, mint wn) {
     }
 }
 
+template <typename mint> mint get_w(ll n) {
+    mint root = 2;
+    while (root.pow((mint::mod() - 1) >> 1) == 1) root += 1;
+    return root.pow((mint::mod() - 1) / n);
+}
+
 template <typename mint> vector<mint> convolution_friendly(vector<mint> a, vector<mint> b) {
     ll n_ = a.size() + b.size() - 1, n;
     for (n = 1; n < n_; n <<= 1) {}
     a.resize(n), b.resize(n);
-    ll mod = mint::mod();
-    mint root = 2;
-    while (root.pow((mod - 1) >> 1) == 1) root += 1;
-    mint wn = root.pow((mod - 1) / n);
+    mint wn = get_w<mint>(n);
     ntt(a, wn), ntt(b, wn);
     rep(i, n) a[i] *= b[i];
     ntt(a, wn.inv());

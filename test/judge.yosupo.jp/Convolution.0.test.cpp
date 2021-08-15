@@ -9,6 +9,6 @@ int main() {
     vector<mint> a(n), b(m);
     rep(i, n) cin >> a[i];
     rep(i, m) cin >> b[i];
-    vector<mint> c = convolution_friendly<mint, 3>(a, b);
+    vector<mint> c = convolution_friendly<mint>(a, b);
     for (mint ci : c) { cout << ci << '\n'; }
 }
