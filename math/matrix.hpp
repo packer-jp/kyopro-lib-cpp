@@ -113,11 +113,11 @@ template <> bool matrix<double_field>::place_nonzero(int i, int j) {
     static constexpr double EPS = 1e-12;
     for (int k = i + 1; k < height(); k++) {
         if (abs(val[k][j]) > abs(val[i][j])) {
-            val[i].swap(val[k]);
+            swap(val[i], val[k]);
             row_add(i, i, -2.0);
         }
     }
     return abs(val[i][j]) > EPS;
-};
+}
 
 #endif

@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/inv_of_formal_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/log_of_formal_power_series"
 #include "../../math/fps.hpp"
 
 int main() {
@@ -7,7 +7,7 @@ int main() {
     cin >> n;
     fps<mint> a(n);
     rep(i, n) cin >> a[i];
-    fps<mint> b = a.inv();
+    fps<mint> b = a.log();
     rep(i, n) cout << b[i] << " ";
     cout << endl;
 }

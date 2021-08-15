@@ -42,10 +42,10 @@ template <ll MOD = 1000000007> struct modint {
     bool operator!=(const modint &a) const { return rel_ops::operator!=(*this, a); }
     modint operator+() const { return *this; }
     modint operator-() const { return modint(-val); }
-    modint operator+(const modint &a) const { return modint(*this) += a; }
-    modint operator-(const modint &a) const { return modint(*this) -= a; }
-    modint operator*(const modint &a) const { return modint(*this) *= a; }
-    modint operator/(const modint &a) const { return modint(*this) /= a; }
+    friend modint operator+(const modint &a, const modint &b) { return modint(a) += b; }
+    friend modint operator-(const modint &a, const modint &b) { return modint(a) -= b; }
+    friend modint operator*(const modint &a, const modint &b) { return modint(a) *= b; }
+    friend modint operator/(const modint &a, const modint &b) { return modint(a) /= b; }
     friend istream &operator>>(istream &is, modint &a) {
         ll val;
         is >> val;
