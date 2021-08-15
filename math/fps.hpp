@@ -55,17 +55,24 @@ template <typename mint> struct fps : vector<mint> {
         rep(i, n) ret[i + 1] *= (*this)[i];
         return ret;
     }
+    fps inv(ll d = -1) const {
+        if (d == -1) d = this->size();
+        fps ret{(*this)[0].inv()};
+        for (ll m = 1; m < d; m <<= 1) ret = (mint(2) * ret - ret * ret * this->prefix(m << 1)).prefix(m << 1);
+        return ret.prefix(d);
+    };
     fps log(ll d = -1) const {
         assert((*this)[0] == mint(1));
         if (d == -1) d = this->size();
         return (this->differential() * this->inv(d)).prefix(d - 1).integral();
     }
-    fps inv(ll d = -1) const {
+    fps exp(ll d = -1) const {
+        assert(this->size() == 0 || (*this)[0] == mint(0));
         if (d == -1) d = this->size();
-        fps ret{(*this)[0].inv()};
-        for (ll i = 1; i < d; i <<= 1) ret = (mint(2) * ret - ret * ret * this->prefix(i << 1)).prefix(i << 1);
+        fps ret{1};
+        for (ll m = 1; m < d; m <<= 1) ret = (ret * (prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
-    };
+    }
     friend fps operator-(const fps &a) { return fps() -= a; }
     friend fps operator+(const fps &a, const fps &b) { return fps(a) += b; }
     friend fps operator-(const fps &a, const fps &b) { return fps(a) -= b; }
@@ -84,7 +91,7 @@ template <> fps<m9> fps<m9>::inv(ll d) const {
     if (d == -1) d = this->size();
     fps ret{(*this)[0].inv()};
     for (ll m = 1; m < d; m <<= 1) {
-        m9 wn = get_w<m9>(m << 1);
+        m9 wn = getw<m9>(m << 1);
         fps f = this->prefix(m << 1);
         fps g = ret;
         f.resize(m << 1), ntt(f, wn);
