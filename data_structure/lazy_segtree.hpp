@@ -15,7 +15,7 @@ template <typename S> struct lazy_segtree {
         val.resize(size << 1);
         copy(all(src), val.begin() + size);
         lazy.resize(size << 1, S::id());
-        for (int i = size - 1; i > 0; i--) val[i] = S::op(val[i << 1 | 0], val[i << 1 | 1]);
+        for (int i : range(size - 1, 0, -1)) val[i] = S::op(val[i << 1 | 0], val[i << 1 | 1]);
     }
     V reflect(int i) { return S::mapping(lazy[i], val[i]); }
     void push(int i) {

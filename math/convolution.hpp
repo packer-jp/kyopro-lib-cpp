@@ -5,12 +5,12 @@
 #include "modint.hpp"
 
 template <typename mint> void ntt(vector<mint> &a, mint wn) {
-    ll n = a.size(), m = n >> 1;
+    int n = a.size(), m = n >> 1;
     vector<mint> b(n);
-    for (ll i = 1; i < n; i <<= 1, wn *= wn, swap(a, b)) {
+    for (int i = 1; i < n; i <<= 1, wn *= wn, swap(a, b)) {
         mint wj = 1;
-        for (ll j = 0; j < m; j += i, wj *= wn) {
-            rep(k, i) {
+        for (int j = 0; j < m; j += i, wj *= wn) {
+            for (int k : range(i)) {
                 b[(j << 1) + k + 0] = (a[j + k] + a[j + k + m]);
                 b[(j << 1) + k + i] = (a[j + k] - a[j + k + m]) * wj;
             }
@@ -25,16 +25,16 @@ template <typename mint> mint getw(ll n) {
 }
 
 template <typename mint> vector<mint> convolution_friendly(vector<mint> a, vector<mint> b) {
-    ll n_ = a.size() + b.size() - 1, n;
+    int n_ = a.size() + b.size() - 1, n;
     for (n = 1; n < n_; n <<= 1) {}
     a.resize(n), b.resize(n);
     mint wn = getw<mint>(n);
     ntt(a, wn), ntt(b, wn);
-    rep(i, n) a[i] *= b[i];
+    for (int i : range(n)) a[i] *= b[i];
     ntt(a, wn.inv());
     mint ninv = mint(n).inv();
     a.resize(n_);
-    rep(i, n_) a[i] *= ninv;
+    for (int i : range(n_)) a[i] *= ninv;
     return a;
 }
 

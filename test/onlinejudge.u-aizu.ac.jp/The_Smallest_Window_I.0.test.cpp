@@ -8,10 +8,10 @@ int main() {
     ll n, s;
     cin >> n >> s;
     vector<ll> a(n);
-    rep(i, n) cin >> a[i];
+    for (ll i : range(n)) cin >> a[i];
     segtree<sum_monoid> st(a);
     ll ans = LLONG_MAX;
-    rep(l, n) {
+    for (ll l : range(n)) {
         ll r = st.max_right(l, [&](ll x) { return x < s; });
         if (r < n) chmin(ans, r - l + 1);
     }

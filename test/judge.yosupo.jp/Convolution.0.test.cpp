@@ -7,8 +7,9 @@ int main() {
     ll n, m;
     cin >> n >> m;
     vector<mint> a(n), b(m);
-    rep(i, n) cin >> a[i];
-    rep(i, m) cin >> b[i];
+    for (ll i : range(n)) cin >> a[i];
+    for (ll i : range(m)) cin >> b[i];
     vector<mint> c = convolution_friendly<mint>(a, b);
-    for (mint ci : c) { cout << ci << '\n'; }
+    for (mint ci : c) { cout << ci << " "; }
+    cout << endl;
 }

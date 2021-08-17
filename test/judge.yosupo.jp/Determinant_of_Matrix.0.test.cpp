@@ -9,11 +9,11 @@ int main() {
         static val_t zero() { return mint(0); }
         static val_t one() { return mint(1); }
     };
-    ll n;
+    int n;
     cin >> n;
     matrix<mint_field> a(n, n);
-    rep(i, n) {
-        rep(j, n) { cin >> a[i][j]; }
+    for (int i : range(n)) {
+        for (int j : range(n)) { cin >> a[i][j]; }
     }
     cout << a.det() << endl;
 }

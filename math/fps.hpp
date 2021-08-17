@@ -90,20 +90,20 @@ template <> fps<m9> &fps<m9>::operator*=(const fps<m9> &a) {
 template <> fps<m9> fps<m9>::inv(ll d) const {
     if (d == -1) d = this->size();
     fps ret{(*this)[0].inv()};
-    for (ll m = 1; m < d; m <<= 1) {
+    for (int m = 1; m < d; m <<= 1) {
         m9 wn = getw<m9>(m << 1);
         fps f = this->prefix(m << 1);
         fps g = ret;
         f.resize(m << 1), ntt(f, wn);
         g.resize(m << 1), ntt(g, wn);
-        rep(i, m << 1) f[i] *= g[i];
+        for (int i : range(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
         f = f >> m, f.resize(m << 1), ntt(f, wn);
-        rep(i, m << 1) f[i] *= g[i];
+        for (int i : range(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
         m9 iz = m9(m << 1).inv();
         iz *= -iz;
-        rep(i, m) f[i] *= iz;
+        for (int i : range(m)) f[i] *= iz;
         ret.insert(ret.end(), f.begin(), f.begin() + m);
     }
     return ret.prefix(d);

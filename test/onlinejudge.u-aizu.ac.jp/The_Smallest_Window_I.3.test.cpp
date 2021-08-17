@@ -8,7 +8,7 @@ int main() {
     ll n, s;
     cin >> n >> s;
     vector<pair<ll, ll>> a1(n);
-    rep(i, n) cin >> a1[i].first;
+    for (ll i : range(n)) cin >> a1[i].first;
     lazy_segtree<sum_monoid_with_addition> lst(a1);
     ll ans = LLONG_MAX;
     for (int r = 1; r <= n; r++) {
