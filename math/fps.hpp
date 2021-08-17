@@ -17,16 +17,16 @@ template <typename mint> struct fps : vector<mint> {
     }
     fps &operator+=(const fps &a) {
         if (a.size() > this->size()) this->resize(a.size());
-        rep(i, a.size())(*this)[i] += a[i];
+        for (int i : range(a.size())) (*this)[i] += a[i];
         return *this;
     }
     fps &operator-=(const fps &a) {
         if (a.size() > this->size()) this->resize(a.size());
-        rep(i, a.size())(*this)[i] -= a[i];
+        for (int i : range(a.size())) (*this)[i] -= a[i];
         return *this;
     }
     fps &operator*=(const fps &a);
-    fps &operator>>=(ll d) {
+    fps &operator>>=(int d) {
         if (this->size() <= d) {
             *this = {};
         } else {
@@ -34,51 +34,51 @@ template <typename mint> struct fps : vector<mint> {
         }
         return *this;
     }
-    fps &operator<<=(ll d) {
+    fps &operator<<=(int d) {
         this->insert(this->begin(), d, mint(0));
         return *this;
     }
-    fps prefix(ll d) const { return fps(this->begin(), this->begin() + min((ll)this->size(), d)); }
+    fps prefix(int d) const { return fps(this->begin(), this->begin() + min((int)this->size(), d)); }
     fps differential() const {
-        ll n = this->size();
-        fps ret(max(0ll, n - 1));
+        int n = this->size();
+        fps ret(max(0, n - 1));
         for (int i = 1; i < n; i++) { ret[i - 1] = i * (*this)[i]; }
         return ret;
     }
     fps integral() const {
-        ll n = this->size();
+        int n = this->size();
         fps ret(n + 1);
         ret[0] = mint(0);
         if (n > 0) ret[1] = mint(1);
         ll mod = mint::mod();
         for (int i = 2; i <= n; i++) ret[i] = (-ret[mod % i]) * (mod / i);
-        rep(i, n) ret[i + 1] *= (*this)[i];
+        for (int i : range(n)) ret[i + 1] *= (*this)[i];
         return ret;
     }
-    fps inv(ll d = -1) const {
+    fps inv(int d = -1) const {
         if (d == -1) d = this->size();
         fps ret{(*this)[0].inv()};
-        for (ll m = 1; m < d; m <<= 1) ret = (mint(2) * ret - ret * ret * this->prefix(m << 1)).prefix(m << 1);
+        for (int m = 1; m < d; m <<= 1) ret = (mint(2) * ret - ret * ret * this->prefix(m << 1)).prefix(m << 1);
         return ret.prefix(d);
     };
-    fps log(ll d = -1) const {
+    fps log(int d = -1) const {
         assert((*this)[0] == mint(1));
         if (d == -1) d = this->size();
         return (this->differential() * this->inv(d)).prefix(d - 1).integral();
     }
-    fps exp(ll d = -1) const {
+    fps exp(int d = -1) const {
         assert(this->size() == 0 || (*this)[0] == mint(0));
         if (d == -1) d = this->size();
         fps ret{1};
-        for (ll m = 1; m < d; m <<= 1) ret = (ret * (prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
+        for (int m = 1; m < d; m <<= 1) ret = (ret * (prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
     }
     friend fps operator-(const fps &a) { return fps() -= a; }
     friend fps operator+(const fps &a, const fps &b) { return fps(a) += b; }
     friend fps operator-(const fps &a, const fps &b) { return fps(a) -= b; }
     friend fps operator*(const fps &a, const fps &b) { return fps(a) *= b; }
-    friend fps operator>>(const fps &a, ll d) { return fps(a) >>= d; }
-    friend fps operator<<(const fps &a, ll d) { return fps(a) <<= d; }
+    friend fps operator>>(const fps &a, int d) { return fps(a) >>= d; }
+    friend fps operator<<(const fps &a, int d) { return fps(a) <<= d; }
 };
 
 using m9 = modint<998244353>;
@@ -87,7 +87,7 @@ template <> fps<m9> &fps<m9>::operator*=(const fps<m9> &a) {
     *this = convolution_friendly<m9>(*this, a);
     return *this;
 }
-template <> fps<m9> fps<m9>::inv(ll d) const {
+template <> fps<m9> fps<m9>::inv(int d) const {
     if (d == -1) d = this->size();
     fps ret{(*this)[0].inv()};
     for (int m = 1; m < d; m <<= 1) {

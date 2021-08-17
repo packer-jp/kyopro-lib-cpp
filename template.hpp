@@ -48,7 +48,7 @@ struct range {
     };
     range(int end) : start(0), stop(end), step(1) {}
     range(int start, int stop) : start(0), stop(stop), step(1) {}
-    range(int start, int stop, int step) : start(0), stop(stop), step(step) {}
+    range(int start, int stop, int step) : start(start), stop(stop), step(step) {}
     iterator begin() const { return {start, stop, step}; };
     iterator end() const { return {stop, stop, step}; };
 };
