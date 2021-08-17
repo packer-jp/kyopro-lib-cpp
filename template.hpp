@@ -29,21 +29,6 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     os << ")";
     return os;
 }
-struct range {
-    struct itr {
-        int val;
-        itr(int val) : val(val) {}
-        void operator++() { val++; }
-        void operator--() { val--; }
-        int operator*() const { return val; }
-        bool operator!=(const itr &i) const { return val != i.val; }
-    };
-    int start, stop;
-    range(int stop) : start(0), stop(stop) {}
-    range(int start, int stop) : start(start), stop(stop) {}
-    itr begin() const { return start; };
-    itr end() const { return stop; };
-};
 struct rep {
     struct itr {
         int v;
