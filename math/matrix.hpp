@@ -14,14 +14,14 @@ template <typename S> struct matrix {
     int width() const { return val[0].size(); }
     static matrix id(int n) {
         matrix ret(n, n);
-        for (int i : range(n)) ret[i][i] = S::one();
+        for (int i : rep(n)) ret[i][i] = S::one();
         return ret;
     }
     void row_add(int i, int j, V a) {
-        for (int k : range(width())) { val[i][k] += val[j][k] * a; }
+        for (int k : rep(width())) { val[i][k] += val[j][k] * a; }
     }
     bool place_nonzero(int i, int j) {
-        for (int k : range(i, height())) {
+        for (int k : rep(i, height())) {
             if (val[k][j] != S::zero()) {
                 if (k > i) row_add(i, k, S::one());
                 break;
@@ -33,7 +33,7 @@ template <typename S> struct matrix {
         matrix ret(*this);
         for (int i = 0, j = 0; i < height() && j < width(); j++) {
             if (!ret.place_nonzero(i, j)) continue;
-            for (int k : range(i + 1, height())) ret.row_add(k, i, -ret[k][j] / ret[i][j]);
+            for (int k : rep(i + 1, height())) ret.row_add(k, i, -ret[k][j] / ret[i][j]);
             i++;
         }
         return ret;
@@ -41,23 +41,23 @@ template <typename S> struct matrix {
     V det() const {
         V ret = S::one();
         matrix ut = upper_triangular();
-        for (int i : range(height())) ret *= ut[i][i];
+        for (int i : rep(height())) ret *= ut[i][i];
         return ret;
     }
     matrix inv() const {
         matrix ex(height(), width() << 1);
-        for (int i : range(height())) {
-            for (int j : range(width())) { ex[i][j] = val[i][j]; }
+        for (int i : rep(height())) {
+            for (int j : rep(width())) { ex[i][j] = val[i][j]; }
         }
-        for (int i : range(height())) ex[i][width() + i] = S::one();
+        for (int i : rep(height())) ex[i][width() + i] = S::one();
         matrix ut = ex.upper_triangular();
-        for (int i : range(height() - 1, -1, -1)) {
+        for (int i : per(height())) {
             ut.row_add(i, i, S::one() / ut[i][i] - S::one());
-            for (int j : range(i)) ut.row_add(j, i, -ut[j][i] / ut[i][i]);
+            for (int j : rep(i)) ut.row_add(j, i, -ut[j][i] / ut[i][i]);
         }
         matrix ret(height(), width());
-        for (int i : range(height())) {
-            for (int j : range(width())) { ret[i][j] = ut[i][width() + j]; }
+        for (int i : rep(height())) {
+            for (int j : rep(width())) { ret[i][j] = ut[i][width() + j]; }
         }
         return ret;
     }
@@ -71,22 +71,22 @@ template <typename S> struct matrix {
         return res;
     }
     matrix &operator+=(const matrix &a) {
-        for (int i : range(height())) {
-            for (int j : range(width())) { val[i][j] += a[i][j]; }
+        for (int i : rep(height())) {
+            for (int j : rep(width())) { val[i][j] += a[i][j]; }
         }
         return *this;
     }
     matrix &operator-=(const matrix &a) {
-        for (int i : range(height())) {
-            for (int j : range(width())) { val[i][j] -= a[i][j]; }
+        for (int i : rep(height())) {
+            for (int j : rep(width())) { val[i][j] -= a[i][j]; }
         }
         return *this;
     }
     matrix &operator*=(const matrix &a) {
         matrix res(height(), a.width());
-        for (int i : range(height())) {
-            for (int j : range(a.width())) {
-                for (int k : range(width())) { res[i][j] += val[i][k] * a[k][j]; }
+        for (int i : rep(height())) {
+            for (int j : rep(a.width())) {
+                for (int k : rep(width())) { res[i][j] += val[i][k] * a[k][j]; }
             }
         }
         val.swap(res.val);
@@ -111,7 +111,7 @@ struct double_field {
 
 template <> bool matrix<double_field>::place_nonzero(int i, int j) {
     static constexpr double EPS = 1e-12;
-    for (int k : range(i + 1, height())) {
+    for (int k : rep(i + 1, height())) {
         if (abs(val[k][j]) > abs(val[i][j])) {
             swap(val[i], val[k]);
             row_add(i, i, -2.0);

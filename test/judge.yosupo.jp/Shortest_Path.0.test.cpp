@@ -22,5 +22,5 @@ int main() {
     } while (vs.back() != s);
     reverse(all(vs));
     cout << dist[t] << " " << vs.size() - 1 << endl;
-    for (ll i : range(vs.size() - 1)) cout << vs[i] << " " << vs[i + 1] << endl;
+    for (ll i : rep(vs.size() - 1)) cout << vs[i] << " " << vs[i + 1] << endl;
 }

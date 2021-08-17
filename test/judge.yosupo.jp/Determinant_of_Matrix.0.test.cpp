@@ -12,8 +12,8 @@ int main() {
     int n;
     cin >> n;
     matrix<mint_field> a(n, n);
-    for (int i : range(n)) {
-        for (int j : range(n)) { cin >> a[i][j]; }
+    for (int i : rep(n)) {
+        for (int j : rep(n)) { cin >> a[i][j]; }
     }
     cout << a.det() << endl;
 }

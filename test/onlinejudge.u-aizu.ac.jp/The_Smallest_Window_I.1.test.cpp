@@ -8,7 +8,7 @@ int main() {
     ll n, s;
     cin >> n >> s;
     vector<ll> a(n);
-    for (ll i : range(n)) cin >> a[i];
+    for (ll i : rep(n)) cin >> a[i];
     segtree<sum_monoid> st(a);
     ll ans = LLONG_MAX;
     for (int r = 1; r <= n; r++) {

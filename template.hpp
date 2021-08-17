@@ -30,27 +30,47 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     return os;
 }
 struct range {
-    int start, stop, step;
-    struct iterator {
-        int val, stop, step;
-        iterator(int val, int stop, int step) : val(val), stop(stop), step(step) {}
-        iterator &operator++() {
-            val += step;
-            if (step > 0) {
-                chmin(val, stop);
-            } else {
-                chmax(val, stop);
-            }
-            return *this;
-        }
+    struct itr {
+        int val;
+        itr(int val) : val(val) {}
+        void operator++() { val++; }
+        void operator--() { val--; }
         int operator*() const { return val; }
-        bool operator!=(const iterator &i) const { return val != i.val; }
+        bool operator!=(const itr &i) const { return val != i.val; }
     };
-    range(int end) : start(0), stop(end), step(1) {}
-    range(int start, int stop) : start(start), stop(stop), step(1) {}
-    range(int start, int stop, int step) : start(start), stop(stop), step(step) {}
-    iterator begin() const { return {start, stop, step}; };
-    iterator end() const { return {stop, stop, step}; };
+    int start, stop;
+    range(int stop) : start(0), stop(stop) {}
+    range(int start, int stop) : start(start), stop(stop) {}
+    itr begin() const { return start; };
+    itr end() const { return stop; };
+};
+struct rep {
+    struct itr {
+        int v;
+        itr(int v) : v(v) {}
+        void operator++() { v++; }
+        int operator*() const { return v; }
+        bool operator!=(const itr &i) const { return v != i.v; }
+    };
+    int l, r;
+    rep(int r) : l(0), r(r) {}
+    rep(int l, int r) : l(l), r(r) {}
+    itr begin() const { return l; };
+    itr end() const { return r; };
+};
+struct per {
+    struct itr {
+        int v;
+        itr(int v) : v(v) {}
+        void operator++() { v--; }
+        int operator*() const { return v; }
+        bool operator!=(const itr &i) const { return v != i.v; }
+    };
+    int l, r;
+    per(int r) : l(0), r(r) {}
+    per(int l, int r) : l(l), r(r) {}
+    itr begin() const { return r - 1; };
+    itr end() const { return l - 1; };
 };
 
 #endif

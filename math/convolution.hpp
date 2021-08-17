@@ -10,7 +10,7 @@ template <typename mint> void ntt(vector<mint> &a, mint wn) {
     for (int i = 1; i < n; i <<= 1, wn *= wn, swap(a, b)) {
         mint wj = 1;
         for (int j = 0; j < m; j += i, wj *= wn) {
-            for (int k : range(i)) {
+            for (int k : rep(i)) {
                 b[(j << 1) + k + 0] = (a[j + k] + a[j + k + m]);
                 b[(j << 1) + k + i] = (a[j + k] - a[j + k + m]) * wj;
             }
@@ -30,11 +30,11 @@ template <typename mint> vector<mint> convolution_friendly(vector<mint> a, vecto
     a.resize(n), b.resize(n);
     mint wn = getw<mint>(n);
     ntt(a, wn), ntt(b, wn);
-    for (int i : range(n)) a[i] *= b[i];
+    for (int i : rep(n)) a[i] *= b[i];
     ntt(a, wn.inv());
     mint ninv = mint(n).inv();
     a.resize(n_);
-    for (int i : range(n_)) a[i] *= ninv;
+    for (int i : rep(n_)) a[i] *= ninv;
     return a;
 }
 

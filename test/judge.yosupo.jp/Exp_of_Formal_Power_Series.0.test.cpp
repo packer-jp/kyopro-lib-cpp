@@ -6,8 +6,8 @@ int main() {
     ll n;
     cin >> n;
     fps<mint> a(n);
-    for (ll i : range(n)) cin >> a[i];
+    for (ll i : rep(n)) cin >> a[i];
     fps<mint> b = a.exp();
-    for (ll i : range(n)) cout << b[i] << " ";
+    for (ll i : rep(n)) cout << b[i] << " ";
     cout << endl;
 }

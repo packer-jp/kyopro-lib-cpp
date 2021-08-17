@@ -17,12 +17,12 @@ template <typename mint> struct fps : vector<mint> {
     }
     fps &operator+=(const fps &a) {
         if (a.size() > this->size()) this->resize(a.size());
-        for (int i : range(a.size())) (*this)[i] += a[i];
+        for (int i : rep(a.size())) (*this)[i] += a[i];
         return *this;
     }
     fps &operator-=(const fps &a) {
         if (a.size() > this->size()) this->resize(a.size());
-        for (int i : range(a.size())) (*this)[i] -= a[i];
+        for (int i : rep(a.size())) (*this)[i] -= a[i];
         return *this;
     }
     fps &operator*=(const fps &a);
@@ -52,7 +52,7 @@ template <typename mint> struct fps : vector<mint> {
         if (n > 0) ret[1] = mint(1);
         ll mod = mint::mod();
         for (int i = 2; i <= n; i++) ret[i] = (-ret[mod % i]) * (mod / i);
-        for (int i : range(n)) ret[i + 1] *= (*this)[i];
+        for (int i : rep(n)) ret[i + 1] *= (*this)[i];
         return ret;
     }
     fps inv(int d = -1) const {
@@ -96,14 +96,14 @@ template <> fps<m9> fps<m9>::inv(int d) const {
         fps g = ret;
         f.resize(m << 1), ntt(f, wn);
         g.resize(m << 1), ntt(g, wn);
-        for (int i : range(m << 1)) f[i] *= g[i];
+        for (int i : rep(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
         f = f >> m, f.resize(m << 1), ntt(f, wn);
-        for (int i : range(m << 1)) f[i] *= g[i];
+        for (int i : rep(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
         m9 iz = m9(m << 1).inv();
         iz *= -iz;
-        for (int i : range(m)) f[i] *= iz;
+        for (int i : rep(m)) f[i] *= iz;
         ret.insert(ret.end(), f.begin(), f.begin() + m);
     }
     return ret.prefix(d);

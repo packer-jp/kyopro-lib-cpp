@@ -8,10 +8,10 @@ int main() {
     ll n, s;
     cin >> n >> s;
     vector<pair<ll, ll>> a1(n);
-    for (ll i : range(n)) cin >> a1[i].first;
+    for (ll i : rep(n)) cin >> a1[i].first;
     lazy_segtree<sum_monoid_with_addition> lst(a1);
     ll ans = LLONG_MAX;
-    for (ll l : range(n)) {
+    for (ll l : rep(n)) {
         ll r = lst.max_right(l, [&](pair<ll, ll> x) { return x.first < s; });
         if (r < n) chmin(ans, r - l + 1);
     }
