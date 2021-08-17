@@ -33,7 +33,8 @@ template <typename S> struct matrix {
         matrix ret(*this);
         for (int i = 0, j = 0; i < height() && j < width(); j++) {
             if (!ret.place_nonzero(i, j)) continue;
-            for (int k : range(i + 1, height())) { ret.row_add(k, i, -ret[k][j] / ret[i][j]); }
+            cerr << "a " << i << endl;
+            for (int k : range(i + 1, height())) ret.row_add(k, i, -ret[k][j] / ret[i][j]);
             i++;
         }
         return ret;
