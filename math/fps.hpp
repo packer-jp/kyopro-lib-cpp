@@ -42,7 +42,7 @@ template <typename mint> struct fps : vector<mint> {
     fps differential() const {
         int n = this->size();
         fps ret(max(0, n - 1));
-        for (int i = 1; i < n; i++) { ret[i - 1] = i * (*this)[i]; }
+        for (int i : rep(1, n)) { ret[i - 1] = i * (*this)[i]; }
         return ret;
     }
     fps integral() const {
@@ -51,16 +51,16 @@ template <typename mint> struct fps : vector<mint> {
         ret[0] = mint(0);
         if (n > 0) ret[1] = mint(1);
         ll mod = mint::mod();
-        for (int i = 2; i <= n; i++) ret[i] = (-ret[mod % i]) * (mod / i);
+        for (int i : rep(2, n + 1)) ret[i] = (-ret[mod % i]) * (mod / i);
         for (int i : rep(n)) ret[i + 1] *= (*this)[i];
         return ret;
     }
     fps inv(int d = -1) const {
         if (d == -1) d = this->size();
         fps ret{(*this)[0].inv()};
-        for (int m = 1; m < d; m <<= 1) ret = (mint(2) * ret - ret * ret * this->prefix(m << 1)).prefix(m << 1);
+        for (int m = 1; m < d; m <<= 1) ret = (ret + ret - ret * ret * this->prefix(m << 1)).prefix(m << 1);
         return ret.prefix(d);
-    };
+    }
     fps log(int d = -1) const {
         assert((*this)[0] == mint(1));
         if (d == -1) d = this->size();
@@ -72,6 +72,20 @@ template <typename mint> struct fps : vector<mint> {
         fps ret{1};
         for (int m = 1; m < d; m <<= 1) ret = (ret * (prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
+    }
+    fps pow(ll k, int d = -1) const {
+        int n = this->size();
+        if (d == -1) d = n;
+        for (int i : rep(n)) {
+            if ((*this)[i] != mint(0)) {
+                if (i * k > d) return fps(d, mint(0));
+                fps ret = (((*this * (*this)[i].inv()) >> i).log(d) * mint(k)).exp(d) * ((*this)[i].pow(k));
+                ret = (ret << (i * k)).prefix(d);
+                ret.resize(d);
+                return ret;
+            }
+        }
+        return fps(d, mint(0));
     }
     friend fps operator-(const fps &a) { return fps() -= a; }
     friend fps operator+(const fps &a, const fps &b) { return fps(a) += b; }
@@ -98,7 +112,7 @@ template <> fps<m9> fps<m9>::inv(int d) const {
         g.resize(m << 1), ntt(g, wn);
         for (int i : rep(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
-        f = f >> m, f.resize(m << 1), ntt(f, wn);
+        f >>= m, f.resize(m << 1), ntt(f, wn);
         for (int i : rep(m << 1)) f[i] *= g[i];
         ntt(f, wn.inv());
         m9 iz = m9(m << 1).inv();
