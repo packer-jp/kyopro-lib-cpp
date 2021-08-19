@@ -6,7 +6,7 @@ using namespace std;
 
 #define all(a) (a).begin(), (a).end()
 using ll = long long;
-using ull = unsigned ll;
+using ull = unsigned long long;
 ull bit(int n) { return 1ull << n; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 template <typename T> T sq(const T &a) { return a * a; }
@@ -30,6 +30,18 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     os << ")";
     return os;
 }
+
+#ifdef ONLINE_JUDGE
+#define dump(...) (void(0))
+#else
+void debug() { cerr << endl; }
+template <typename Head, typename... Tail> void debug(Head &&head, Tail &&... tail) {
+    cerr << head;
+    if (sizeof...(Tail)) cerr << ", ";
+    debug(tail...);
+}
+#define dump(...) cerr << __LINE__ << ": " << #__VA_ARGS__ << " = ", debug(__VA_ARGS__)
+#endif
 
 struct rep {
     struct itr {
