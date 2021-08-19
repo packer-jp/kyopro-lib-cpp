@@ -1,5 +1,4 @@
-#ifndef PWMTREE_TEMPLATE_HPP
-#define PWMTREE_TEMPLATE_HPP 1
+#pragma once
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,5 +70,3 @@ struct per {
     itr begin() const { return r - 1; };
     itr end() const { return l - 1; };
 };
-
-#endif

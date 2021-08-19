@@ -1,5 +1,4 @@
-#ifndef PWMTREE_CONVOLUTION_HPP
-#define PWMTREE_CONVOLUTION_HPP 1
+#pragma once
 
 #include "../template.hpp"
 #include "modint.hpp"
@@ -37,5 +36,3 @@ template <typename mint> vector<mint> convolution_friendly(vector<mint> a, vecto
     for (int i : rep(n_)) a[i] *= ninv;
     return a;
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef PWMTREE_MATRIX_HPP
-#define PWMTREE_MATRIX_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -119,5 +118,3 @@ template <> bool matrix<double_field>::place_nonzero(int i, int j) {
     }
     return abs(val[i][j]) > EPS;
 }
-
-#endif

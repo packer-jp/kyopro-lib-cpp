@@ -1,5 +1,4 @@
-#ifndef PWMTREE_FPS_HPP
-#define PWMTREE_FPS_HPP 1
+#pragma once
 
 #include "../template.hpp"
 #include "convolution.hpp"
@@ -121,5 +120,3 @@ template <> fps<m9> fps<m9>::inv(int d) const {
     }
     return ret.prefix(d);
 }
-
-#endif

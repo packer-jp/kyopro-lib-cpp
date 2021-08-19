@@ -1,5 +1,4 @@
-#ifndef PWMTREE_SEGTREE_HPP
-#define PWMTREE_SEGTREE_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -75,5 +74,3 @@ struct sum_monoid {
     static val_t op(val_t a, val_t b) { return a + b; }
     static val_t e() { return 0; }
 };
-
-#endif

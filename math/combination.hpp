@@ -1,5 +1,4 @@
-#ifndef PWMTREE_COMBINATION_HPP
-#define PWMTREE_COMBINATION_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -18,5 +17,3 @@ template <typename mint> struct combination {
     T H(int n, int r) { return C(n + r - 1, r); }
     T catalan(int n) { return C(2 * n, n) / (n + 1); }
 };
-
-#endif

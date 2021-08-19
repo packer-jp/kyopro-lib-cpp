@@ -1,5 +1,4 @@
-#ifndef PWMTREE_DIJKSTRA_HPP
-#define PWMTREE_DIJKSTRA_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -43,5 +42,3 @@ struct ll_dij {
     using cost_t = ll;
     static dist_t inf() { return LLONG_MAX; }
 };
-
-#endif

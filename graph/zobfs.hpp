@@ -1,5 +1,4 @@
-#ifndef PWMTREE_ZOBFS_HPP
-#define PWMTREE_ZOBFS_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -34,5 +33,3 @@ struct zobfs {
         return {dist, prev};
     }
 };
-
-#endif

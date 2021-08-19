@@ -1,5 +1,4 @@
-#ifndef PWMTREE_MODINT_HPP
-#define PWMTREE_MODINT_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -54,5 +53,3 @@ template <ll MOD = 1000000007> struct modint {
     }
     friend ostream &operator<<(ostream &os, const modint &a) { return os << a.val; }
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef PWMTREE_INNER_BASIS_HPP
-#define PWMTREE_INNER_BASIS_HPP 1
+#pragma once
 
 #include "../template.hpp"
 
@@ -12,5 +11,3 @@ vector<ll> inner_basis(vector<ll> a) {
     }
     return ret;
 }
-
-#endif
