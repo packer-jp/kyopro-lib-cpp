@@ -31,23 +31,11 @@ template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     return os;
 }
 
-#ifdef ONLINE_JUDGE
-#define dump(...) (void(0))
-#else
-void debug() { cerr << endl; }
-template <typename Head, typename... Tail> void debug(Head &&head, Tail &&... tail) {
-    cerr << head;
-    if (sizeof...(Tail)) cerr << ", ";
-    debug(tail...);
-}
-#define dump(...) cerr << __LINE__ << ": " << #__VA_ARGS__ << " = ", debug(__VA_ARGS__)
-#endif
-
 struct rep {
     struct itr {
         int v;
         itr(int v) : v(v) {}
-        void operator++() { v++; }
+        void operator++() { ++v; }
         int operator*() const { return v; }
         bool operator!=(const itr &i) const { return v != i.v; }
     };
@@ -61,7 +49,7 @@ struct per {
     struct itr {
         int v;
         itr(int v) : v(v) {}
-        void operator++() { v--; }
+        void operator++() { --v; }
         int operator*() const { return v; }
         bool operator!=(const itr &i) const { return v != i.v; }
     };
