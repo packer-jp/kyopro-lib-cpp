@@ -7,8 +7,8 @@ using namespace std;
 #define all(a) (a).begin(), (a).end()
 using ll = long long;
 using ull = unsigned ll;
-template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 ull bit(int n) { return 1ull << n; }
+template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 template <typename T> T sq(const T &a) { return a * a; }
 template <typename T, typename U> bool chmax(T &a, const U &b) {
     if (a < b) {

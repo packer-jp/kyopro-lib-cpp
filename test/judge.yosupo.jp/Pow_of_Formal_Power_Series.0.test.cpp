@@ -7,7 +7,7 @@ int main() {
     cin >> n >> m;
     fps<mint> a(n);
     for (ll i : rep(n)) cin >> a[i];
-    fps<mint> b = a.pow(n);
+    fps<mint> b = a.pow(m);
     for (ll i : rep(n)) cout << b[i] << " ";
     cout << endl;
 }
