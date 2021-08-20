@@ -51,8 +51,8 @@ struct rep {
         bool operator!=(const itr &i) const { return v != i.v; }
     };
     int l, r;
-    rep(int r) : l(0), r(r) {}
-    rep(int l, int r) : l(l), r(r) {}
+    rep(int r) : l(min(0, r)), r(r) {}
+    rep(int l, int r) : l(min(l, r)), r(r) {}
     itr begin() const { return l; };
     itr end() const { return r; };
 };
@@ -65,8 +65,8 @@ struct per {
         bool operator!=(const itr &i) const { return v != i.v; }
     };
     int l, r;
-    per(int r) : l(0), r(r) {}
-    per(int l, int r) : l(l), r(r) {}
+    per(int r) : l(min(0, r)), r(r) {}
+    per(int l, int r) : l(min(l, r)), r(r) {}
     itr begin() const { return r - 1; };
     itr end() const { return l - 1; };
 };
