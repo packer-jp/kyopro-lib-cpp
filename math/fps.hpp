@@ -103,6 +103,7 @@ template <> fps<m9> &fps<m9>::operator*=(const fps<m9> &a) {
     *this = convolution(*this, a);
     return *this;
 }
+/*
 template <> fps<m9> fps<m9>::inv(int d) const {
     using mint = m9;
     if (d == -1) d = this->size();
@@ -121,7 +122,7 @@ template <> fps<m9> fps<m9>::inv(int d) const {
         ret.insert(ret.end(), f.begin(), f.begin() + m);
     }
     return ret.prefix(d);
-}
+}*/
 
 /*
 template <> fps<m9> fps<m9>::exp(int d) const {

@@ -39,8 +39,8 @@ template <typename S> struct lazy_segtree {
         thrust(l += size);
         thrust(r += size - 1);
         for (int i = l, j = r + 1; i < j; i >>= 1, j >>= 1) {
-            if (i & 1) lazy[i++] = S::composition(f, lazy[i]);
-            if (j & 1) lazy[j] = S::composition(f, lazy[--j]);
+            if (i & 1) lazy[i] = S::composition(f, lazy[i]), ++i;
+            if (j & 1) --j, lazy[j] = S::composition(f, lazy[j]);
         }
         recalc(l);
         recalc(r);
