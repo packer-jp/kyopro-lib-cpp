@@ -41,6 +41,16 @@ template <typename mint> struct fps : vector<mint> {
         this->insert(this->begin(), d, mint(0));
         return *this;
     }
+    fps &chdot(const fps &a) {
+        for (int i : rep(this->size())) {
+            if (i < a.size()) {
+                (*this)[i] *= a[i];
+            } else {
+                (*this)[i] = 0;
+            }
+        }
+        return *this;
+    }
     fps prefix(int d) const { return fps(this->begin(), this->begin() + min((int)this->size(), d)); }
     fps differential() const {
         int n = this->size();
@@ -72,7 +82,7 @@ template <typename mint> struct fps : vector<mint> {
         assert(this->size() == 0 || (*this)[0] == mint(0));
         if (d == -1) d = this->size();
         fps ret{1};
-        for (int m = 1; m < d; m <<= 1) ret = (ret * (prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
+        for (int m = 1; m < d; m <<= 1) ret = (ret * (this->prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
     }
     fps pow(ll k, int d = -1) const {
@@ -103,7 +113,7 @@ template <> fps<m9> &fps<m9>::operator*=(const fps<m9> &a) {
     *this = convolution(*this, a);
     return *this;
 }
-/*
+
 template <> fps<m9> fps<m9>::inv(int d) const {
     using mint = m9;
     if (d == -1) d = this->size();
@@ -113,183 +123,54 @@ template <> fps<m9> fps<m9>::inv(int d) const {
         fps g = ret;
         f.resize(m << 1), ntt(f);
         g.resize(m << 1), ntt(g);
-        for (int i : rep(m << 1)) f[i] *= g[i];
+        f.chdot(g);
         intt(f);
         f >>= m, f.resize(m << 1), ntt(f);
-        for (int i : rep(m << 1)) f[i] *= g[i];
+        f.chdot(g);
         intt(f);
-        f *= mint(-1);
+        f = -f;
         ret.insert(ret.end(), f.begin(), f.begin() + m);
     }
     return ret.prefix(d);
-}*/
+}
 
-/*
 template <> fps<m9> fps<m9>::exp(int d) const {
     using mint = m9;
-    int n = this->size();
-    assert(n > 0 && (*this)[0] == 0);
-    if (d == -1) d = n;
-    assert(d >= 0);
-    fps g{1}, g_fft{1, 1};
-    fps ret = *this;
-    ret[0] = 1;
-    ret.resize(d);
-    fps h_drv(ret.differential());
-    for (int m = 2; m < d; m *= 2) {
-        // prepare
-        fps f_fft(ret.begin(), ret.begin() + m);
-        f_fft.resize(2 * m), ntt(f_fft);
+    assert(this->size() == 0 || (*this)[0] == mint(0));
+    if (d == -1) d = this->size();
+    fps f{1}, g{1}, g_freq{1};
+    for (int m = 1; m < d; m <<= 1) {
+        fps f_freq = f.prefix(m);
+        f_freq.resize(m << 1), ntt(f_freq);
 
-        // Step 2.a'
-        {
-            fps _g(m);
-            for (int i : rep(m)) _g[i] = f_fft[i] * g_fft[i];
-            intt(_g), _g *= mint(_g.size());
-            _g.erase(_g.begin(), _g.begin() + m / 2);
-            _g.resize(m), ntt(_g);
-            for (int i : rep(m)) _g[i] *= g_fft[i];
-            intt(_g), _g *= mint(_g.size());
-            _g.resize(m / 2);
-            _g /= -m * m;
-            g.insert(g.end(), _g.begin(), _g.begin() + m / 2);
-        }
+        fps g_next = g_freq;
+        for (int i : rep(m)) g_next[i] *= f_freq[i << 1];
+        intt(g_next);
+        g_next >>= m >> 1;
+        g_next.resize(m), ntt(g_next);
+        g_next.chdot(g_freq);
+        intt(g_next);
+        g_next = -g_next;
+        g.insert(g.end(), g_next.begin(), g_next.begin() + (m >> 1));
 
-        // Step 2.b'--d'
-        fps t(ret.begin(), ret.begin() + m);
-        t = t.differential();
-        {
-            // Step 2.b'
-            fps r{h_drv.begin(), h_drv.begin() + m - 1};
-            // Step 2.c'
-            r.resize(m);
-            ntt(r);
-            for (int i : rep(m)) r[i] *= f_fft[i];
-            intt(r), r *= mint(r.size());
-            r /= -m;
-            // Step 2.d'
-            t += r;
-            t.insert(t.begin(), t.back());
-            t.pop_back();
-        }
+        fps r = this->differential().prefix(m - 1);
+        r.resize(m), ntt(r);
+        for (int i : rep(m)) r[i] *= f_freq[i << 1];
+        intt(r);
 
-        // Step 2.e'
-        if (2 * m < d) {
-            t.resize(2 * m);
-            ntt(t);
-            g_fft = g;
-            g_fft.resize(2 * m);
-            ntt(g_fft);
-            for (int i : rep(2 * m)) t[i] *= g_fft[i];
-            intt(t), t *= mint(t.size());
-            t.resize(m);
-            t /= 2 * m;
-        } else { // この場合分けをしても数パーセントしか速くならない
-            fps g1(g.begin() + m / 2, g.end());
-            fps s1(t.begin() + m / 2, t.end());
-            t.resize(m / 2);
-            g1.resize(m), ntt(g1);
-            t.resize(m), ntt(t);
-            s1.resize(m), ntt(s1);
-            for (int i : rep(m)) s1[i] = g_fft[i] * s1[i] + g1[i] * t[i];
-            for (int i : rep(m)) t[i] *= g_fft[i];
-            intt(t), t *= mint(t.size());
-            intt(s1), s1 *= mint(s1.size());
-            for (int i : rep(m / 2)) t[i + m / 2] += s1[i];
-            t /= m;
-        }
+        fps t = f.differential() - r;
+        t.insert(t.begin(), t.back()), t.pop_back();
+        t.resize(m << 1), ntt(t);
+        g_freq = g, g_freq.resize(m << 1), ntt(g_freq);
+        t.chdot(g_freq);
+        intt(t), t.resize(m);
 
-        // Step 2.f'
-        fps v(ret.begin() + m, ret.begin() + min(d, 2 * m));
-        v.resize(m);
-        t.insert(t.begin(), m - 1, 0);
-        t.push_back(0);
-        t = t.integral();
-        for (int i : rep(m)) v[i] -= t[m + i];
+        fps u = (this->prefix(m << 1) - (t << m - 1).integral()) >> m;
+        u.resize(m << 1), ntt(u);
+        u.chdot(f_freq);
+        intt(u);
 
-        // Step 2.g'
-        v.resize(2 * m);
-        ntt(v);
-        for (int i : rep(2 * m)) v[i] *= f_fft[i];
-        intt(v), v *= mint(v.size());
-        v.resize(m);
-        v /= 2 * m;
-
-        // Step 2.h'
-        for (int i : rep(min(d - m, m))) ret[m + i] = v[i];
+        f += u.prefix(m) << m;
     }
-    return ret;
-}
-*/
-
-template <> fps<m9> fps<m9>::exp(int deg) const {
-    using mint = m9;
-    assert((*this).size() == 0 || (*this)[0] == mint(0));
-    if (deg == -1) deg = this->size();
-
-    fps inv;
-    inv.reserve(deg + 1);
-    inv.push_back(mint(0));
-    inv.push_back(mint(1));
-
-    auto inplace_integral = [&](fps &F) -> void {
-        const int n = (int)F.size();
-        auto mod = mint::mod();
-        while ((int)inv.size() <= n) {
-            int i = inv.size();
-            inv.push_back((-inv[mod % i]) * (mod / i));
-        }
-        F.insert(F.begin(), mint(0));
-        for (int i = 1; i <= n; i++) F[i] *= inv[i];
-    };
-
-    auto inplace_diff = [](fps &F) -> void {
-        if (F.empty()) return;
-        F.erase(F.begin());
-        mint coeff = 1, one = 1;
-        for (int i = 0; i < (int)F.size(); i++) {
-            F[i] *= coeff;
-            coeff += one;
-        }
-    };
-
-    fps b{1, 1 < (int)this->size() ? (*this)[1] : 0}, c{1}, z1, z2{1, 1};
-    for (int m = 2; m < deg; m *= 2) {
-        auto y = b;
-        y.resize(2 * m);
-        ntt(y);
-        z1 = z2;
-        fps z(m);
-        for (int i = 0; i < m; ++i) z[i] = y[i] * z1[i];
-        intt(z);
-        fill(z.begin(), z.begin() + m / 2, mint(0));
-        ntt(z);
-        for (int i = 0; i < m; ++i) z[i] *= -z1[i];
-        intt(z);
-        c.insert(c.end(), z.begin() + m / 2, z.end());
-        z2 = c;
-        z2.resize(2 * m);
-        ntt(z2);
-        fps x(this->begin(), this->begin() + min<int>(this->size(), m));
-        inplace_diff(x);
-        x.push_back(mint(0));
-        ntt(x);
-        for (int i = 0; i < m; ++i) x[i] *= y[i];
-        intt(x);
-        x -= b.differential();
-        x.resize(2 * m);
-        for (int i = 0; i < m - 1; ++i) x[m + i] = x[i], x[i] = mint(0);
-        ntt(x);
-        for (int i = 0; i < 2 * m; ++i) x[i] *= z2[i];
-        intt(x);
-        x.pop_back();
-        inplace_integral(x);
-        for (int i = m; i < min<int>(this->size(), 2 * m); ++i) x[i] += (*this)[i];
-        fill(x.begin(), x.begin() + m, mint(0));
-        ntt(x);
-        for (int i = 0; i < 2 * m; ++i) x[i] *= y[i];
-        intt(x);
-        b.insert(b.end(), x.begin() + m, x.end());
-    }
-    return b.prefix(deg);
+    return f.prefix(d);
 }
