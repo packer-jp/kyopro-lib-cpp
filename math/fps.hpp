@@ -85,7 +85,7 @@ template <typename mint> struct fps : vector<mint> {
         for (int m = 1; m < d; m <<= 1) ret = (ret * (this->prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
     }
-    fps pow(mint k, int d = -1) const {
+    fps pow(int k, int d = -1) const {
         if (d == -1) d = this->size();
         for (int i : rep(this->size())) {
             if ((*this)[i] != mint(0)) {
