@@ -1,8 +1,10 @@
 {
 "test/judge.yosupo.jp/Convolution.0.test.cpp": "2021-08-20 12:52:42 +0900",
 "test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp": "2021-08-20 12:52:42 +0900",
-"test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp": "2021-08-20 20:05:53 +0900",
-"test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp": "2021-08-20 20:05:53 +0900",
+"test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp": "2021-08-30 22:06:14 +0900",
+"test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp": "2021-08-30 22:06:14 +0900",
+"test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp": "2021-08-30 22:06:14 +0900",
+"test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp": "2021-08-30 22:06:14 +0900",
 "test/judge.yosupo.jp/Shortest_Path.0.test.cpp": "2021-08-20 12:52:42 +0900",
 "test/onlinejudge.u-aizu.ac.jp/RMQ_and_RAQ.0.test.cpp": "2021-08-20 20:05:53 +0900",
 "test/onlinejudge.u-aizu.ac.jp/RMQ_and_RUQ.0.test.cpp": "2021-08-20 20:05:53 +0900",
