@@ -98,19 +98,6 @@ template <typename mint> struct fps : vector<mint> {
         }
         return fps(d);
     }
-    fps pow(int k, int d = -1) const {
-        if (d == -1) d = this->size();
-        for (int i : rep(this->size())) {
-            if ((*this)[i] != mint(0)) {
-                if (i * k > d) return fps(d);
-                fps ret = (((*this * (*this)[i].inv()) >> i).log(d) * mint(k)).exp(d) * ((*this)[i].pow(k));
-                ret = (ret << (i * k)).prefix(d);
-                ret.resize(d);
-                return ret;
-            }
-        }
-        return fps(d);
-    }
     friend fps operator+(const fps &a) { return a; }
     friend fps operator-(const fps &a) { return fps() -= a; }
     friend fps operator+(const fps &a, const fps &b) { return fps(a) += b; }
