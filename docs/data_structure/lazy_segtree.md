@@ -4,7 +4,7 @@ documentation_of: //data_structure/lazy_segtree.hpp
 ---
 
 - モノイド$V$と作用素モノイド$F$
-- $mapping(op(v_0, v_1)) = op(mapping(v_0), mapping(v_1)))$
+- $f(v_0  v_1)) = op(mapping(v_0), mapping(v_1)))$
 - $mapping(f_0, mapping(f_1, v)) = mapping(composition(f_0, f_1), v)$
 - 長さ$n$の$V$の元の列に対する処理を行う
 - $set(i, a)$  
@@ -21,6 +21,7 @@ $i$番目の要素を得る。
 - $prod(l, r)$
 要素列$[l, r)$について、順序を変えずに$op$したものを返す。
 
-- $max\_right(l, g)$
+## `<typename G> int max_right(int l, G g)
 
-- $min\_left(r, g)$
+
+## $min\_left(r, g)$
