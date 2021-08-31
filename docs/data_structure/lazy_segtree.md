@@ -12,45 +12,29 @@ documentation_of: //data_structure/lazy_segtree.hpp
 # テンプレート引数
 以下のメンバを持つ構造体を与える。
 
-```
-val_t
-```
+## $\mathrm{val\,t}$
 $V$を表す型。
 
-```
-fn_t
-```
+## $\mathrm{fn\,t}$
 $F$を表す型。
 
-```
-val_t op(val_t a, val_t b)
-```
+## $\mathrm{op}(a, b)$
 $a \times b$を返す。
 
-```
-val_t e()
-```
+## $\mathrm{e}()$
 $V$の単位元$\mathrm{e}$を返す。
 
-```
-val_t mapping(fn_t f, val_t a)
-```
+## $\mathrm{mapping}(f, a)$
 $f(a)$を返す。
 
-```
-fn_t composition(fn_t f, fn_t g)
-```
+## $\mathrm{composition}(f, g)$
 $f \circ g$を返す。
 
-```
-fn_t id()
-```
+## $\mathrm{id}()$
 $F$の単位元$\mathrm{id}$を返す。
 
 # メンバ
-```
-void set(int i, V a)
-```
+## $\mathrm{set}(i, a)$
 要素$i$を$a$に置き換える。
 
 ### 制約
@@ -59,9 +43,7 @@ void set(int i, V a)
 ### 計算量
 - $O(\log n)$  
 
-```
-void apply(int l, int r, F f)
-```
+## $\mathrm{apply}(l, r, f)$
 時間計算量: $O(log n)$
 $s_l, \cdots s_{r-1}$に$f$を作用させる。
 
@@ -71,9 +53,7 @@ $s_l, \cdots s_{r-1}$に$f$を作用させる。
 ### 計算量
 - $O(\log n)$
 
-```
-V get(int i)
-```
+## $\mathrm{get}(i)$
 $i$番目の要素を得る。
 
 ### 制約
@@ -82,9 +62,7 @@ $i$番目の要素を得る。
 ### 計算量
 - $O(\log n)$
 
-```
-V prod(int l, int r)
-```
+## `prod(l, r)`
 $\mathrm{e} \times s_l \times \cdots \times s_{r-1}$を計算する。
 
 ### 制約
@@ -93,9 +71,26 @@ $\mathrm{e} \times s_l \times \cdots \times s_{r-1}$を計算する。
 ### 計算量
 - $O(\log n)$
 
-## $max right(l, g)$
-
+## $\mathrm{max\,right}(l, g)$
 - $g(\mathrm{prod}(l, r))$
 - $g(\mathrm{prod}(l, r + 1)) \lor r = n$
+を満たす$r$をいずれか一つ返す。
 
-## $min_left(r, g)$
+### 制約
+- $g(\mathrm{e})$
+- $0 \leq l \leq n$
+
+### 計算量
+- $O(\log n)$
+
+## $\mathrm{min\,left}(r, g)$
+- $g(\mathrm{prod}(l, r))$
+- $g(\mathrm{prod}(l - 1, r)) \lor l = 0$
+を満たす$l$をいずれか一つ返す。
+
+### 制約
+- $g(\mathrm{e})$
+- $0 \leq r \leq n$
+
+### 計算量
+- $O(\log n)$
