@@ -9,7 +9,7 @@ template <typename S> struct lazy_segtree {
     vector<V> val;
     vector<F> lazy;
     lazy_segtree(int n) : lazy_segtree(vector(n, S::e())) {}
-    lazy_segtree(vector<V> src) : n(src.size()) {
+    lazy_segtree(const vector<V> &src) : n(src.size()) {
         for (size = 1, log = 0; size < n; size <<= 1, log++) {}
         val.resize(size << 1);
         copy(all(src), val.begin() + size);

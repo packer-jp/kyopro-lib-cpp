@@ -38,6 +38,12 @@ documentation_of: //data_structure/lazy_segtree.hpp
         - `static fn_t id()`  
             $(F, \circ)$ の単位元 $\mathrm{id}$ を返す。
 
+    - `(constructor)(int n)`  
+        長さ $n$ 、全要素 $\mathrm{e}$ で初期化
+
+    - `(constructor)(vector<V> src)`  
+        長さ $n$ 、全要素 $\mathrm{e}$ で初期化
+
     - `using V`  
         $V$ を表す型。
 

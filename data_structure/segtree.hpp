@@ -7,7 +7,7 @@ template <typename S> struct segtree {
     int n, size;
     vector<V> val;
     segtree(int n) : segtree(vector(n, S::e())) {}
-    segtree(vector<V> src) : n(src.size()) {
+    segtree(const vector<V> &src) : n(src.size()) {
         for (size = 1; size < n; size <<= 1) {}
         val.resize(size << 1);
         copy(all(src), val.begin() + size);
