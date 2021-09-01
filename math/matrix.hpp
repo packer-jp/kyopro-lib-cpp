@@ -6,7 +6,7 @@ template <typename S> struct matrix {
     using V = typename S::val_t;
     vector<vector<V>> val;
     matrix(int n, int m) : matrix(vector(n, vector(m, S::zero()))) {}
-    matrix(vector<vector<V>> src) : val(src) {}
+    matrix(const vector<vector<V>> &src) : val(src) {}
     vector<V> &operator[](int i) { return val[i]; }
     const vector<V> &operator[](int i) const { return val[i]; }
     int height() const { return val.size(); }
@@ -60,10 +60,10 @@ template <typename S> struct matrix {
         }
         return ret;
     }
-    matrix pow(ll n) const {
+    matrix pow(ll k) const {
         matrix ret = matrix::id(height()), mul(*this);
-        while (n) {
-            if (n & 1) res *= mul;
+        while (k) {
+            if (k & 1) ret *= mul;
             mul *= mul;
             p >>= 1;
         }
