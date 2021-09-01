@@ -15,14 +15,14 @@ template <ll MOD = 1000000007> struct modint {
         }
         return modint(u);
     }
-    modint pow(ll p) const {
-        modint res = 1, mul = val;
-        while (p) {
-            if (p & 1) res *= mul;
+    modint pow(ll n) const {
+        modint ret = 1, mul = val;
+        while (n) {
+            if (n & 1) ret *= mul;
             mul *= mul;
-            p >>= 1;
+            n >>= 1;
         }
-        return res;
+        return ret;
     }
     modint &operator+=(const modint &a) {
         if ((val += a.val) >= MOD) val -= MOD;

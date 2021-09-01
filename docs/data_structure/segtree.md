@@ -25,10 +25,10 @@ documentation_of: //data_structure/segtree.hpp
             $(V, \times)$ の単位元 $\mathrm{e}$ を返す。
 
     - `(constructor)(int n)`  
-        長さ $n$ 、全要素 $\mathrm{e}$ で初期化
+        長さ $n$ 、全要素 $\mathrm{e}$ で初期化。
 
     - `(constructor)(vector<V> src)`  
-        長さ $n$ 、全要素 $\mathrm{e}$ で初期化
+        $s := src$ として初期化。
 
     - `using V`  
         $V$ を表す型。

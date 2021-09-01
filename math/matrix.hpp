@@ -60,14 +60,14 @@ template <typename S> struct matrix {
         }
         return ret;
     }
-    matrix pow(ll p) const {
-        matrix res = matrix::id(height()), mul(*this);
-        while (p) {
-            if (p & 1) res *= mul;
+    matrix pow(ll n) const {
+        matrix ret = matrix::id(height()), mul(*this);
+        while (n) {
+            if (n & 1) res *= mul;
             mul *= mul;
             p >>= 1;
         }
-        return res;
+        return ret;
     }
     matrix &operator+=(const matrix &a) {
         for (int i : rep(height())) {
