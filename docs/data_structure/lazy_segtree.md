@@ -10,7 +10,6 @@ documentation_of: //data_structure/lazy_segtree.hpp
 - 長さ $n$ の $V$ の元の列 $s$ に対する処理を行う。
 
 # 詳細
-
 - `<typename S> struct lazy_segtree`  
     遅延評価 Segment Tree 本体。
 

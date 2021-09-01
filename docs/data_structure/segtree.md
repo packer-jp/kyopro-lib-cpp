@@ -8,7 +8,6 @@ documentation_of: //data_structure/segtree.hpp
 - 長さ $n$ の $V$ の元の列 $s$ に対する処理を行う。
 
 # 詳細
-
 - `<typename S> struct segtree`  
     Segment Tree 本体。
 

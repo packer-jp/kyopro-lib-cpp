@@ -7,7 +7,6 @@ documentation_of: //math/modint.hpp
 - $\bmod\,m$ で考えた整数について、各種演算をサポートする。
 
 # 詳細
-
 - `<ll MOD> struct modint`  
     modint 本体。
 
@@ -26,7 +25,7 @@ documentation_of: //math/modint.hpp
     - `modint pow(ll n)`  
         $n$ 乗した結果を返す。 $O(\log n)$ 時間。
 
-    - 四則演算
+    - 四則演算、比較、複合代入
 
     - `iostream` を用いた入出力
 
