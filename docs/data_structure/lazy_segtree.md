@@ -59,17 +59,17 @@ documentation_of: //data_structure/lazy_segtree.hpp
     - `<typename G> max_right(int l, G g)`  
         述語 $g$ について、
         - $g(\mathrm{prod}(l, r))$
-        - $r = n \lor g(\mathrm{prod}(l, r + 1))$
+        - $r = n \lor \lnot g(\mathrm{prod}(l, r + 1))$
 
-        を満たす $r$ をいずれか一つ返す。 $O(\log n)$ 時間。 $g(\mathrm{e})$ を要請。
+        を共に満たす $r$ をいずれか一つ返す。 $O(\log n)$ 時間。 $g(\mathrm{e})$ を要請。
 
 
     - `<typename G> int min_left(int r, G g)`  
         述語 $g$ について、
         - $g(\mathrm{prod}(l, r))$
-        - $l = 0 \lor g(\mathrm{prod}(l - 1, r))$
+        - $l = 0 \lor \lnot g(\mathrm{prod}(l - 1, r))$
 
-        を満たす $l$ をいずれか一つ返す。 $O(\log n)$ 時間。 $g(\mathrm{e})$ を要請。
+        を共に満たす $l$ をいずれか一つ返す。 $O(\log n)$ 時間。 $g(\mathrm{e})$ を要請。
 
 - `struct min_monoid_with_addition`  
     区間最小/区間可算クエリを処理したいときに`lazy_segtree`にテンプレート引数 `S` として与える。
@@ -84,5 +84,5 @@ documentation_of: //data_structure/lazy_segtree.hpp
     区間和/区間更新クエリを処理したいときに`lazy_segtree`にテンプレート引数 `S` として与える。
 
 # 参考文献
-- https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html
-- https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp
+- [ACL](https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html)
+- [Nyaan さんのライブラリ](https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp)
