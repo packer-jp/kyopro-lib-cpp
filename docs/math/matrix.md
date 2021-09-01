@@ -56,3 +56,6 @@ documentation_of: //math/matrix.hpp
 
 - `struct double_field`  
     実数体を載せるときに`matrix`にテンプレート引数 `S` として与える。誤差周りの事情から、特殊化を行っている。
+
+# 参考文献
+- [うしさんのライブラリ](https://ei1333.github.io/library/math/matrix/matrix.cpp)

@@ -15,12 +15,12 @@ template <ll MOD = 1000000007> struct modint {
         }
         return modint(u);
     }
-    modint pow(ll n) const {
+    modint pow(ll k) const {
         modint ret = 1, mul = val;
-        while (n) {
-            if (n & 1) ret *= mul;
+        while (k) {
+            if (k & 1) ret *= mul;
             mul *= mul;
-            n >>= 1;
+            k >>= 1;
         }
         return ret;
     }

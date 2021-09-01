@@ -22,8 +22,8 @@ documentation_of: //math/modint.hpp
     - `modint inv()`  
         逆元を返す。 $m$ と互いに素である場合に逆元が存在する。 $O(\log m)$ 時間。
 
-    - `modint pow(ll n)`  
-        $n$ 乗した結果を返す。 $O(\log n)$ 時間。
+    - `modint pow(ll k)`  
+        $k$ 乗した結果を返す。 $O(\log k)$ 時間。
 
     - 四則演算、比較、複合代入
 

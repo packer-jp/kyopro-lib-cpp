@@ -65,7 +65,7 @@ template <typename S> struct matrix {
         while (k) {
             if (k & 1) ret *= mul;
             mul *= mul;
-            p >>= 1;
+            k >>= 1;
         }
         return ret;
     }
