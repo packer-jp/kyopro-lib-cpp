@@ -30,5 +30,5 @@ documentation_of: //math/modint.hpp
     - `iostream` を用いた入出力
 
 
-# 参考文献
+# 参考
 - [うしさんのライブラリ](https://ei1333.github.io/library/math/combinatorics/mod-int.cpp)

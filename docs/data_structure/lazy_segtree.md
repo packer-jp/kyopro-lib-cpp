@@ -88,6 +88,6 @@ documentation_of: //data_structure/lazy_segtree.hpp
 - `struct sum_monoid_with_update`  
     区間和/区間更新クエリを処理するときに`lazy_segtree`にテンプレート引数 `S` として与える。
 
-# 参考文献
+# 参考
 - [ACL](https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html)
 - [Nyaan さんのライブラリ](https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp)

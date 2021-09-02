@@ -63,6 +63,6 @@ documentation_of: //data_structure/segtree.hpp
 - `struct sum_monoid_with_update`  
     区間和/一点更新クエリを処理するときに`segtree`にテンプレート引数 `S` として与える。
 
-# 参考文献
+# 参考
 - [ACL](https://atcoder.github.io/ac-library/production/document_ja/segtree.html)
 - [えびちゃんさんのスライド](https://hcpc-hokudai.github.io/archive/structure_segtree_001.pdf)

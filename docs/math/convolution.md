@@ -18,5 +18,5 @@ documentation_of: //math/convolution.hpp
 - `<typename mint> vector<mint> convolution(vector<mint> a, vector<mint> b)`  
     $a, b$を畳み込んだ数列を返す。$a, b$それぞれの列長を $n, m$ とすると、結果の列長は $n + m - 1$ となる。$O((n + m)\log(n + m))$時間。
 
-# 参考文献
+# 参考
 - [Stockham FFT 入門](http://wwwa.pikara.ne.jp/okojisan/stockham/stockham1.html)

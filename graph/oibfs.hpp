@@ -2,13 +2,13 @@
 
 #include "../template.hpp"
 
-struct zobfs {
+struct oibfs {
     struct edge {
         ll to, cost;
         edge(ll to, ll cost) : to(to), cost(cost) {}
     };
     vector<vector<edge>> adj;
-    zobfs(ll n) : adj(n) {}
+    oibfs(ll n) : adj(n) {}
     void add_edge(ll from, ll to, ll cost) { adj[from].emplace_back(to, cost); }
     pair<vector<ll>, vector<ll>> get(int s) const {
         vector<ll> dist(adj.size(), LLONG_MAX), prev(adj.size(), -1);
