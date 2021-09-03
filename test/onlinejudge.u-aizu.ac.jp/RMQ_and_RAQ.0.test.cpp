@@ -5,7 +5,6 @@
 using namespace std;
 
 int main() {
-    dump(-15 / 4);
     ll n, q;
     cin >> n >> q;
     vector<ll> src(n, 0);
