@@ -17,7 +17,7 @@ int main() {
         }
         if (ord == 1) {
             cin >> x;
-            cout << st.get(x) << endl;
+            cout << st[x] << endl;
         }
         if (ord == 2) st.erase(st.size() - 1);
     }

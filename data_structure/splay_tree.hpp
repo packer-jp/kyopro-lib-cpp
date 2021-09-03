@@ -68,9 +68,9 @@ template <typename V> struct splay_tree {
             if (idx > size_l) cur = cur->right, idx -= size_l + 1;
         }
     }
-    V get(int idx) { return get_node(idx)->val; }
+    V &operator[](int idx) { return get_node(idx)->val; }
     template <typename F> int lower_bound(F f) {
-        if (!root) { return 0; }
+        if (!root) return 0;
         node *cur = root;
         int ret = -1;
         while (true) {
