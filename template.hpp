@@ -6,12 +6,13 @@ using namespace std;
 #define all(a) (a).begin(), (a).end()
 using ll = long long;
 using ull = unsigned long long;
-ull bit(int n) { return 1ull << n; }
-ll sign(ll a) { return (a > 0) - (a < 0); }
-ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
-ll cdiv(ll a, ll b) { return -fdiv(-a, b); }
+using vll = vector<ll>;
+constexpr ull bit(int n) { return 1ull << n; }
+constexpr ll sign(ll a) { return (a > 0) - (a < 0); }
+constexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
+constexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }
+template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
-template <typename T> T sq(const T &a) { return a * a; }
 template <typename T, typename U> bool chmax(T &a, const U &b) { return ((a < b) ? (a = b, true) : (false)); }
 template <typename T, typename U> bool chmin(T &a, const U &b) { return ((a > b) ? (a = b, true) : (false)); }
 template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
