@@ -1,5 +1,5 @@
 ---
-title: 永続配列
+title: 完全永続配列
 documentation_of: //data_structure/persistent_array.hpp
 ---
 
