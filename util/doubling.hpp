@@ -3,25 +3,22 @@
 #include "../template.hpp"
 
 struct doubling {
+    int n;
+    vector<int> next;
     vector<vector<int>> dst;
-    doubling(vector<int> next, ll t_max) : dst(64 - __builtin_clzll(t_max), next) {
+    doubling(int n) : n(n), next(n + 1, n) {}
+    void set(int i, int j) { next[i] = ((j == -1) ? n : j); }
+    void build(ll t_max) {
+        dst.assign(64 - __builtin_clzll(t_max), next);
         for (int i : rep(dst.size() - 1)) {
-            for (int j : rep(next.size())) {
-                if (dst[i][j] == -1) {
-                    dst[i + 1][j] = -1;
-                } else {
-                    dst[i + 1][j] = dst[i][dst[i][j]];
-                }
-            }
+            for (int j : rep(n + 1)) dst[i + 1][j] = dst[i][dst[i][j]];
         }
     }
-    int get(int i, ll t) {
+    int get(int i, ll t) const {
+        if (i == -1) return -1;
         for (int j : per(dst.size())) {
-            if ((t >> j) & 1) {
-                if (i == -1) return -1;
-                i = dst[j][i];
-            }
+            if ((t >> j) & 1) i = dst[j][i];
         }
-        return i;
+        return i == n ? -1 : i;
     }
 };
