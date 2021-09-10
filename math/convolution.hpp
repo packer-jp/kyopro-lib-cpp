@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../template.hpp"
-#include "modint.hpp"
 
 template <typename mint> void ntt(vector<mint> &a, bool inv = false) {
     int n = a.size(), m = n >> 1;
@@ -14,14 +13,14 @@ template <typename mint> void ntt(vector<mint> &a, bool inv = false) {
         mint wj = 1;
         for (int j = 0; j < m; j += i, wj *= wn) {
             for (int k : rep(i)) {
-                b[(j << 1) + k + 0] = (a[j + k] + a[j + k + m]);
-                b[(j << 1) + k + i] = (a[j + k] - a[j + k + m]) * wj;
+                b[0 + (j << 1) + k] = (a[0 + j + k] + a[m + j + k]);
+                b[i + (j << 1) + k] = (a[0 + j + k] - a[m + j + k]) * wj;
             }
         }
     }
     if (inv) {
         mint ninv = mint(n).inv();
-        for (int i : rep(n)) a[i] *= ninv;
+        for (mint &ai : a) ai *= ninv;
     }
 }
 template <typename mint> void intt(vector<mint> &a) { ntt(a, true); }

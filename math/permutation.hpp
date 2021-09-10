@@ -48,7 +48,7 @@ struct permutation {
     }
     friend ostream &operator<<(std::ostream &os, const permutation &a) {
         os << "(";
-        for (int i = 0; i < a.size(); i++) { os << a[i] << (i + 1 != a.size() ? ", " : ""); }
+        for (int i : rep(a.size())) { os << a[i] << (i + 1 != a.size() ? ", " : ""); }
         os << ")";
         return os;
     }

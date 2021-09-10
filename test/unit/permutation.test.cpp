@@ -1,6 +1,9 @@
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A&lang=ja"
 #include "../../math/permutation.hpp"
 
+#include <bits/stdc++.h>
+using namespace std;
+
 int main() {
     vector<int> e = {0, 1, 2, 3, 4};
     vector<int> a = {3, 2, 1, 4, 0};

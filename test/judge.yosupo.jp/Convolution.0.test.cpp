@@ -9,7 +9,7 @@ int main() {
     vector<mint> a(n), b(m);
     for (ll i : rep(n)) cin >> a[i];
     for (ll i : rep(m)) cin >> b[i];
-    vector<mint> c = convolution<mint>(a, b);
+    vector<mint> c = convolution(a, b);
     for (mint ci : c) { cout << ci << " "; }
     cout << endl;
 }

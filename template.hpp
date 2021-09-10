@@ -37,34 +37,34 @@ template <typename Head, typename... Tail> void debug(Head &&head, Tail &&... ta
 #endif
 struct rep {
     struct itr {
-        int v;
-        itr(int v) : v(v) {}
+        ll v;
+        itr(ll v) : v(v) {}
         void operator++() { ++v; }
-        int operator*() const { return v; }
+        ll operator*() const { return v; }
         bool operator!=(const itr &i) const { return v != i.v; }
     };
-    int l, r;
-    rep(int r) : l(min(0, r)), r(r) {}
-    rep(int l, int r) : l(min(l, r)), r(r) {}
+    ll l, r;
+    rep(ll r) : l(min(0ll, r)), r(r) {}
+    rep(ll l, ll r) : l(min(l, r)), r(r) {}
     itr begin() const { return l; };
     itr end() const { return r; };
 };
 struct per {
     struct itr {
-        int v;
-        itr(int v) : v(v) {}
+        ll v;
+        itr(ll v) : v(v) {}
         void operator++() { --v; }
-        int operator*() const { return v; }
+        ll operator*() const { return v; }
         bool operator!=(const itr &i) const { return v != i.v; }
     };
-    int l, r;
-    per(int r) : l(min(0, r)), r(r) {}
-    per(int l, int r) : l(min(l, r)), r(r) {}
+    ll l, r;
+    per(ll r) : l(min(0ll, r)), r(r) {}
+    per(ll l, ll r) : l(min(l, r)), r(r) {}
     itr begin() const { return r - 1; };
     itr end() const { return l - 1; };
 };
 struct io_setup {
-    static constexpr ll PREC = 20;
+    static constexpr int PREC = 20;
     io_setup() {
         cout << fixed << setprecision(PREC);
         cerr << fixed << setprecision(PREC);

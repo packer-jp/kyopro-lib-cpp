@@ -6,7 +6,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     ll n, q;
     cin >> n >> q;
-    vector<persistent_uf<2>> his;
+    vector<persistent_uf<4>> his;
     his.emplace_back(n);
     for (ll i : rep(q)) {
         ll c, k, u, v;
