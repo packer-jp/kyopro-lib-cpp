@@ -1,5 +1,5 @@
 ---
-title: xor 畳み込み
+title: FWHT / xor 畳み込み
 documentation_of: //math/xor_convolution.hpp
 ---
 

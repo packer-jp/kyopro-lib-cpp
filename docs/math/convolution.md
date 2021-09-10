@@ -1,5 +1,5 @@
 ---
-title: NTT/畳み込み
+title: NTT / 畳み込み
 documentation_of: //math/convolution.hpp
 ---
 
