@@ -10,7 +10,7 @@ int main() {
         cin >> a >> b >> c;
         dij.add_edge(a, b, c);
     }
-    auto [dist, prev] = dij.get(s, 0);
+    auto [dist, prev] = dij.get(s);
     if (prev[t] == -1) {
         cout << -1 << endl;
         return 0;

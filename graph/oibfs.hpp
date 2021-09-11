@@ -17,14 +17,14 @@ struct oibfs {
         dist[s] = 0;
         deq.emplace_front(0, s);
         while (!deq.empty()) {
-            auto [d, i] = deq.front();
+            auto [d, from] = deq.front();
             deq.pop_front();
-            if (dist[i] < d) continue;
-            for (auto [to, cost] : adj[i]) {
-                ll nd = dist[i] + cost;
+            if (dist[from] < d) continue;
+            for (auto [to, cost] : adj[from]) {
+                ll nd = dist[from] + cost;
                 if (nd < dist[to]) {
                     dist[to] = nd;
-                    prev[to] = i;
+                    prev[to] = from;
                     if (cost == 0) deq.emplace_front(nd, to);
                     if (cost == 1) deq.emplace_back(nd, to);
                 }
