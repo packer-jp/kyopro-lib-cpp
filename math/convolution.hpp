@@ -30,7 +30,7 @@ template <typename mint> vector<mint> convolution_naive(vector<mint> a, vector<m
     vector<mint> c(na + nb - 1);
     if (na < nb) swap(a, b), swap(na, nb);
     for (int i : rep(na)) {
-        for (int j : rep(nb)) { c[i + j] += a[i] * b[j]; }
+        for (int j : rep(nb)) c[i + j] += a[i] * b[j];
     }
     return c;
 }
