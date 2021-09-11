@@ -1,5 +1,5 @@
 ---
-title: 二分法
+title: 二分探索
 documentation_of: //util/bisect.hpp
 ---
 

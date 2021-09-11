@@ -2,24 +2,24 @@
 
 #include "../template.hpp"
 
-template <typename mint> void fwht(vector<mint> &a) {
+template <typename T> void fwht(vector<T> &a) {
     int n = a.size();
     for (int i = 1; i < n; i <<= 1) {
         for (int j = 0; j < n; j += i << 1) {
             for (int k : rep(i)) {
-                mint p = a[0 + j + k], q = a[i + j + k];
+                T p = a[0 + j + k], q = a[i + j + k];
                 a[0 + j + k] = p + q;
                 a[i + j + k] = p - q;
             }
         }
     }
 }
-template <typename mint> void ifwht(vector<mint> &a) {
+template <typename T> void ifwht(vector<T> &a) {
     fwht(a);
-    mint ninv = mint(a.size()).inv();
-    for (mint &ai : a) ai *= ninv;
+    T ninv = T(1) / a.size();
+    for (T &ai : a) ai *= ninv;
 }
-template <typename mint> vector<mint> xor_convolution(vector<mint> a, vector<mint> b) {
+template <typename T> vector<T> xor_convolution(vector<T> a, vector<T> b) {
     int n_ = max(a.size(), b.size()), n;
     for (n = 1; n < n_; n <<= 1) {}
     a.resize(n), b.resize(n);

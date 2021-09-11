@@ -4,7 +4,7 @@
 
 template <typename V, int SHIFT> struct persistent_array {
     using ptr = shared_ptr<persistent_array>;
-    static constexpr int BASE = 1 << SHIFT;
+    static constexpr int BASE = bit(SHIFT);
     static constexpr int MASK = BASE - 1;
     V val;
     array<ptr, BASE> ch;
