@@ -3,10 +3,10 @@ title: 行列
 documentation_of: //math/matrix.hpp
 ---
 
-# 概要
+## 概要
 - 集合 $V$ について定めた代数的構造上の $n \times m$ 行列に関する各種演算をサポートする。
 
-# 詳細
+## 詳細
 - `<typename S> struct matrix`  
     行列本体。
 
@@ -57,5 +57,5 @@ documentation_of: //math/matrix.hpp
 - `struct double_field`  
     実数体を載せるときに`matrix`にテンプレート引数 `S` として与える。誤差周りの事情から、特殊化を行っている。
 
-# 参考
+## 参考
 - [うしさんのライブラリ](https://ei1333.github.io/library/math/matrix/matrix.cpp)

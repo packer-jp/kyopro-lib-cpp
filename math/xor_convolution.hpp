@@ -14,11 +14,13 @@ template <typename T> void fwht(vector<T> &a) {
         }
     }
 }
+
 template <typename T> void ifwht(vector<T> &a) {
     fwht(a);
     T ninv = T(1) / a.size();
     for (T &ai : a) ai *= ninv;
 }
+
 template <typename T> vector<T> xor_convolution(vector<T> a, vector<T> b) {
     int n_ = max(a.size(), b.size()), n;
     for (n = 1; n < n_; n <<= 1) {}

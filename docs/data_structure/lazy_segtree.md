@@ -3,13 +3,13 @@ title: 遅延評価 Segment Tree
 documentation_of: //data_structure/lazy_segtree.hpp
 ---
 
-# 概要
+## 概要
 - $v, w \in V$ および $f, g \in F$ として、以下の条件を満たすモノイド $(V, \times)$ と作用素モノイド $(F, \circ)$ を考える。
     - $f(v \times w) = f(v) \times f(w)$
     - $f(g(v)) = f \circ g(v)$
 - 長さ $n$ の $V$ の元の列 $s$ に対する処理を行う。
 
-# 詳細
+## 詳細
 - `<typename S> struct lazy_segtree`  
     遅延評価 Segment Tree 本体。
 
@@ -88,6 +88,6 @@ documentation_of: //data_structure/lazy_segtree.hpp
 - `struct sum_monoid_with_update`  
     区間和/区間更新クエリを処理するときに`lazy_segtree`にテンプレート引数 `S` として与える。
 
-# 参考
+## 参考
 - [ACL](https://atcoder.github.io/ac-library/production/document_ja/lazysegtree.html)
 - [Nyaan さんのライブラリ](https://nyaannyaan.github.io/library/segment-tree/lazy-segment-tree-utility.hpp)

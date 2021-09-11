@@ -24,6 +24,11 @@ int main() {
         }
         if (l) x[i] = m / l;
     }
+    fzt_super(x);
+    fmt_super(x);
+    fzt_sub(x);
+    fmt_sub(x);
+
     fmt_sub(x);
     double ans = 0;
     for (ll i : rep(bit(n))) {

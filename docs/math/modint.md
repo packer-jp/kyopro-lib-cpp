@@ -3,10 +3,10 @@ title: modint
 documentation_of: //math/modint.hpp
 ---
 
-# 概要
+## 概要
 - $\bmod\,m$ で考えた整数について、各種演算をサポートする。
 
-# 詳細
+## 詳細
 - `<ll MOD> struct modint`  
     modint 本体。
 
@@ -30,5 +30,5 @@ documentation_of: //math/modint.hpp
     - `iostream` を用いた入出力
 
 
-# 参考
+## 参考
 - [うしさんのライブラリ](https://ei1333.github.io/library/math/combinatorics/mod-int.cpp)
