@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/search/titles/2446"
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2446"
 #define ERROR 1e-7
 #include "../../math/fzt_and_fmt.hpp"
 
