@@ -1,6 +1,6 @@
 ---
 title: FZT / FMT
-documentation_of: //math/xor_convolution.hpp
+documentation_of: //math/fzt_and_fmt.hpp
 ---
 
 ## 概要

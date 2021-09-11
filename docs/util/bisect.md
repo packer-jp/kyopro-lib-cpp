@@ -4,7 +4,7 @@ documentation_of: //util/bisect.hpp
 ---
 
 # 概要
-二分法を用いて、述語の成立 / 不成立の境界値を計算する。
+二分探索を用いて、述語の成立 / 不成立の境界値を計算する。
 
 # 詳細
 - `<typename F> bisect(ll ok, ll ng, F f)`  

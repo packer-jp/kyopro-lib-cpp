@@ -1,4 +1,4 @@
 ---
 title: 順列
-documentation_of: //util/permutation.hpp
+documentation_of: //mathematics/permutation.hpp
 ---
