@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
+#define PROBLEM "https://judge.yosupo.jp/problem/subset_convolution"
 #include "../../math/modint.hpp"
 #include "../../math/subset_convolution.hpp"
 
