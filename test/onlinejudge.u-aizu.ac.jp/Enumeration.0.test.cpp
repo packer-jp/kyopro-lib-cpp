@@ -1,4 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/search/titles/2446"
+#define ERROR 1e-7
 #include "../../math/fzt_and_fmt.hpp"
 
 #include <bits/stdc++.h>
