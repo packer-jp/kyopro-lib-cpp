@@ -2,7 +2,7 @@
 
 #include "../template.hpp"
 
-template <typename C> void wf(vector<vector<C>> &adj, C inf = numeric_limits<C>::max()) {
+template <typename T> void wf(vector<vector<T>> &adj, T inf = numeric_limits<T>::max()) {
     int n = adj.size();
     for (int k : rep(n)) {
         for (int i : rep(n)) {

@@ -25,9 +25,9 @@ template <typename mint> void ntt(vector<mint> &a, bool inv = false) {
 }
 template <typename mint> void intt(vector<mint> &a) { ntt(a, true); }
 
-template <typename mint> vector<mint> convolution_naive(vector<mint> a, vector<mint> b) {
+template <typename T> vector<T> convolution_naive(vector<T> a, vector<T> b) {
     int na = a.size(), nb = b.size();
-    vector<mint> c(na + nb - 1);
+    vector<T> c(na + nb - 1);
     if (na < nb) swap(a, b), swap(na, nb);
     for (int i : rep(na)) {
         for (int j : rep(nb)) c[i + j] += a[i] * b[j];

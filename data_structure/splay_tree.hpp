@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-template <typename V> struct splay_tree {
+template <typename T> struct splay_tree {
     struct node {
         node *left, *right, *par;
         int size;
-        V val;
-        node(V val) : left(nullptr), right(nullptr), par(nullptr), size(1), val(val) {}
+        T val;
+        node(T val) : left(nullptr), right(nullptr), par(nullptr), size(1), val(val) {}
         void rotate() {
             node *p, *pp, *c;
             p = par, pp = p->par;
@@ -68,7 +68,7 @@ template <typename V> struct splay_tree {
             if (idx > size_l) cur = cur->right, idx -= size_l + 1;
         }
     }
-    V &operator[](int idx) { return get_node(idx)->val; }
+    T &operator[](int idx) { return get_node(idx)->val; }
     template <typename F> int lower_bound(F f) {
         if (!root) return 0;
         node *cur = root;

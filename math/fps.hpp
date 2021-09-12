@@ -4,14 +4,14 @@
 #include "convolution.hpp"
 #include "modint.hpp"
 
-template <typename mint> struct fps : vector<mint> {
-    using vector<mint>::vector;
-    using vector<mint>::operator=;
-    fps() : vector<mint>() {}
-    fps(const mint &a) : vector<mint>(1, a) {}
-    fps(const fps &a) : vector<mint>(a) {}
+template <typename T> struct fps : vector<T> {
+    using vector<T>::vector;
+    using vector<T>::operator=;
+    fps() : vector<T>() {}
+    fps(const T &a) : vector<T>(1, a) {}
+    fps(const fps &a) : vector<T>(a) {}
     fps &operator=(const fps &a) {
-        *this = (vector<mint>)a;
+        *this = (vector<T>)a;
         return *this;
     }
     fps &operator+=(const fps &a) {
