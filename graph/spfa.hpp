@@ -8,11 +8,10 @@ template <typename S> struct spfa {
     struct edge {
         int to;
         C cost;
-        edge(int to, C cost) : to(to), cost(cost) {}
     };
     vector<vector<edge>> adj;
     spfa(int n) : adj(n) {}
-    void add_edge(int from, int to, const C &cost) { adj[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, const C &cost) { adj[from].push_back({to, cost}); }
     pair<vector<D>, vector<int>> get(int s, const D &base = D()) const {
         int n = adj.size();
         vector<D> dist(n, S::inf());

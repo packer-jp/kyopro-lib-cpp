@@ -5,11 +5,10 @@
 struct oibfs {
     struct edge {
         int to, cost;
-        edge(int to, int cost) : to(to), cost(cost) {}
     };
     vector<vector<edge>> adj;
     oibfs(int n) : adj(n) {}
-    void add_edge(int from, int to, int cost) { adj[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, int cost) { adj[from].push_back({to, cost}); }
     pair<vector<int>, vector<int>> get(int s) const {
         vector<int> dist(adj.size(), INT_MAX), prev(adj.size(), -1);
         using P = pair<int, int>;

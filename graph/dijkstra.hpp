@@ -8,11 +8,10 @@ template <typename S> struct dijkstra {
     struct edge {
         int to;
         C cost;
-        edge(int to, C cost) : to(to), cost(cost) {}
     };
     vector<vector<edge>> adj;
     dijkstra(int n) : adj(n) {}
-    void add_edge(int from, int to, const C &cost) { adj[from].emplace_back(to, cost); }
+    void add_edge(int from, int to, const C &cost) { adj[from].push_back({to, cost}); }
     pair<vector<D>, vector<int>> get(int s, const D &base = D()) const {
         vector<D> dist(adj.size(), S::inf());
         vector<int> prev(adj.size(), -1);

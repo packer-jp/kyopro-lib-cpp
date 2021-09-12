@@ -25,7 +25,7 @@ template <typename T> struct fps : vector<T> {
         return *this;
     }
     fps &operator*=(const fps &a);
-    fps &operator/=(const mint &a) {
+    fps &operator/=(const T &a) {
         for (int i : rep(this->size())) (*this)[i] /= a;
         return *this;
     };
@@ -38,7 +38,7 @@ template <typename T> struct fps : vector<T> {
         return *this;
     }
     fps &operator<<=(int d) {
-        this->insert(this->begin(), d, mint(0));
+        this->insert(this->begin(), d, T(0));
         return *this;
     }
     fps &chdot(const fps &a) {
@@ -61,9 +61,9 @@ template <typename T> struct fps : vector<T> {
     fps integral() const {
         int n = this->size();
         fps ret(n + 1);
-        ret[0] = mint(0);
-        if (n > 0) ret[1] = mint(1);
-        for (int i : rep(2, n + 1)) ret[i] = (-ret[mint::mod() % i]) * (mint::mod() / i);
+        ret[0] = T(0);
+        if (n > 0) ret[1] = T(1);
+        for (int i : rep(2, n + 1)) ret[i] = (-ret[T::mod() % i]) * (T::mod() / i);
         for (int i : rep(n)) ret[i + 1] *= (*this)[i];
         return ret;
     }
@@ -74,23 +74,23 @@ template <typename T> struct fps : vector<T> {
         return ret.prefix(d);
     }
     fps log(int d = -1) const {
-        assert((*this)[0] == mint(1));
+        assert((*this)[0] == T(1));
         if (d == -1) d = this->size();
         return (this->differential() * this->inv(d)).prefix(d - 1).integral();
     }
     fps exp(int d = -1) const {
-        assert(this->size() == 0 || (*this)[0] == mint(0));
+        assert(this->size() == 0 || (*this)[0] == T(0));
         if (d == -1) d = this->size();
         fps ret{1};
-        for (int m = 1; m < d; m <<= 1) ret = (ret * (this->prefix(m << 1) + mint(1) - ret.log(m << 1))).prefix(m << 1);
+        for (int m = 1; m < d; m <<= 1) ret = (ret * (this->prefix(m << 1) + T(1) - ret.log(m << 1))).prefix(m << 1);
         return ret.prefix(d);
     }
     fps pow(ll k, int d = -1) const {
         if (d == -1) d = this->size();
         for (int i : rep(this->size())) {
-            if ((*this)[i] != mint(0)) {
+            if ((*this)[i] != T(0)) {
                 if (i * k > d) return fps(d);
-                fps ret = (((*this * (*this)[i].inv()) >> i).log(d) * mint(k)).exp(d) * ((*this)[i].pow(k));
+                fps ret = (((*this * (*this)[i].inv()) >> i).log(d) * T(k)).exp(d) * ((*this)[i].pow(k));
                 ret = (ret << (i * k)).prefix(d);
                 ret.resize(d);
                 return ret;
@@ -134,8 +134,8 @@ template <> fps<m9> fps<m9>::inv(int d) const {
 }
 
 template <> fps<m9> fps<m9>::exp(int d) const {
-    using mint = m9;
-    assert(this->size() == 0 || (*this)[0] == mint(0));
+    using T = m9;
+    assert(this->size() == 0 || (*this)[0] == T(0));
     if (d == -1) d = this->size();
     fps ret{1}, g{1}, g_freq{1};
     for (int m = 1; m < d; m <<= 1) {

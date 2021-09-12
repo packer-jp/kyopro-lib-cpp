@@ -119,7 +119,7 @@ template <typename T> struct splay_tree {
         root->right = right.root, right.root->par = root;
         root->update();
     }
-    void insert(int idx, V x) {
+    void insert(int idx, T x) {
         splay_tree xt = new node(x), right = split(idx);
         merge(xt), merge(right);
     }

@@ -5,10 +5,10 @@
 using namespace std;
 
 int main() {
-    string T, P;
-    cin >> T >> P;
-    rolling_hash Th(T), Ph(P);
-    for (int i : rep((int)T.size() - (int)P.size() + 1)) {
-        if (Th.get_hash(i, i + P.size()) == Ph.get_hash(0, P.size())) cout << i << endl;
+    string t, p;
+    cin >> t >> p;
+    rolling_hash th(t), ph(p);
+    for (int i : rep((int)t.size() - (int)p.size() + 1)) {
+        if (th.get_hash(i, i + p.size()) == ph.get_hash(0, p.size())) cout << i << endl;
     }
 }

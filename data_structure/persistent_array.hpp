@@ -16,7 +16,7 @@ template <typename T, int SHIFT> struct persistent_array {
     }
     persistent_array(T val, const array<ptr, BASE> &ch) : val(val), ch(ch) {}
     persistent_array(T val, const array<ptr, BASE> &ch, int i, ptr chp) : val(val), ch(ch) { this->ch[i] = chp; }
-    V get(int i) const { return i > 0 ? ch[i & MASK]->get(i >> SHIFT) : val; }
+    T get(int i) const { return i > 0 ? ch[i & MASK]->get(i >> SHIFT) : val; }
     ptr setp(int i, T val) const {
         return ptr(i > 0 ? new persistent_array(this->val, ch, i & MASK, ch[i & MASK]->setp(i >> SHIFT, val))
                          : new persistent_array(val, ch));
