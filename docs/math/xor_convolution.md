@@ -1,7 +1,7 @@
 ---
-title: FWHT, xor 畳み込み
+title: xor 畳み込み
 documentation_of: //math/xor_convolution.hpp
 ---
 
-## 参考
-- [cympfh さんの記事](https://cympfh.cc/aiura/hadamard-xor-convolution)
+## 概要
+- 高速ウォルシュ・アダマール変換を用いた xor 畳み込みを行う。
