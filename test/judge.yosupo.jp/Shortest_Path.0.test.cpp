@@ -4,7 +4,7 @@
 int main() {
     ll n, m, s, t;
     cin >> n >> m >> s >> t;
-    dijkstra<ll_dij> dij(n);
+    dijkstra<ll_dijkstra> dij(n);
     while (m--) {
         int a, b, c;
         cin >> a >> b >> c;

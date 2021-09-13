@@ -3,7 +3,7 @@
 #include "../template.hpp"
 
 template <typename S> struct dinic {
-    using C = typename S::cost_t;
+    using C = typename S::cap_t;
     struct _edge {
         int to, rev;
         C cap;
@@ -95,7 +95,7 @@ template <typename S> struct dinic {
 };
 
 struct ll_dinic {
-    using cost_t = ll;
-    static cost_t zero() { return 0; }
-    static cost_t inf() { return numeric_limits<cost_t>::max(); }
+    using cap_t = ll;
+    static cap_t zero() { return 0; }
+    static cap_t inf() { return numeric_limits<cap_t>::max(); }
 };

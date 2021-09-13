@@ -36,7 +36,7 @@ template <typename S> struct dijkstra {
     }
 };
 
-struct ll_dij {
+struct ll_dijkstra {
     using dist_t = ll;
     using cost_t = ll;
     static dist_t inf() { return LLONG_MAX; }
