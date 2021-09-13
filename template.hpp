@@ -4,6 +4,7 @@
 using namespace std;
 
 #define all(a) (a).begin(), (a).end()
+#define uniq(a) (a).erase(unique(all(a)), (a).end())
 using ll = long long;
 using ull = unsigned long long;
 using pll = pair<ll, ll>;
@@ -18,10 +19,28 @@ template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 template <typename T, typename U> bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }
 template <typename T, typename U> bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }
+template <typename T, typename U> ostream &operator<<(ostream &os, const pair<T, U> &a) {
+    os << "(" << a.first << ", " << a.second << ")";
+    return os;
+}
 template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     os << "(";
-    for (auto itr = a.begin(); itr != a.end(); itr++) { os << *itr << (next(itr) != a.end() ? ", " : ""); }
-    os << ")";
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    return os;
+}
+template <typename T> ostream &operator<<(ostream &os, const set<T> &a) {
+    os << "(";
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    return os;
+}
+template <typename T> ostream &operator<<(ostream &os, const multiset<T> &a) {
+    os << "(";
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    return os;
+}
+template <typename T, typename U> ostream &operator<<(ostream &os, const map<T, U> &a) {
+    os << "(";
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
     return os;
 }
 #ifdef ONLINE_JUDGE

@@ -13,11 +13,11 @@ int main() {
         cin >> u >> v >> c;
         dinic.add_edge(u, v, c);
     }
-    dinic.calc_max_flow(0, v - 1);
-    auto flow = dinic.get_max_flow();
+    dinic.flow(0, v - 1);
+    auto flow = dinic.edges();
     ll ans = 0;
-    for (auto p : flow) {
-        if (p.first.first == 0) ans += p.second;
+    for (auto e : flow) {
+        if (e.from == 0) ans += e.flow;
     }
     cout << ans << endl;
 }

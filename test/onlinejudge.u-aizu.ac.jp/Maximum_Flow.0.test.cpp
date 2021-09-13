@@ -13,6 +13,6 @@ int main() {
         cin >> u >> v >> c;
         dinic.add_edge(u, v, c);
     }
-    ll ans = dinic.calc_max_flow(0, v - 1);
+    ll ans = dinic.flow(0, v - 1);
     cout << ans << endl;
 }

@@ -9,13 +9,14 @@ template <typename S> struct spfa {
         int to;
         C cost;
     };
-    vector<vector<edge>> adj;
-    spfa(int n) : adj(n) {}
-    void add_edge(int from, int to, const C &cost) { adj[from].push_back({to, cost}); }
+    vector<vector<edge>> g;
+    spfa(int n) : g(n) {}
+    void add_edge(int from, int to, const C &cost) { g[from].push_back({to, cost}); }
     pair<vector<D>, vector<int>> get(int s, const D &base = D()) const {
-        int n = adj.size();
+        int n = g.size();
         vector<D> dist(n, S::inf());
-        vector<int> prev(n, -1), inq(n), time(n);
+        vector<int> prev(n, -1), time(n);
+        vector<bool> inq(n);
         queue<int> q;
         q.push(s);
         dist[s] = base;
@@ -24,7 +25,7 @@ template <typename S> struct spfa {
             int from = q.front();
             q.pop();
             inq[from] = false;
-            for (auto [to, cost] : adj[from]) {
+            for (auto [to, cost] : g[from]) {
                 if (chmin(dist[to], dist[from] + cost)) {
                     prev[to] = from;
                     if (!inq[to]) {

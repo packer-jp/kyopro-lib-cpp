@@ -13,9 +13,12 @@ int main() {
         cin >> u >> v >> c;
         dinic.add_edge(u, v, c);
     }
-    dinic.calc_max_flow(0, v - 1);
-    auto cut = dinic.get_min_cut(0);
+    dinic.flow(0, v - 1);
+    auto flow = dinic.edges();
+    auto cut = dinic.min_cut(0);
     ll ans = 0;
-    for (auto p : cut) ans += p.second;
+    for (auto e : flow) {
+        if (cut[e.from] && !cut[e.to]) ans += e.flow;
+    }
     cout << ans << endl;
 }

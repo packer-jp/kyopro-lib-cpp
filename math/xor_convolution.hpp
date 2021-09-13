@@ -22,8 +22,8 @@ template <typename T> void ifwht(vector<T> &a) {
 }
 
 template <typename T> vector<T> xor_convolution(vector<T> a, vector<T> b) {
-    int n_ = max(a.size(), b.size()), n;
-    for (n = 1; n < n_; n <<= 1) {}
+    int _n = max(a.size(), b.size()), n;
+    for (n = 1; n < _n; n <<= 1) {}
     a.resize(n), b.resize(n);
     fwht(a), fwht(b);
     for (int i : rep(n)) a[i] *= b[i];

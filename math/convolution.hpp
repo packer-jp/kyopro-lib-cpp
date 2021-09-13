@@ -25,7 +25,7 @@ template <typename mint> void ntt(vector<mint> &a, bool inv = false) {
 }
 template <typename mint> void intt(vector<mint> &a) { ntt(a, true); }
 
-template <typename T> vector<T> convolution_naive(vector<T> a, vector<T> b) {
+template <typename T> vector<T> convolutio_nnaive(vector<T> a, vector<T> b) {
     int na = a.size(), nb = b.size();
     vector<T> c(na + nb - 1);
     if (na < nb) swap(a, b), swap(na, nb);
@@ -35,21 +35,21 @@ template <typename T> vector<T> convolution_naive(vector<T> a, vector<T> b) {
     return c;
 }
 
-template <typename mint> vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
-    int n_ = a.size() + b.size() - 1, n;
-    for (n = 1; n < n_; n <<= 1) {}
+template <typename mint> vector<mint> convolutio_nntt(vector<mint> a, vector<mint> b) {
+    int _n = a.size() + b.size() - 1, n;
+    for (n = 1; n < _n; n <<= 1) {}
     a.resize(n), b.resize(n);
     ntt(a), ntt(b);
     for (int i : rep(n)) a[i] *= b[i];
     intt(a);
-    a.resize(n_);
+    a.resize(_n);
     return a;
 }
 
 template <typename mint> vector<mint> convolution(const vector<mint> &a, const vector<mint> &b) {
     if (min(a.size(), b.size()) <= 60) {
-        return convolution_naive(a, b);
+        return convolutio_nnaive(a, b);
     } else {
-        return convolution_ntt(a, b);
+        return convolutio_nntt(a, b);
     }
 }
