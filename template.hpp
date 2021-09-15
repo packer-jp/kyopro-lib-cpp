@@ -1,5 +1,3 @@
-#pragma once
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -25,22 +23,26 @@ template <typename T, typename U> ostream &operator<<(ostream &os, const pair<T,
 }
 template <typename T> ostream &operator<<(ostream &os, const vector<T> &a) {
     os << "(";
-    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : "");
+    os << ")";
     return os;
 }
 template <typename T> ostream &operator<<(ostream &os, const set<T> &a) {
     os << "(";
-    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : "");
+    os << ")";
     return os;
 }
 template <typename T> ostream &operator<<(ostream &os, const multiset<T> &a) {
     os << "(";
-    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : "");
+    os << ")";
     return os;
 }
 template <typename T, typename U> ostream &operator<<(ostream &os, const map<T, U> &a) {
     os << "(";
-    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : ")");
+    for (auto itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? ", " : "");
+    os << ")";
     return os;
 }
 #ifdef ONLINE_JUDGE

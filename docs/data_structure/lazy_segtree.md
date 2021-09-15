@@ -68,7 +68,6 @@ documentation_of: //data_structure/lazy_segtree.hpp
 
         を共に満たす $r$ をいずれか一つ返す。 $O(\log n)$ 時間。 $g(\mathrm{e})$ を要請。
 
-
     - `<typename G> int min_left(int r, G g)`  
         述語 $g$ について、
         - $g(\mathrm{prod}(l, r))$

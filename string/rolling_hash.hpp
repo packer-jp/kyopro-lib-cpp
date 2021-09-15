@@ -31,6 +31,6 @@ struct rolling_hash {
         for (int i : rep(src.size())) hash[i + 1] = calc_mod(mul(hash[i], pb[1]) + src[i]);
         resize_pb(src.size());
     }
-    ull get_hash(int l, int r) const { return calc_mod((MOD << 2) - mul(hash[l], pb[r - l]) + hash[r]); }
+    ull get_hash(int l, int r) const { return calc_mod(MOD - mul(hash[l], pb[r - l]) + hash[r]); }
 };
 vector<ull> rolling_hash::pb{1, xor64(MOD >> 1, MOD)};

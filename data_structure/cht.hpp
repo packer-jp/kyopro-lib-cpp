@@ -43,9 +43,9 @@ template <typename S, bool MIN> struct cht {
         }
         lines.insert(cur);
     }
-    V get(V x) {
-        line l = *lines.lower_bound(x);
-        V ret = l.a * x + l.b;
+    V get(V c) {
+        line l = *lines.lower_bound(c);
+        V ret = l.a * c + l.b;
         if (MIN) ret = -ret;
         return ret;
     }
