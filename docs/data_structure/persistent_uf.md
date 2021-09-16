@@ -23,7 +23,7 @@ documentation_of: //data_structure/persistent_uf.hpp
         要素 $i$ が属する集合のサイズを取得する。 $O((\log n)^2)$ 時間。
 
     - `bool same(int i, int j)`  
-        要素 $i$ と要素 $j$ が同じ集合に含まれるかどうかを判定する。
+        要素 $i$ と要素 $j$ が同じ集合に含まれるかどうかを判定する。 $O((\log n)^2)$ 時間。
 
     - `persistent_uf unite(int i, int j)`  
         要素 $i$ を含む集合と要素 $j$ を含む集合が併合された新たな完全永続 Union-Find Tree を返す。 $O((\log n)^2)$ 時間および $O(\log n)$ 空間。

@@ -37,28 +37,22 @@ documentation_of: //data_structure/lazy_segtree.hpp
         - `static fn_t id()`  
             $(F, \circ)$ の単位元 $id$ を返す。
 
-    - `using V`  
-        $V$ を表す型。
-
-    - `using F`  
-        $F$ を表す型。
-
     - `(constructor)(int n)`  
         長さ $n$ 、全要素 $e$ で初期化。
 
-    - `(constructor)(vector<V> src)`  
+    - `(constructor)(vector<S::val_t> src)`  
         $s := src$ として初期化。
 
-    - `void set(int i, V a)`  
+    - `void set(int i, S::val_t a)`  
         要素 $i$ を $a$ に置き換える。$O(\log n)$ 時間。
 
-    - `void apply(int l, int r, F f)`  
+    - `void apply(int l, int r, S::fn_t f)`  
         $s_l, \cdots s_{r-1}$ に $f$ を作用させる。 $O(\log n)$ 時間。
 
-    - `V get(int i)`  
+    - `S::val_t get(int i)`  
         $i$ 番目の要素を得る。 $O(\log n)$ 時間。
     
-    - `V prod(int l, int r)`  
+    - `S::val_t prod(int l, int r)`  
         $e \times s_l \times \cdots \times s_{r-1}$ を計算する。 $O(\log n)$ 時間。
 
     - `<typename G> max_right(int l, G g)`  

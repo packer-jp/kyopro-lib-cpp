@@ -24,22 +24,19 @@ documentation_of: //data_structure/segtree.hpp
         - `static val_t e()`  
             $(V, \times)$ の単位元 $e$ を返す。
 
-    - `using V`  
-        $V$ を表す型。
-
     - `(constructor)(int n)`  
         長さ $n$ 、全要素 $e$ で初期化。
 
-    - `(constructor)(vector<V> src)`  
+    - `(constructor)(vector<S::val_t> src)`  
         $s := src$ として初期化。
 
-    - `void set(int i, V a)`  
+    - `void set(int i, S::val_t a)`  
         要素 $i$ を $a$ に置き換える。$O(\log n)$ 時間。
 
-    - `V get(int i)`  
+    - `S::val_t get(int i)`  
         $i$ 番目の要素を得る。 $O(\log n)$ 時間。
     
-    - `V prod(int l, int r)`  
+    - `S::val_t prod(int l, int r)`  
         $e \times s_l \times \cdots \times s_{r-1}$ を計算する。 $O(\log n)$ 時間。
 
     - `<typename G> max_right(int l, G g)`  
