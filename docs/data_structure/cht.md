@@ -4,9 +4,10 @@ documentation_of: //data_structure/cht.hpp
 ---
 
 ## 概要
-以下の二種類のクエリを処理する。
-- 座標平面 $V \times V$ 上の直線 $y=ax+b$ を集合 $L$ に追加する。
-- $x=c$ において $L$ 内の直線がとる $y$ の最小値を答える。
+- 以下の二種類のクエリを処理する。
+    - 座標平面 $V \times V$ 上の直線 $y=ax+b$ を集合 $L$ に追加する。
+    - $x=c$ において $L$ 内の直線がとる $y$ の最小値を答える。
+- 単調性などは特に要求しない。
 
 ## 詳細
 - `<typename S, bool MIN> struct cht`  
@@ -28,10 +29,10 @@ documentation_of: //data_structure/cht.hpp
         $V$ を表す型。
 
     - `void add(V a, V b)`  
-        直線 $y=ax+b$ を集合 $L$ に追加する。
+        直線 $y=ax+b$ を集合 $L$ に追加する。 $O(\log |L|)$ 時間。
 
     - `V get(V c)`  
-        $x=c$ において $L$ 内の直線がとる $y$ の最小値を答える。
+        $x=c$ において $L$ 内の直線がとる $y$ の最小値を答える。 $O(\log |L|)$ 時間。
 
 ## 参考
 - [えびちゃんさんのスライド](https://hcpc-hokudai.github.io/archive/algorithm_convex_hull_trick_001.pdf)
