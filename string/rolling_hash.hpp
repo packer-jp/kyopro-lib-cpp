@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../template.hpp"
-#include "../util/xorshift.hpp"
 
 struct rolling_hash {
     static constexpr ull MOD = bit(61) - 1;
