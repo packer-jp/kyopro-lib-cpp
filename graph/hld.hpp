@@ -35,15 +35,15 @@ struct hld {
         dfs_hld(dfs_hld, root);
         return in;
     }
-    int lca(int u, int v) {
+    int lca(int u, int v) const {
         while (true) {
             if (in[u] > in[v]) swap(u, v);
             if (head[u] == head[v]) return u;
             v = par[head[v]];
         }
     }
-    int dist(int u, int v) { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }
-    vector<pair<int, int>> get_path(int u, int v, bool edge) {
+    int dist(int u, int v) const { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }
+    vector<pair<int, int>> get_path(int u, int v, bool edge) const {
         vector<pair<int, int>> a, b;
         while (true) {
             if (head[u] == head[v]) {
@@ -66,5 +66,5 @@ struct hld {
         a.insert(a.end(), b.rbegin(), b.rend());
         return a;
     }
-    pair<int, int> get_subtree(int v, bool edge) { return {in[v] + edge, out[v] - 1}; }
+    pair<int, int> get_subtree(int v, bool edge) const { return {in[v] + edge, out[v] - 1}; }
 };

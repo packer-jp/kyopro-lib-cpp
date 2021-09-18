@@ -15,7 +15,7 @@ int main() {
     }
     dinic.flow(0, v - 1);
     auto flow = dinic.edges();
-    auto cut = dinic.min_cut(0);
+    auto cut = dinic.cut(0);
     ll ans = 0;
     for (auto e : flow) {
         if (cut[e.from] && !cut[e.to]) ans += e.flow;

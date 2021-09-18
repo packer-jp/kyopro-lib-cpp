@@ -4,7 +4,7 @@ documentation_of: //graph/dijkstra.hpp
 ---
 
 ## 概要
-Dijkstra 法を用いて、負辺のない有向グラフ上の単一始点最短路を求める。
+- Dijkstra 法を用いて、負辺のない有向グラフ上の単一始点最短路を求める。
 
 ## 詳細
 
@@ -17,7 +17,7 @@ Dijkstra 法を用いて、負辺のない有向グラフ上の単一始点最�
         - `using dist_t`  
             各頂点の距離を表す型。
 
-        - `using cost_t`
+        - `using cost_t`  
             各辺のコストを表す型。
 
         - `static dist_t inf()`  
@@ -27,10 +27,10 @@ Dijkstra 法を用いて、負辺のない有向グラフ上の単一始点最�
         頂点数 $n$ で初期化。
 
     - `void add_edge(int from, int to, S::cost_t cost)`  
-        頂点 `from` から頂点 `to` にコスト `cost` の辺を張る。
+        頂点 $from$ から頂点 $to$ にコスト $cost$ の辺を張る。
 
     - `pair<vector<S::dist_t>, vector<int>> get(int s, S::dist_t base = S::dist_t())`  
-        頂点 `s` の距離を `base` と定め、「「各頂点の距離の `vector`」 と「最短路の一つにおいて各頂点の直前に訪れる頂点番号の `vector`」 の `pair`」を取得する。 $O((n + m) \log n)$ 時間。
+        頂点 $s$ の距離を $base$ と定め、「「各頂点の距離の `vector`」 と「最短路の一つにおいて各頂点の直前に訪れる頂点番号の `vector`」 の `pair`」を取得する。 $O((n + m) \log n)$ 時間。
 
 
 - `struct ll_dijkstra`  

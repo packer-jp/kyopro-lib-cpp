@@ -80,7 +80,7 @@ template <typename S> struct dinic {
         for (int i : rep(pos.size())) ret[i] = get_edge(i);
         return ret;
     }
-    vector<bool> min_cut(int s) const {
+    vector<bool> cut(int s) const {
         vector<bool> ret(g.size());
         auto dfs = [&](auto dfs, int v) -> void {
             if (ret[v]) return;
