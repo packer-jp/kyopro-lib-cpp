@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-vector<ull> inner_basis(vector<ull> a) {
-    vector<ull> basis, ret;
-    for (ull e : a) {
-        ull e_ = e;
-        for (ull b : basis) chmin(e, e ^ b);
-        if (e) basis.push_back(e), ret.push_back(e_);
+template <typename T> vector<T> inner_basis(vector<T> a) {
+    vector<T> basis, ret;
+    for (T e : a) {
+        T _e = e;
+        for (T b : basis) chmin(e, e ^ b);
+        if (e != T()) basis.push_back(e), ret.push_back(_e);
     }
     return ret;
 }
