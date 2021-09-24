@@ -37,10 +37,10 @@ template <ll MOD = 1000000007> struct modint {
         return *this;
     }
     modint &operator/=(const modint &a) { return *this *= a.inv(); }
-    bool operator==(const modint &a) const { return val == a.val; }
-    bool operator!=(const modint &a) const { return rel_ops::operator!=(*this, a); }
     modint operator+() const { return *this; }
     modint operator-() const { return modint(-val); }
+    friend bool operator==(const modint &a, const modint &b) { return a.val == b.val; }
+    friend bool operator!=(const modint &a, const modint &b) { return rel_ops::operator!=(a, b); }
     friend modint operator+(const modint &a, const modint &b) { return modint(a) += b; }
     friend modint operator-(const modint &a, const modint &b) { return modint(a) -= b; }
     friend modint operator*(const modint &a, const modint &b) { return modint(a) *= b; }

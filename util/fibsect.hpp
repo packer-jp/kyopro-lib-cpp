@@ -10,8 +10,7 @@ template <typename F> auto fibsect(ll lb, ll ub, F f) {
     ll l = lb + a, r = lb + b;
     auto fl = f(l), fr = f(r);
     while (true) {
-        a = b - a;
-        b -= a;
+        a = b - a, b -= a;
         if (r < ub && fl < fr) {
             if (b == 1) return make_pair(r, fr);
             l = r, fl = fr;
@@ -19,7 +18,7 @@ template <typename F> auto fibsect(ll lb, ll ub, F f) {
         } else {
             if (b == 1) return make_pair(l, fl);
             r = l, fr = fl;
-            l += a - b, fl = f(l);
+            l -= b - a, fl = f(l);
         }
     }
 }
