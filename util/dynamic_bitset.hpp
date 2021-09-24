@@ -19,23 +19,29 @@ struct dynamic_bitset {
         ref &operator=(const ref &a) { return *this = a; }
         operator bool() const { return (p & bit(i)) != 0; }
         bool operator~() const { return !*this; }
-        ref &flip() {}
+        ref &flip() {
+            p ^= bit(i);
+            return *this;
+        }
     };
     ref operator[](int i) {
         if (val.size() <= i >> 4) val.resize((i >> 4) + 1);
-        return {val[i >> 4], i & (bit(4) - 1)};
+        return {val[i >> 4], i & 63};
     }
     db &operator&=(const db &a) {
         if (a.val.size() < val.size()) val.resize(a.val.size());
         for (int i : rep(a.val.size())) val[i] &= a.val[i];
+        return *this;
     }
     db &operator|=(const db &a) {
         if (a.val.size() > val.size()) val.resize(a.val.size());
         for (int i : rep(a.val.size())) val[i] |= a.val[i];
+        return *this;
     }
     db &operator^=(const db &a) {
         if (a.val.size() > val.size()) val.resize(a.val.size());
         for (int i : rep(a.val.size())) val[i] ^= a.val[i];
+        return *this;
     }
     int count() const {
         int ret = 0;

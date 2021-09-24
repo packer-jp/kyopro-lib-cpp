@@ -15,7 +15,7 @@ struct khan {
         for (int i : rep(g.size())) {
             if (i > ret.size()) return {};
             for (int to : g[ret[i]]) {
-                if (--indeg[to] == 0) ret.push_back(to);
+                if (--_indeg[to] == 0) ret.push_back(to);
             }
         }
         return ret;

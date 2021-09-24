@@ -2,7 +2,7 @@
 
 #include "../template.hpp"
 
-template <typename T> vector<T> inner_basis(vector<T> a) {
+template <typename T> vector<T> inner_basis(const vector<T> &a) {
     vector<T> basis, ret;
     for (T e : a) {
         T _e = e;
