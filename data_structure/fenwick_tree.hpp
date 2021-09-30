@@ -6,7 +6,7 @@ template <typename T> struct fenwick_tree {
     vector<T> data;
     fenwick_tree(int n) : data(n + 1, T()) {}
     void add(int i, const T &x) {
-        for (++i; i <= data.size(); i += i & -i) data[i] += x;
+        for (++i; i < data.size(); i += i & -i) data[i] += x;
     }
     T sum(int i) const {
         T ret = T();
