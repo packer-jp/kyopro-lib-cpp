@@ -9,6 +9,7 @@ template <typename T> struct fps : vector<T> {
     using vector<T>::operator=;
     fps() : vector<T>() {}
     fps(const T &a) : vector<T>(1, a) {}
+    fps(const vector<T> &a) : vector<T>(a) {}
     fps(const fps &a) : vector<T>(a) {}
     fps &operator=(const fps &a) {
         *this = (vector<T>)a;

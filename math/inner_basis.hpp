@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-template <typename T> vector<T> inner_basis(const vector<T> &a) {
-    vector<T> basis, ret;
+template <typename T> pair<vector<T>, vector<T>> xor_basis(const vector<T> &a) {
+    vector<T> umsb, inner;
     for (T e : a) {
         T _e = e;
-        for (T b : basis) chmin(e, e ^ b);
-        if (e != T()) basis.push_back(e), ret.push_back(_e);
+        for (T b : umsb) chmin(e, e ^ b);
+        if (e != T()) umsb.push_back(e), inner.push_back(_e);
     }
-    return ret;
+    return {umsb, inner};
 }
