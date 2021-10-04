@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../math/modint.hpp"
 #include "../template.hpp"
 
 template <typename S> struct lazy_segtree {
@@ -36,6 +37,7 @@ template <typename S> struct lazy_segtree {
         recalc(i);
     }
     void apply(int l, int r, F f) {
+        if (l >= r) return;
         thrust(l += size);
         thrust(r += size - 1);
         for (int i = l, j = r + 1; i < j; i >>= 1, j >>= 1) {
@@ -50,6 +52,7 @@ template <typename S> struct lazy_segtree {
         return reflect(i);
     }
     V prod(int l, int r) {
+        if (l >= r) return S::e();
         thrust(l += size);
         thrust(r += size - 1);
         V a = S::e(), b = S::e();
@@ -136,4 +139,14 @@ struct sum_monoid_with_update {
     static val_t mapping(fn_t f, val_t a) { return f == id() ? a : make_pair(f * a.second, a.second); }
     static fn_t composition(fn_t f, fn_t g) { return f == id() ? g : f; }
     static fn_t id() { return LLONG_MIN; };
+};
+
+template <typename T> struct sum_monoid_with_affine {
+    using val_t = pair<T, int>;
+    using fn_t = pair<T, T>;
+    static val_t op(val_t a, val_t b) { return {a.first + b.first, a.second + b.second}; }
+    static val_t e() { return {0, 0}; }
+    static val_t mapping(fn_t f, val_t a) { return {f.first * a.first + f.second * a.second, a.second}; }
+    static fn_t composition(fn_t f, fn_t g) { return {f.first * g.first, f.second + f.first * g.second}; }
+    static fn_t id() { return {1, 0}; };
 };

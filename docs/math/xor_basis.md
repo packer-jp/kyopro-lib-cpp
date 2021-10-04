@@ -1,6 +1,6 @@
 ---
 title: xor 基底
-documentation_of: //math/inner_basis.hpp
+documentation_of: //math/xor_basis.hpp
 ---
 
 ## 概要
