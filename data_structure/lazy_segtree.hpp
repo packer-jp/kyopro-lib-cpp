@@ -11,7 +11,7 @@ template <typename S> struct lazy_segtree {
     vector<F> lazy;
     lazy_segtree(int n) : lazy_segtree(vector(n, S::e())) {}
     lazy_segtree(const vector<V> &src) : n(src.size()) {
-        for (size = 1, log = 0; size < n; size <<= 1, log++) {}
+        for (size = 1, log = 0; size < n; size <<= 1, ++log) {}
         val.resize(size << 1);
         copy(all(src), val.begin() + size);
         lazy.resize(size << 1, S::id());
@@ -56,7 +56,7 @@ template <typename S> struct lazy_segtree {
         thrust(l += size);
         thrust(r += size - 1);
         V a = S::e(), b = S::e();
-        for (r++; l < r; l >>= 1, r >>= 1) {
+        for (++r; l < r; l >>= 1, r >>= 1) {
             if (l & 1) a = S::op(a, reflect(l++));
             if (r & 1) b = S::op(reflect(--r), b);
         }
@@ -85,7 +85,7 @@ template <typename S> struct lazy_segtree {
         thrust((r += size) - 1);
         V a = S::e();
         do {
-            r--;
+            --r;
             while (r > 1 && r & 1) r >>= 1;
             if (!g(S::op(reflect(r), a))) {
                 while (r < size) {

@@ -15,3 +15,10 @@ template <typename T> struct fenwick_tree {
     }
     T sum(int l, int r) const { return sum(r) - sum(l); }
 };
+
+template <typename T> struct fenwick_tree_range {
+    fenwick_tree<T> ft;
+    fenwick_tree_range(int n) : ft(n) {}
+    void add(int l, int r, const T &x) { ft.add(l, x), ft.add(r, -x); }
+    T get(int i) const { return ft.sum(i + 1); }
+};
