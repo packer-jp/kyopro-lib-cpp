@@ -6,7 +6,7 @@ using namespace std;
 #define all(a) begin(a), end(a)
 #define rall(a) rbegin(a), rend(a)
 #define uniq(a) (a).erase(unique(all(a)), (a).end())
-#define SZ(x) ((int)(x).size())
+#define SZ(x) int((x).size())
 #define pb(x) push_back(x)
 #define eb(x) emplace_back(x)
 #define vsum(x) reduce(all(x))
@@ -27,6 +27,9 @@ using Vc = vector<char>;
 using VVi = vector<vector<int>>;
 using VVl = vector<vector<ll>>;
 using VVc = vector<vector<char>>;
+template <typename T, typename U> using P = pair<T, U>;
+template <typename T> using V = vector<T>;
+template <typename T> using VV = V<V<T>>;
 constexpr ll inf = 1000000000ll;
 constexpr ll INF = 4000000004000000000LL;
 constexpr ld eps = 1e-15;
