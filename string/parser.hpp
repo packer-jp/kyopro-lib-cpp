@@ -18,8 +18,8 @@ void consume(state &cur, char expected) {
 }
 
 struct parser {
-    int expr(state &cur) {
-        int ret = term(cur);
+    ll expr(state &cur) {
+        ll ret = term(cur);
         while (true) {
             if (*cur == '+') {
                 consume(cur, '+');
@@ -33,8 +33,8 @@ struct parser {
         }
         return ret;
     }
-    int term(state &cur) {
-        int ret = factor(cur);
+    ll term(state &cur) {
+        ll ret = factor(cur);
         while (true) {
             if (*cur == '*') {
                 consume(cur, '*');
@@ -48,22 +48,22 @@ struct parser {
         }
         return ret;
     }
-    int factor(state &cur) {
+    ll factor(state &cur) {
         if (*cur == '(') {
             consume(cur, '(');
-            int ret = expr(cur);
+            ll ret = expr(cur);
             consume(cur, ')');
             return ret;
         } else {
             return number(cur);
         }
     }
-    int number(state &cur) {
-        int ret = 0;
+    ll number(state &cur) {
+        ll ret = 0;
         while (isdigit(*cur)) {
             ret *= 10;
             ret += *cur - '0';
-            cur++;
+            ++cur;
         }
         return ret;
     }
