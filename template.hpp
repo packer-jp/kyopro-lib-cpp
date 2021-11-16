@@ -184,5 +184,3 @@ template <typename F> ll bisect(ll ok, ll ng, F f) {
     }
     return ok;
 }
-
-int main() {}
