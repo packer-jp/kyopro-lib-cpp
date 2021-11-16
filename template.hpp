@@ -1,41 +1,14 @@
-#pragma once
-
 #include <bits/stdc++.h>
 using namespace std;
 
 #define all(a) begin(a), end(a)
 #define rall(a) rbegin(a), rend(a)
 #define uniq(a) (a).erase(unique(all(a)), (a).end())
-#define SZ(x) int((x).size())
-#define pb(x) push_back(x)
-#define eb(x) emplace_back(x)
-#define vsum(x) reduce(all(x))
-#define vmax(a) *max_element(all(a))
-#define vmin(a) *min_element(all(a))
-#define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
-#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
-#define mp make_pair
-#define endl '\n'
 using ll = long long;
 using ull = unsigned long long;
-using ld = long double;
-using Pi = pair<int, int>;
-using Pl = pair<ll, ll>;
-using Vi = vector<int>;
-using Vl = vector<ll>;
-using Vc = vector<char>;
-using VVi = vector<vector<int>>;
-using VVl = vector<vector<ll>>;
-using VVc = vector<vector<char>>;
-template <typename T, typename U> using P = pair<T, U>;
-template <typename T> using V = vector<T>;
-template <typename T> using VV = V<V<T>>;
-constexpr ll inf = 1000000000ll;
-constexpr ll INF = 4000000004000000000LL;
-constexpr ld eps = 1e-15;
-constexpr ld PI = 3.141592653589793;
-constexpr int popcnt(ull x) { return __builtin_popcountll(x); }
-template <typename T> using mat = vector<vector<T>>;
+using pll = pair<ll, ll>;
+using vll = vector<ll>;
+constexpr double PI = 3.14159265358979323846;
 constexpr ll dy[9] = {0, 1, 0, -1, 1, 1, -1, -1, 0};
 constexpr ll dx[9] = {1, 0, -1, 0, 1, -1, -1, 1, 0};
 constexpr ll sign(ll a) { return (a > 0) - (a < 0); }
@@ -72,6 +45,8 @@ template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 template <typename T, typename U> bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }
 template <typename T, typename U> bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }
+template <typename T> T make_vector(T &&a) { return a; }
+template <typename... Ts> auto make_vector(int h, Ts &&... ts) { return vector(h, make_vector(ts...)); }
 template <typename T, typename U> ostream &operator<<(ostream &os, const pair<T, U> &a) {
     os << "(" << a.first << ", " << a.second << ")";
     return os;
@@ -104,65 +79,6 @@ template <typename T, typename U> ostream &operator<<(ostream &os, const map<T, 
     os << ")";
     return os;
 }
-template <typename T> void print(const T &a) { cout << a << endl; }
-template <typename T> void print(const vector<T> &v) {
-    for (auto &e : v) cout << e << " ";
-    cout << endl;
-}
-template <typename T> void scan(vector<T> &a) {
-    for (auto &i : a) cin >> i;
-}
-struct timer {
-    clock_t start_time;
-    void start() { start_time = clock(); }
-    int lap() {
-        // return x ms.
-        return (clock() - start_time) * 1000 / CLOCKS_PER_SEC;
-    }
-};
-template <typename T = int> struct Edge {
-    int from, to;
-    T cost;
-    int idx;
-
-    Edge() = default;
-
-    Edge(int from, int to, T cost = 1, int idx = -1) : from(from), to(to), cost(cost), idx(idx) {}
-
-    operator int() const { return to; }
-};
-template <typename T = int> struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;
-
-    Graph() = default;
-
-    explicit Graph(int n) : g(n), es(0) {}
-
-    size_t size() const { return g.size(); }
-
-    void add_directed_edge(int from, int to, T cost = 1) { g[from].emplace_back(from, to, cost, es++); }
-
-    void add_edge(int from, int to, T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);
-    }
-
-    void read(int M, int padding = -1, bool weighted = false, bool directed = false) {
-        for (int i = 0; i < M; i++) {
-            int a, b;
-            cin >> a >> b;
-            a += padding;
-            b += padding;
-            T c = T(1);
-            if (weighted) cin >> c;
-            if (directed)
-                add_directed_edge(a, b, c);
-            else
-                add_edge(a, b, c);
-        }
-    }
-};
 #ifdef ONLINE_JUDGE
 #define dump(...) (void(0))
 #else
@@ -209,3 +125,64 @@ struct io_setup {
         cerr << fixed << setprecision(PREC);
     };
 } iOS;
+
+template <ll MOD = 1000000007> struct modint {
+    ll val;
+    modint(ll val = 0) : val(val >= 0 ? val % MOD : (MOD - (-val) % MOD) % MOD) {}
+    static ll mod() { return MOD; }
+    modint inv() const {
+        ll a = val, b = MOD, u = 1, v = 0, t;
+        while (b > 0) {
+            t = a / b;
+            swap(a -= t * b, b);
+            swap(u -= t * v, v);
+        }
+        return modint(u);
+    }
+    modint pow(ll k) const {
+        modint ret = 1, mul = val;
+        while (k) {
+            if (k & 1) ret *= mul;
+            mul *= mul;
+            k >>= 1;
+        }
+        return ret;
+    }
+    modint &operator+=(const modint &a) {
+        if ((val += a.val) >= MOD) val -= MOD;
+        return *this;
+    }
+    modint &operator-=(const modint &a) {
+        if ((val += MOD - a.val) >= MOD) val -= MOD;
+        return *this;
+    }
+    modint &operator*=(const modint &a) {
+        (val *= a.val) %= MOD;
+        return *this;
+    }
+    modint &operator/=(const modint &a) { return *this *= a.inv(); }
+    modint operator+() const { return *this; }
+    modint operator-() const { return modint(-val); }
+    friend bool operator==(const modint &a, const modint &b) { return a.val == b.val; }
+    friend bool operator!=(const modint &a, const modint &b) { return rel_ops::operator!=(a, b); }
+    friend modint operator+(const modint &a, const modint &b) { return modint(a) += b; }
+    friend modint operator-(const modint &a, const modint &b) { return modint(a) -= b; }
+    friend modint operator*(const modint &a, const modint &b) { return modint(a) *= b; }
+    friend modint operator/(const modint &a, const modint &b) { return modint(a) /= b; }
+    friend istream &operator>>(istream &is, modint &a) {
+        ll val;
+        is >> val;
+        a = modint(val);
+        return is;
+    }
+    friend ostream &operator<<(ostream &os, const modint &a) { return os << a.val; }
+};
+template <typename F> ll bisect(ll ok, ll ng, F f) {
+    while (abs(ok - ng) > 1) {
+        ll mid = (ok + ng) / 2;
+        (f(mid) ? ok : ng) = mid;
+    }
+    return ok;
+}
+
+int main() {}
