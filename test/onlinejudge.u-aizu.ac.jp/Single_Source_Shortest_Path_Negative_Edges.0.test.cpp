@@ -13,7 +13,7 @@ int main() {
         cin >> s >> t >> d;
         spfa.add_edge(s, t, d);
     }
-    Vl res = spfa.get(r).first;
+    vll res = spfa.get(r).first;
     if (res.empty()) {
         cout << "NEGATIVE CYCLE" << endl;
         return 0;

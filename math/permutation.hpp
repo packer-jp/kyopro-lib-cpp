@@ -3,21 +3,21 @@
 #include "../template.hpp"
 
 struct permutation {
-    vector<int> data;
-    permutation(int n) : data(n) { iota(all(data), 0); }
-    permutation(const vector<int> &src) : data(src) {}
-    int size() const { return data.size(); }
-    static permutation id(int n) {
-        vector<int> ret(n);
+    vector<ll> data;
+    permutation(ll n) : data(n) { iota(all(data), 0); }
+    permutation(const vector<ll> &src) : data(src) {}
+    ll size() const { return data.size(); }
+    static permutation id(ll n) {
+        vector<ll> ret(n);
         iota(all(ret), 0);
         return ret;
     }
     bool next() { return next_permutation(all(data)); }
     bool prev() { return prev_permutation(all(data)); }
-    int operator[](int i) const { return data[i]; }
+    ll operator[](ll i) const { return data[i]; }
     permutation &operator*=(const permutation &a) {
-        vector<int> tmp(data);
-        for (int i : rep(size())) data[i] = tmp[a[i]];
+        vector<ll> tmp(data);
+        for (ll i : rep(size())) data[i] = tmp[a[i]];
         return *this;
     }
     permutation &operator/=(const permutation &a) { return *this *= a.inv(); }
@@ -26,29 +26,29 @@ struct permutation {
     friend permutation operator*(permutation a, const permutation &b) { return a *= b; }
     friend permutation operator/(permutation a, const permutation &b) { return a /= b; }
     permutation inv() const {
-        vector<int> ret(size());
-        for (int i : rep(size())) ret[data[i]] = i;
+        vector<ll> ret(size());
+        for (ll i : rep(size())) ret[data[i]] = i;
         return ret;
     }
     permutation pow(ll k) const {
-        vector<int> ret(size());
+        vector<ll> ret(size());
         vector<bool> used(size());
-        for (int i : rep(size())) {
+        for (ll i : rep(size())) {
             if (used[i]) { continue; }
-            vector<int> cyc;
-            int cur = i;
+            vector<ll> cyc;
+            ll cur = i;
             do {
                 used[cur] = true;
                 cyc.push_back(cur);
                 cur = data[cur];
             } while (cur != i);
-            for (int j : rep(cyc.size())) ret[cyc[j]] = cyc[(j + k) % cyc.size()];
+            for (ll j : rep(cyc.size())) ret[cyc[j]] = cyc[(j + k) % cyc.size()];
         }
         return ret;
     }
     friend ostream &operator<<(std::ostream &os, const permutation &a) {
         os << "(";
-        for (int i : rep(a.size())) { os << a[i] << (i + 1 != a.size() ? ", " : ""); }
+        for (ll i : rep(a.size())) { os << a[i] << (i + 1 != a.size() ? ", " : ""); }
         os << ")";
         return os;
     }

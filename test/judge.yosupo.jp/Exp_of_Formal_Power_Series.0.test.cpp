@@ -7,7 +7,7 @@ int main() {
     cin >> n;
     fps<mint> a(n);
     for (ll i : rep(n)) cin >> a[i];
-    fps<mint> b = a.exp();
+    fps<mint> b = a.exp(n);
     for (ll i : rep(n)) cout << b[i] << " ";
     cout << endl;
 }

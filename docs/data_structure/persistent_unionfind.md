@@ -1,6 +1,6 @@
 ---
 title: 完全永続 Union-Find Tree
-documentation_of: //data_structure/persistent_uf.hpp
+documentation_of: //data_structure/persistent_uftree.hpp
 ---
 
 ## 概要

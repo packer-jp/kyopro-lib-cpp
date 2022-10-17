@@ -3,7 +3,7 @@
 #include "../template.hpp"
 
 template <typename S> struct matrix {
-    using V = typename S::val_t;
+    using V = typename S::V;
     vector<vector<V>> val;
     matrix(int n, int m) : matrix(vector(n, vector(m, S::zero()))) {}
     matrix(const vector<vector<V>> &src) : val(src) {}
@@ -103,9 +103,9 @@ template <typename S> struct matrix {
 };
 
 struct double_field {
-    using val_t = double;
-    static val_t zero() { return 0.0; }
-    static val_t one() { return 1.0; }
+    using V = double;
+    static V zero() { return 0.0; }
+    static V one() { return 1.0; }
 };
 
 template <> bool matrix<double_field>::place_nonzero(int i, int j) {

@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-template <typename T> void fwht(vector<T> &a) {
-    int n = a.size();
-    for (int i = 1; i < n; i <<= 1) {
-        for (int j = 0; j < n; j += i << 1) {
-            for (int k : rep(i)) {
-                T p = a[0 + j + k], q = a[i + j + k];
+template <typename V> void fwht(vector<V> &a) {
+    ll n = a.size();
+    for (ll i = 1; i < n; i <<= 1) {
+        for (ll j = 0; j < n; j += i << 1) {
+            for (ll k : rep(i)) {
+                V p = a[0 + j + k], q = a[i + j + k];
                 a[0 + j + k] = p + q;
                 a[i + j + k] = p - q;
             }
@@ -15,8 +15,8 @@ template <typename T> void fwht(vector<T> &a) {
     }
 }
 
-template <typename T> void ifwht(vector<T> &a) {
+template <typename V> void ifwht(vector<V> &a) {
     fwht(a);
-    T ninv = T(1) / a.size();
-    for (T &ai : a) ai *= ninv;
+    V ninv = V(1) / a.size();
+    for (V &ai : a) ai *= ninv;
 }

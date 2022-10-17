@@ -15,7 +15,7 @@ int main() {
         cout << -1 << endl;
         return 0;
     }
-    Vl vs{t};
+    vll vs{t};
     do {
         ll back = vs.back();
         vs.push_back(prev[back]);

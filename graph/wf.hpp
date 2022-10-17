@@ -2,11 +2,11 @@
 
 #include "../template.hpp"
 
-template <typename T, T INF = numeric_limits<T>::max()> void wf(vector<vector<T>> &g) {
-    int n = g.size();
-    for (int k : rep(n)) {
-        for (int i : rep(n)) {
-            for (int j : rep(n)) {
+template <typename D, D INF = numeric_limits<D>::max()> void wf(vector<vector<D>> &g) {
+    ll n = g.size();
+    for (ll k : rep(n)) {
+        for (ll i : rep(n)) {
+            for (ll j : rep(n)) {
                 if (g[i][k] != INF && g[k][j] != INF) chmin(g[i][j], g[i][k] + g[k][j]);
             }
         }

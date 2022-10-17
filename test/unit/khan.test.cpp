@@ -23,7 +23,7 @@ int main() {
                 used[u][v] = true;
             }
         }
-        vector<int> sorted = khan.get();
+        vll sorted = khan.get();
         // shuffle(sorted.begin(), sorted.end(), mt);
         for (ll j : rep(v)) {
             for (ll k : rep(j + 1, v)) { assert(!used[sorted[k]][sorted[j]]); }

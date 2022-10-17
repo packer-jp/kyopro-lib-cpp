@@ -8,10 +8,10 @@ using namespace std;
 int main() {
     ll n, m;
     cin >> n >> m;
-    Vl a(n), p(n);
+    vll a(n), p(n);
     for (ll i : rep(n)) cin >> a[i];
     for (ll i : rep(n)) cin >> p[i];
-    Vl x(bit(n));
+    vll x(bit(n));
     for (ll i : rep(bit(n))) {
         ll l = 1;
         for (ll j : rep(n)) {

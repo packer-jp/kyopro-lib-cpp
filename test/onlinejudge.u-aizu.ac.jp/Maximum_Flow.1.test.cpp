@@ -9,7 +9,7 @@ int main() {
     cin >> v >> e;
     dinic<ll_dinic> dinic(v);
     while (e--) {
-        int u, v, c;
+        ll u, v, c;
         cin >> u >> v >> c;
         dinic.add_edge(u, v, c);
     }

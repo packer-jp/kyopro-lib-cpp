@@ -4,14 +4,14 @@
 
 struct oibfs {
     struct edge {
-        int to, cost;
+        ll to, cost;
     };
     vector<vector<edge>> g;
-    oibfs(int n) : g(n) {}
-    void add_edge(int from, int to, int cost) { g[from].push_back({to, cost}); }
-    pair<vector<int>, vector<int>> get(int s) const {
-        vector<int> dist(g.size(), INT_MAX), prev(g.size(), -1);
-        using P = pair<int, int>;
+    oibfs(ll n) : g(n) {}
+    void add_edge(ll from, ll to, ll cost) { g[from].push_back({to, cost}); }
+    pair<vector<ll>, vector<ll>> get(ll s) const {
+        vector<ll> dist(g.size(), LLONG_MAX), prev(g.size(), -1);
+        using P = pair<ll, ll>;
         deque<P> deq;
         dist[s] = 0;
         deq.emplace_front(0, s);
@@ -20,7 +20,7 @@ struct oibfs {
             deq.pop_front();
             if (dist[from] < d) continue;
             for (auto [to, cost] : g[from]) {
-                int nd = dist[from] + cost;
+                ll nd = dist[from] + cost;
                 if (nd < dist[to]) {
                     dist[to] = nd;
                     prev[to] = from;

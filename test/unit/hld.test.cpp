@@ -6,13 +6,13 @@
 using namespace std;
 
 int main() {
-    int n = 10;
-    struct str {
-        using val_t = string;
-        static val_t op(val_t a, val_t b) { return a + b; }
-        static val_t e() { return ""; }
+    ll n = 10;
+    struct str_monoid {
+        using V = string;
+        static V op(V a, V b) { return a + b; }
+        static V e() { return ""; }
     };
-    segtree<str> st_fwd(n), st_rev(n);
+    segtree<str_monoid> st_fwd(n), st_rev(n);
     vector<string> weight = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
     hld hld(n);
     hld.add_edge(7, 2);
@@ -24,16 +24,16 @@ int main() {
     hld.add_edge(1, 0);
     hld.add_edge(0, 9);
     hld.add_edge(5, 8);
-    vector<int> in = hld.build(5);
-    for (int i : rep(n)) {
+    vector<ll> in = hld.build(5);
+    for (ll i : rep(n)) {
         st_fwd.set(in[i], weight[i]);
         st_rev.set(n - in[i] - 1, weight[i]);
     }
-    auto path = [&](int u, int v) {
+    auto path = [&](ll u, ll v) {
         string ret = "";
-        vector<pair<int, int>> path = hld.get_path(u, v, false);
-        for (int i : rep(path.size())) {
-            int l = path[i].first, r = path[i].second;
+        vector<pair<ll, ll>> path = hld.get_path(u, v, false);
+        for (ll i : rep(path.size())) {
+            ll l = path[i].first, r = path[i].second;
             if (l < r) {
                 ret += st_fwd.prod(l, r + 1);
             } else {
@@ -42,8 +42,8 @@ int main() {
         }
         return ret;
     };
-    auto subtree = [&](int v) {
-        pair<int, int> subtree = hld.get_subtree(v, false);
+    auto subtree = [&](ll v) {
+        pair<ll, ll> subtree = hld.get_subtree(v, false);
         return st_fwd.prod(subtree.first, subtree.second + 1);
     };
     assert(path(2, 1) == "cefb");

@@ -5,12 +5,12 @@
 using namespace std;
 
 int main() {
-    vector<int> e = {0, 1, 2, 3, 4};
-    vector<int> a = {3, 2, 1, 4, 0};
-    vector<int> b = {1, 2, 0, 3, 4};
-    vector<int> ab = {2, 1, 3, 4, 0};
-    vector<int> a9 = {0, 2, 1, 3, 4};
-    vector<int> b6 = {0, 1, 2, 3, 4};
+    vll e = {0, 1, 2, 3, 4};
+    vll a = {3, 2, 1, 4, 0};
+    vll b = {1, 2, 0, 3, 4};
+    vll ab = {2, 1, 3, 4, 0};
+    vll a9 = {0, 2, 1, 3, 4};
+    vll b6 = {0, 1, 2, 3, 4};
 
     assert(permutation(5) == permutation(e));
     assert(permutation(a) * permutation(b) == permutation(ab));

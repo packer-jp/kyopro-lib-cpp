@@ -2,11 +2,11 @@
 
 #include "../template.hpp"
 
-template <typename T> pair<vector<T>, vector<T>> xor_basis(const vector<T> &a) {
-    vector<T> umsb, inner;
-    for (T e : a) {
-        T _e = e;
-        for (T b : umsb) chmin(e, e ^ b);
+template <typename V> pair<vector<V>, vector<V>> xor_basis(const vector<V> &a) {
+    vector<V> umsb, inner;
+    for (V e : a) {
+        V _e = e;
+        for (V b : umsb) chmin(e, e ^ b);
         if (e != T()) umsb.push_back(e), inner.push_back(_e);
     }
     return {umsb, inner};

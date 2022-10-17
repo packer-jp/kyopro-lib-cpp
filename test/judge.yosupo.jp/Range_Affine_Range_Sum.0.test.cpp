@@ -6,7 +6,7 @@ int main() {
     using mint = modint<998244353>;
     ll n, q;
     cin >> n >> q;
-    vector<pair<mint, int>> src(n, {0, 1});
+    vector<pair<mint, ll>> src(n, {0, 1});
     for (ll i : rep(n)) cin >> src[i].first;
     lazy_segtree<sum_monoid_with_affine<mint>> lst(src);
     while (q--) {

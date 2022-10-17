@@ -3,19 +3,19 @@
 #include "../template.hpp"
 
 template <typename S> struct dijkstra {
-    using D = typename S::dist_t;
-    using C = typename S::cost_t;
+    using D = typename S::D;
+    using C = typename S::C;
     struct edge {
-        int to;
+        ll to;
         C cost;
     };
     vector<vector<edge>> g;
-    dijkstra(int n) : g(n) {}
-    void add_edge(int from, int to, const C &cost) { g[from].push_back({to, cost}); }
-    pair<vector<D>, vector<int>> get(int s, const D &base = D()) const {
+    dijkstra(ll n) : g(n) {}
+    void add_edge(ll from, ll to, const C &cost) { g[from].push_back({to, cost}); }
+    pair<vector<D>, vector<ll>> get(ll s, const D &base = D()) const {
         vector<D> dist(g.size(), S::inf());
-        vector<int> prev(g.size(), -1);
-        using P = pair<D, int>;
+        vector<ll> prev(g.size(), -1);
+        using P = pair<D, ll>;
         priority_queue_rev<P> pq;
         dist[s] = base;
         pq.emplace(base, s);
@@ -37,7 +37,7 @@ template <typename S> struct dijkstra {
 };
 
 struct ll_dijkstra {
-    using dist_t = ll;
-    using cost_t = ll;
-    static dist_t inf() { return LLONG_MAX; }
+    using D = ll;
+    using C = ll;
+    static D inf() { return LLONG_MAX; }
 };

@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-template <typename T> struct splay_tree {
+template <typename V> struct splay_tree {
     struct node {
         node *left, *right, *par;
-        int size;
-        T val;
-        node(T val) : left(nullptr), right(nullptr), par(nullptr), size(1), val(val) {}
+        ll size;
+        V val;
+        node(V val) : left(nullptr), right(nullptr), par(nullptr), size(1), val(val) {}
         void rotate() {
             node *p, *pp, *c;
             p = par, pp = p->par;
@@ -28,7 +28,7 @@ template <typename T> struct splay_tree {
             p->update();
             update();
         }
-        int state() {
+        ll state() {
             if (!par) { return 0; }
             if (par->left == this) {
                 return 1;
@@ -55,11 +55,11 @@ template <typename T> struct splay_tree {
     };
     node *root;
     splay_tree(node *root = nullptr) : root(root) {}
-    int size() { return root ? root->size : 0; }
-    node *get_node(int i) {
+    ll size() { return root ? root->size : 0; }
+    node *get_node(ll i) {
         node *cur = root;
         while (true) {
-            int size_l = cur->left ? cur->left->size : 0;
+            ll size_l = cur->left ? cur->left->size : 0;
             if (i < size_l) cur = cur->left;
             if (i == size_l) {
                 cur->splay();
@@ -68,11 +68,11 @@ template <typename T> struct splay_tree {
             if (i > size_l) cur = cur->right, i -= size_l + 1;
         }
     }
-    T &operator[](int i) { return get_node(i)->val; }
-    template <typename F> int lower_bound(F f) {
+    V &operator[](ll i) { return get_node(i)->val; }
+    template <typename F> ll lower_bound(F f) {
         if (!root) return 0;
         node *cur = root;
-        int ret = -1;
+        ll ret = -1;
         while (true) {
             if (cur->state() < 1) {
                 ret += cur->left ? cur->left->size + 1 : 1;
@@ -96,7 +96,7 @@ template <typename T> struct splay_tree {
             }
         }
     }
-    splay_tree split(int size_left) {
+    splay_tree split(ll size_left) {
         if (size_left == 0) {
             node *root_r = root;
             root = nullptr;
@@ -119,11 +119,11 @@ template <typename T> struct splay_tree {
         root->right = right.root, right.root->par = root;
         root->update();
     }
-    void insert(int i, T val) {
+    void insert(ll i, V val) {
         splay_tree vt = new node(val), right = split(i);
         merge(vt), merge(right);
     }
-    void erase(int i) {
+    void erase(ll i) {
         splay_tree vt = split(i);
         splay_tree right = vt.split(1);
         delete vt.root;

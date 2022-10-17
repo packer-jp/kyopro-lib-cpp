@@ -3,8 +3,6 @@
 #include "../../math/subset_convolution.hpp"
 
 int main() {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(false);
     using mint = modint<998244353>;
     ll n;
     cin >> n;

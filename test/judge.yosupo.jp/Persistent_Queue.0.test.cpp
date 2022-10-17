@@ -2,8 +2,6 @@
 #include "../../data_structure/persistent_array.hpp"
 
 int main() {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(false);
     ll q;
     cin >> q;
     ll il = q, ir = q + 1;

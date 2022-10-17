@@ -1,12 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
-#include "../../data_structure/uf.hpp"
+#include "../../data_structure/unionfind.hpp"
 
 int main() {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(false);
     ll n, q;
     cin >> n >> q;
-    uf uf(n);
+    unionfind uf(n);
     while (q--) {
         ll t, u, v;
         cin >> t >> u >> v;

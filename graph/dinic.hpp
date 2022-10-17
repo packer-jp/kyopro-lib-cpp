@@ -3,41 +3,41 @@
 #include "../template.hpp"
 
 template <typename S> struct dinic {
-    using C = typename S::cap_t;
+    using C = typename S::C;
     struct _edge {
-        int to, rev;
+        ll to, rev;
         C cap;
     };
     struct edge {
-        int from, to;
+        ll from, to;
         C cap, flow;
     };
     vector<vector<_edge>> g;
-    vector<int> level, iter;
-    vector<pair<int, int>> pos;
-    dinic(int n) : g(n), level(n), iter(n) {}
-    int add_edge(int from, int to, C cap) {
-        int from_id = g[from].size();
-        int to_id = g[to].size();
+    vector<ll> level, iter;
+    vector<pair<ll, ll>> pos;
+    dinic(ll n) : g(n), level(n), iter(n) {}
+    ll add_edge(ll from, ll to, C cap) {
+        ll from_id = g[from].size();
+        ll to_id = g[to].size();
         if (from == to) ++to_id;
         g[from].push_back({to, to_id, cap});
         g[to].push_back({from, from_id, S::zero()});
         pos.emplace_back(from, from_id);
         return pos.size() - 1;
     }
-    void change_edge(int i, C new_cap, C new_flow) {
+    void change_edge(ll i, C new_cap, C new_flow) {
         _edge &e = g[pos[i].first][pos[i].second], &re = g[e.to][e.rev];
         e.cap = new_cap - new_flow;
         re.cap = new_flow;
     }
-    C flow(int s, int t, C lim = S::inf()) {
-        auto bfs = [&](int s) -> void {
+    C flow(ll s, ll t, C lim = S::inf()) {
+        auto bfs = [&](ll s) -> void {
             fill(level.begin(), level.end(), -1);
-            queue<int> q;
+            queue<ll> q;
             level[s] = 0;
             q.push(s);
             while (!q.empty()) {
-                int v = q.front();
+                ll v = q.front();
                 q.pop();
                 for (_edge &e : g[v]) {
                     if (e.cap == S::zero() || level[e.to] >= 0) continue;
@@ -46,9 +46,9 @@ template <typename S> struct dinic {
                 }
             }
         };
-        auto dfs = [&](auto dfs, int v, int t, C lim) -> C {
+        auto dfs = [&](auto dfs, ll v, ll t, C lim) -> C {
             if (v == t) return lim;
-            for (int &i = iter[v]; i < g[v].size(); ++i) {
+            for (ll &i = iter[v]; i < g[v].size(); ++i) {
                 _edge &e = g[v][i];
                 if (level[v] >= level[e.to] || e.cap == S::zero()) continue;
                 C d = dfs(dfs, e.to, t, lim > e.cap ? e.cap : lim);
@@ -71,18 +71,18 @@ template <typename S> struct dinic {
             }
         }
     }
-    edge get_edge(int i) const {
+    edge get_edge(ll i) const {
         _edge e = g[pos[i].first][pos[i].second], re = g[e.to][e.rev];
         return {pos[i].first, e.to, e.cap + re.cap, re.cap};
     }
     vector<edge> edges() const {
         vector<edge> ret(pos.size());
-        for (int i : rep(pos.size())) ret[i] = get_edge(i);
+        for (ll i : rep(pos.size())) ret[i] = get_edge(i);
         return ret;
     }
-    vector<bool> cut(int s) const {
+    vector<bool> cut(ll s) const {
         vector<bool> ret(g.size());
-        auto dfs = [&](auto dfs, int v) -> void {
+        auto dfs = [&](auto dfs, ll v) -> void {
             if (ret[v]) return;
             ret[v] = true;
             for (_edge e : g[v]) {
@@ -95,7 +95,7 @@ template <typename S> struct dinic {
 };
 
 struct ll_dinic {
-    using cap_t = ll;
-    static cap_t zero() { return 0; }
-    static cap_t inf() { return numeric_limits<cap_t>::max(); }
+    using C = ll;
+    static C zero() { return 0; }
+    static C inf() { return numeric_limits<C>::max(); }
 };

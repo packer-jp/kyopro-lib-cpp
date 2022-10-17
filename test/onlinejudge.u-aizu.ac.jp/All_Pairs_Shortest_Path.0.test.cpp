@@ -7,7 +7,7 @@ using namespace std;
 int main() {
     ll v, e;
     cin >> v >> e;
-    vector adj(v, Vl(v, LLONG_MAX));
+    vector adj(v, vll(v, LLONG_MAX));
     for (ll i : rep(v)) adj[i][i] = 0;
     while (e--) {
         ll s, t, d;

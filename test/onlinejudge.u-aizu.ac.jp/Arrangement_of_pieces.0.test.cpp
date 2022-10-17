@@ -8,7 +8,7 @@ int main() {
     ll n, m;
     cin >> n >> m;
     dinic<ll_dinic> dinic(n * 2 + 2);
-    vector id(n, Vl(n, -1));
+    vector id(n, vll(n, -1));
     ll s = n * 2, t = n * 2 + 1;
     for (ll i : rep(n)) {
         dinic.add_edge(s, i, 1);

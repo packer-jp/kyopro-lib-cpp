@@ -13,7 +13,7 @@ template <ll MOD = 1000000007> struct modint {
             swap(a -= t * b, b);
             swap(u -= t * v, v);
         }
-        return modint(u);
+        return u;
     }
     modint pow(ll k) const {
         modint ret = 1, mul = val;

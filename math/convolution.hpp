@@ -3,22 +3,22 @@
 #include "../template.hpp"
 #include "ntt.hpp"
 
-template <typename T> vector<T> convolution_naive(vector<T> a, vector<T> b) {
-    int na = a.size(), nb = b.size();
-    vector<T> c(na + nb - 1);
+template <typename V> vector<V> convolution_naive(vector<V> a, vector<V> b) {
+    ll na = a.size(), nb = b.size();
+    vector<V> c(na + nb - 1);
     if (na < nb) swap(a, b), swap(na, nb);
-    for (int i : rep(na)) {
-        for (int j : rep(nb)) c[i + j] += a[i] * b[j];
+    for (ll i : rep(na)) {
+        for (ll j : rep(nb)) c[i + j] += a[i] * b[j];
     }
     return c;
 }
 
 template <typename mint> vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
-    int _n = a.size() + b.size() - 1, n;
+    ll _n = a.size() + b.size() - 1, n;
     for (n = 1; n < _n; n <<= 1) {}
     a.resize(n), b.resize(n);
     ntt(a), ntt(b);
-    for (int i : rep(n)) a[i] *= b[i];
+    for (ll i : rep(n)) a[i] *= b[i];
     intt(a);
     a.resize(_n);
     return a;

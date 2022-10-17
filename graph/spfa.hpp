@@ -3,26 +3,26 @@
 #include "../template.hpp"
 
 template <typename S> struct spfa {
-    using D = typename S::dist_t;
-    using C = typename S::cost_t;
+    using D = typename S::D;
+    using C = typename S::C;
     struct edge {
-        int to;
+        ll to;
         C cost;
     };
     vector<vector<edge>> g;
-    spfa(int n) : g(n) {}
-    void add_edge(int from, int to, const C &cost) { g[from].push_back({to, cost}); }
-    pair<vector<D>, vector<int>> get(int s, const D &base = D()) const {
-        int n = g.size();
+    spfa(ll n) : g(n) {}
+    void add_edge(ll from, ll to, const C &cost) { g[from].push_back({to, cost}); }
+    pair<vector<D>, vector<ll>> get(ll s, const D &base = D()) const {
+        ll n = g.size();
         vector<D> dist(n, S::inf());
-        vector<int> prev(n, -1), time(n);
+        vector<ll> prev(n, -1), time(n);
         vector<bool> inq(n);
-        queue<int> q;
+        queue<ll> q;
         q.push(s);
         dist[s] = base;
         ++time[s];
         while (!q.empty()) {
-            int from = q.front();
+            ll from = q.front();
             q.pop();
             inq[from] = false;
             for (auto [to, cost] : g[from]) {
@@ -41,7 +41,7 @@ template <typename S> struct spfa {
 };
 
 struct ll_spfa {
-    using dist_t = ll;
-    using cost_t = ll;
-    static dist_t inf() { return LLONG_MAX; }
+    using D = ll;
+    using C = ll;
+    static D inf() { return LLONG_MAX; }
 };
