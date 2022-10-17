@@ -63,6 +63,7 @@ struct _1000000007 {
 using modint998244353 = modint<_998244353>;
 using modint1000000007 = modint<_1000000007>;
 
-struct arbitrary_mod {
+struct arbitrary {
     static ll mod;
 };
+ll arbitrary::mod;
