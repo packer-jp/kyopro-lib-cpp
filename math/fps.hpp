@@ -109,7 +109,7 @@ template <typename mint> struct fps : vector<mint> {
     friend fps operator<<(const fps &a, ll d) { return fps(a) <<= d; }
 };
 
-using m9 = modint<998244353>;
+using m9 = modint998244353;
 
 template <> fps<m9> &fps<m9>::operator*=(const fps<m9> &a) {
     *this = convolution(*this, a);

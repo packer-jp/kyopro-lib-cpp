@@ -3,7 +3,7 @@
 #include "../../math/modint.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     struct mint_field {
         using V = mint;
         static V zero() { return 0; }

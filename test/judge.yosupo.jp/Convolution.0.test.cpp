@@ -3,7 +3,7 @@
 #include "../../math/modint.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     ll n, m;
     cin >> n >> m;
     vector<mint> a(n), b(m);

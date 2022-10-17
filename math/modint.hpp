@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-template <ll MOD = 1000000007> struct modint {
+template <typename M> struct modint {
     ll val;
-    modint(ll val = 0) : val(val >= 0 ? val % MOD : (MOD - (-val) % MOD) % MOD) {}
-    static ll mod() { return MOD; }
+    modint(ll val = 0) : val(val >= 0 ? val % M::mod : (M::mod - (-val) % M::mod) % M::mod) {}
+    static ll mod() { return M::mod; }
     modint inv() const {
-        ll a = val, b = MOD, u = 1, v = 0, t;
+        ll a = val, b = M::mod, u = 1, v = 0, t;
         while (b > 0) {
             t = a / b;
             swap(a -= t * b, b);
@@ -25,15 +25,15 @@ template <ll MOD = 1000000007> struct modint {
         return ret;
     }
     modint &operator+=(const modint &a) {
-        if ((val += a.val) >= MOD) val -= MOD;
+        if ((val += a.val) >= M::mod) val -= M::mod;
         return *this;
     }
     modint &operator-=(const modint &a) {
-        if ((val += MOD - a.val) >= MOD) val -= MOD;
+        if ((val += M::mod - a.val) >= M::mod) val -= M::mod;
         return *this;
     }
     modint &operator*=(const modint &a) {
-        (val *= a.val) %= MOD;
+        (val *= a.val) %= M::mod;
         return *this;
     }
     modint &operator/=(const modint &a) { return *this *= a.inv(); }
@@ -52,4 +52,17 @@ template <ll MOD = 1000000007> struct modint {
         return is;
     }
     friend ostream &operator<<(ostream &os, const modint &a) { return os << a.val; }
+};
+
+struct _998244353 {
+    constexpr static ll mod = 998244353;
+};
+struct _1000000007 {
+    constexpr static ll mod = 1000000007;
+};
+using modint998244353 = modint<_998244353>;
+using modint1000000007 = modint<_1000000007>;
+
+struct arbitrary_mod {
+    static ll mod;
 };

@@ -3,7 +3,7 @@
 #include "../../math/subset_convolution.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     ll n;
     cin >> n;
     vector<mint> a(bit(n)), b(bit(n));

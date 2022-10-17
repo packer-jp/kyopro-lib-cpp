@@ -3,7 +3,7 @@
 #include "../../math/modint.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     ll n, q;
     cin >> n >> q;
     vector<pair<mint, ll>> src(n, {0, 1});

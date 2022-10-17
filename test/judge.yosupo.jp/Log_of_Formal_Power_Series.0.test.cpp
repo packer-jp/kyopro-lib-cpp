@@ -2,7 +2,7 @@
 #include "../../math/fps.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     ll n;
     cin >> n;
     fps<mint> a(n);

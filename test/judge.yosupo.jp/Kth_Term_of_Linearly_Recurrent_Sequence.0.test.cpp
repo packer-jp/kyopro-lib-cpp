@@ -2,7 +2,7 @@
 #include "../../math/kth_of_lrs.hpp"
 
 int main() {
-    using mint = modint<998244353>;
+    using mint = modint998244353;
     ll d, k;
     cin >> d >> k;
     vector<mint> a(d), c(d);
