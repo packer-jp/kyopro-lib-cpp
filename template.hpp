@@ -12,13 +12,13 @@ using ll = long long;
 using ull = unsigned long long;
 using pll = pair<ll, ll>;
 using vll = vector<ll>;
-constexpr double PI = 3.14159265358979323846;
+constexpr double pi = 3.14159265358979323846;
 constexpr ll dy[9] = {0, 1, 0, -1, 1, 1, -1, -1, 0};
 constexpr ll dx[9] = {1, 0, -1, 0, 1, -1, -1, 1, 0};
 constexpr ll sign(ll a) { return (a > 0) - (a < 0); }
 constexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
 constexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }
-constexpr ull bit(int n) { return 1ull << n; }
+constexpr ll bit(ll n) { return 1 << n; }
 constexpr ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }
 template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
