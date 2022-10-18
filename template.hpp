@@ -20,8 +20,8 @@ constexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
 constexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }
 constexpr ll bit(ll n) { return 1 << n; }
 constexpr ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }
-template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
+template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T, typename U> constexpr bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }
 template <typename T, typename U> constexpr bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }
 template <typename T, typename U> ostream &operator<<(ostream &os, const pair<T, U> &a) {
