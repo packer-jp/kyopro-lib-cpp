@@ -6,6 +6,8 @@ using namespace std;
 #define all(a) begin(a), end(a)
 #define rall(a) rbegin(a), rend(a)
 #define uniq(a) (a).erase(unique(all(a)), (a).end())
+#define t0 first
+#define t1 second
 using ll = long long;
 using ull = unsigned long long;
 using pll = pair<ll, ll>;
@@ -20,10 +22,8 @@ constexpr ull bit(int n) { return 1ull << n; }
 constexpr ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }
 template <typename T> constexpr T sq(const T &a) { return a * a; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
-template <typename T, typename U> bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }
-template <typename T, typename U> bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }
-template <typename T> T make_vector(T &&a) { return a; }
-template <typename... Ts> auto make_vector(int h, Ts &&... ts) { return vector(h, make_vector(ts...)); }
+template <typename T, typename U> constexpr bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }
+template <typename T, typename U> constexpr bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }
 template <typename T, typename U> ostream &operator<<(ostream &os, const pair<T, U> &a) {
     os << "(" << a.first << ", " << a.second << ")";
     return os;
