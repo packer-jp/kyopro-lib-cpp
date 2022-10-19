@@ -20,7 +20,7 @@ constexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }
 constexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }
 constexpr ll pw(ll n) { return 1ll << n; }
 constexpr ll flg(ll n) { return 63 - __builtin_clzll(n); }
-constexpr ll clg(ll n) { return flg(n - 1) + 1; }
+constexpr ll clg(ll n) { return n == 1 ? 0 : flg(n - 1) + 1; }
 constexpr ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }
 template <typename T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;
 template <typename T> constexpr T sq(const T &a) { return a * a; }
