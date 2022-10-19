@@ -108,14 +108,14 @@ data:
   isVerificationFile: false
   path: math/fzt_fmt.hpp
   requiredBy:
-  - math/and_or_convolution.hpp
   - math/subset_convolution.hpp
+  - math/and_or_convolution.hpp
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
-  - test/judge.yosupo.jp/Bitwise_And_Convolution.1.test.cpp
   - test/judge.yosupo.jp/Bitwise_And_Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Bitwise_And_Convolution.1.test.cpp
   - test/judge.u-aizu.ac.jp/Enumeration.0.test.cpp
 documentation_of: math/fzt_fmt.hpp
 layout: document

@@ -84,7 +84,7 @@ data:
     \ int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
     \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/lazy_segtree.hpp\"\
     \n\ntemplate <typename P> struct lazy_segtree {\n    using V = typename P::V;\n\
-    \    using F = typename P::F;\n    ll n, size, log;\n    vector<V> val;\n    vector<F>\
+    \    using F = typename P::F;\n    ll n, size;\n    vector<V> val;\n    vector<F>\
     \ lazy;\n    lazy_segtree(ll n) : lazy_segtree(vector(n, P::e())) {}\n    lazy_segtree(const\
     \ vector<V> &src) : n(src.size()) {\n        size = pw(clg(n));\n        val.resize(size\
     \ << 1, P::e());\n        copy(all(src), val.begin() + size);\n        lazy.resize(size\
@@ -150,7 +150,7 @@ data:
     \ static F id() { return {1, 0}; };\n};\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename P> struct\
     \ lazy_segtree {\n    using V = typename P::V;\n    using F = typename P::F;\n\
-    \    ll n, size, log;\n    vector<V> val;\n    vector<F> lazy;\n    lazy_segtree(ll\
+    \    ll n, size;\n    vector<V> val;\n    vector<F> lazy;\n    lazy_segtree(ll\
     \ n) : lazy_segtree(vector(n, P::e())) {}\n    lazy_segtree(const vector<V> &src)\
     \ : n(src.size()) {\n        size = pw(clg(n));\n        val.resize(size << 1,\
     \ P::e());\n        copy(all(src), val.begin() + size);\n        lazy.resize(size\
@@ -219,16 +219,16 @@ data:
   isVerificationFile: false
   path: data_structure/lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
+  timestamp: '2022-10-19 19:20:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/onlinejudge.u-aizu.ac.jp/RMQ_and_RAQ.0.test.cpp
-  - test/onlinejudge.u-aizu.ac.jp/RMQ_and_RUQ.0.test.cpp
-  - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.3.test.cpp
+  - test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/RSQ_and_RUQ.0.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/RMQ_and_RAQ.0.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.2.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/RSQ_and_RAQ.0.test.cpp
-  - test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.3.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/RMQ_and_RUQ.0.test.cpp
 documentation_of: data_structure/lazy_segtree.hpp
 layout: document
 title: "\u9045\u5EF6\u8A55\u4FA1 Segment Tree"

@@ -167,11 +167,11 @@ data:
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.3.test.cpp
-  - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.1.test.cpp
-  - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.2.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.0.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.2.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.1.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
 documentation_of: graph/dinic.hpp
 layout: document
 title: "Dinic \u6CD5"

@@ -108,8 +108,8 @@ data:
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/judge.yosupo.jp/Persistent_Queue.0.test.cpp
   - test/judge.yosupo.jp/Persistent_UnionFind.0.test.cpp
+  - test/judge.yosupo.jp/Persistent_Queue.0.test.cpp
 documentation_of: data_structure/persistent_array.hpp
 layout: document
 title: "\u5B8C\u5168\u6C38\u7D9A\u914D\u5217"

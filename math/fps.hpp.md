@@ -301,18 +301,18 @@ data:
   isVerificationFile: false
   path: math/fps.hpp
   requiredBy:
-  - math/kth_of_lrs.hpp
   - math/subset_convolution.hpp
+  - math/kth_of_lrs.hpp
   - math/bostan_mori.hpp
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
-  - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
+  - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
+  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
 documentation_of: math/fps.hpp
 layout: document
 title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"

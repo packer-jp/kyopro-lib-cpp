@@ -172,25 +172,25 @@ data:
   isVerificationFile: false
   path: math/modint.hpp
   requiredBy:
-  - math/kth_of_lrs.hpp
   - math/subset_convolution.hpp
-  - math/bostan_mori.hpp
+  - math/kth_of_lrs.hpp
   - math/fps.hpp
+  - math/bostan_mori.hpp
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp
-  - test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
-  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Bitwise_Xor_Convolution.0.test.cpp
-  - test/judge.yosupo.jp/Convolution.0.test.cpp
   - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
-  - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
-  - test/judge.yosupo.jp/Bitwise_And_Convolution.1.test.cpp
-  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Bitwise_And_Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
+  - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Bitwise_And_Convolution.1.test.cpp
+  - test/judge.yosupo.jp/Bitwise_Xor_Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
+  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp
 documentation_of: math/modint.hpp
 layout: document
 title: modint

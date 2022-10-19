@@ -138,20 +138,20 @@ data:
   isVerificationFile: false
   path: math/convolution.hpp
   requiredBy:
-  - math/kth_of_lrs.hpp
   - math/subset_convolution.hpp
-  - math/bostan_mori.hpp
+  - math/kth_of_lrs.hpp
   - math/fps.hpp
+  - math/bostan_mori.hpp
   timestamp: '2022-10-19 16:09:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
   - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Convolution.0.test.cpp
-  - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
   - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
-  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
 documentation_of: math/convolution.hpp
 layout: document
 title: "\u7573\u307F\u8FBC\u307F"
