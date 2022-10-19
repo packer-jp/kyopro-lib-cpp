@@ -21,17 +21,17 @@ data:
     \ a) { return (a > 0) - (a < 0); }\nconstexpr ll fdiv(ll a, ll b) { return a /\
     \ b - ((a ^ b) < 0 && a % b); }\nconstexpr ll cdiv(ll a, ll b) { return -fdiv(-a,\
     \ b); }\nconstexpr ll pw(ll n) { return 1ll << n; }\nconstexpr ll flg(ll n) {\
-    \ return 63 - __builtin_clzll(n); }\nconstexpr ll clg(ll n) { return flg(n - 1)\
-    \ + 1; }\nconstexpr ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }\n\
-    template <typename T> using priority_queue_rev = priority_queue<T, vector<T>,\
-    \ greater<T>>;\ntemplate <typename T> constexpr T sq(const T &a) { return a *\
-    \ a; }\ntemplate <typename T, typename U> constexpr bool chmax(T &a, const U &b)\
-    \ { return a < b ? a = b, true : false; }\ntemplate <typename T, typename U> constexpr\
-    \ bool chmin(T &a, const U &b) { return a > b ? a = b, true : false; }\ntemplate\
-    \ <typename T, typename U> ostream &operator<<(ostream &os, const pair<T, U> &a)\
-    \ {\n    os << \"(\" << a.first << \", \" << a.second << \")\";\n    return os;\n\
-    }\ntemplate <typename T, typename U, typename V> ostream &operator<<(ostream &os,\
-    \ const tuple<T, U, V> &a) {\n    os << \"(\" << get<0>(a) << \", \" << get<1>(a)\
+    \ return 63 - __builtin_clzll(n); }\nconstexpr ll clg(ll n) { return n == 1 ?\
+    \ 0 : flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod) { return (x % mod\
+    \ + mod) % mod; }\ntemplate <typename T> using priority_queue_rev = priority_queue<T,\
+    \ vector<T>, greater<T>>;\ntemplate <typename T> constexpr T sq(const T &a) {\
+    \ return a * a; }\ntemplate <typename T, typename U> constexpr bool chmax(T &a,\
+    \ const U &b) { return a < b ? a = b, true : false; }\ntemplate <typename T, typename\
+    \ U> constexpr bool chmin(T &a, const U &b) { return a > b ? a = b, true : false;\
+    \ }\ntemplate <typename T, typename U> ostream &operator<<(ostream &os, const\
+    \ pair<T, U> &a) {\n    os << \"(\" << a.first << \", \" << a.second << \")\"\
+    ;\n    return os;\n}\ntemplate <typename T, typename U, typename V> ostream &operator<<(ostream\
+    \ &os, const tuple<T, U, V> &a) {\n    os << \"(\" << get<0>(a) << \", \" << get<1>(a)\
     \ << \", \" << get<2>(a) << \")\";\n    return os;\n}\ntemplate <typename T> ostream\
     \ &operator<<(ostream &os, const vector<T> &a) {\n    os << \"(\";\n    for (auto\
     \ itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end()\
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: math/divisors.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
+  timestamp: '2022-10-20 00:25:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/divisors.hpp

@@ -6,18 +6,18 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/hld.test.cpp
     title: test/unit/hld.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/segtree.hpp\"\n\n#line 2 \"template.hpp\"\
@@ -31,8 +31,8 @@ data:
     \ ll b) { return a / b - ((a ^ b) < 0 && a % b); }\nconstexpr ll cdiv(ll a, ll\
     \ b) { return -fdiv(-a, b); }\nconstexpr ll pw(ll n) { return 1ll << n; }\nconstexpr\
     \ ll flg(ll n) { return 63 - __builtin_clzll(n); }\nconstexpr ll clg(ll n) { return\
-    \ flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod) { return (x % mod + mod)\
-    \ % mod; }\ntemplate <typename T> using priority_queue_rev = priority_queue<T,\
+    \ n == 1 ? 0 : flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod) { return\
+    \ (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev = priority_queue<T,\
     \ vector<T>, greater<T>>;\ntemplate <typename T> constexpr T sq(const T &a) {\
     \ return a * a; }\ntemplate <typename T, typename U> constexpr bool chmax(T &a,\
     \ const U &b) { return a < b ? a = b, true : false; }\ntemplate <typename T, typename\
@@ -73,38 +73,8 @@ data:
     \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/segtree.hpp\"\
     \n\ntemplate <typename P> struct segtree {\n    using V = typename P::V;\n   \
     \ ll n, size;\n    vector<V> val;\n    segtree(ll n) : segtree(vector(n, P::e()))\
-    \ {}\n    segtree(const vector<V> &src) : n(src.size()) {\n        for (size =\
-    \ 1; size < n; size <<= 1) {}\n        val.resize(size << 1);\n        copy(all(src),\
-    \ val.begin() + size);\n        for (ll i : per(1, size)) val[i] = P::op(val[i\
-    \ << 1 | 0], val[i << 1 | 1]);\n    }\n    void set(ll i, const V &a) {\n    \
-    \    val[i += size] = a;\n        while (i >>= 1) val[i] = P::op(val[i << 1 |\
-    \ 0], val[i << 1 | 1]);\n    }\n    V get(ll i) const { return val[i + size];\
-    \ }\n    V prod(ll l, ll r) const {\n        V a = P::e(), b = P::e();\n     \
-    \   for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n            if (l &\
-    \ 1) a = P::op(a, val[l++]);\n            if (r & 1) b = P::op(val[--r], b);\n\
-    \        }\n        return P::op(a, b);\n    }\n    template <typename F> ll max_right(ll\
-    \ l, F f) const {\n        if (l == n) return n;\n        V a = P::e();\n    \
-    \    l += size;\n        do {\n            while (~l & 1) l >>= 1;\n         \
-    \   if (!f(P::op(a, val[l]))) {\n                while (l < size) {\n        \
-    \            l = l << 1;\n                    if (f(P::op(a, val[l]))) a = P::op(a,\
-    \ val[l++]);\n                }\n                return l - size;\n          \
-    \  }\n            a = P::op(a, val[l++]);\n        } while ((l & -l) != l);\n\
-    \        return n;\n    }\n    template <typename F> ll min_left(ll r, F f) const\
-    \ {\n        if (r == 0) return 0;\n        V a = P::e();\n        r += size;\n\
-    \        do {\n            r--;\n            while (r > 1 && r & 1) r >>= 1;\n\
-    \            if (!f(P::op(val[r], a))) {\n                while (r < size) {\n\
-    \                    r = r << 1 | 1;\n                    if (f(P::op(val[r],\
-    \ a))) a = P::op(val[r--], a);\n                }\n                return r +\
-    \ 1 - size;\n            }\n            a = P::op(val[r], a);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\nstruct min_monoid {\n    using\
-    \ V = ll;\n    static V op(V a, V b) { return min(a, b); }\n    static V e() {\
-    \ return LLONG_MAX; }\n};\n\nstruct sum_monoid {\n    using V = ll;\n    static\
-    \ V op(V a, V b) { return a + b; }\n    static V e() { return 0; }\n};\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename P> struct\
-    \ segtree {\n    using V = typename P::V;\n    ll n, size;\n    vector<V> val;\n\
-    \    segtree(ll n) : segtree(vector(n, P::e())) {}\n    segtree(const vector<V>\
-    \ &src) : n(src.size()) {\n        for (size = 1; size < n; size <<= 1) {}\n \
-    \       val.resize(size << 1);\n        copy(all(src), val.begin() + size);\n\
+    \ {}\n    segtree(const vector<V> &src) : n(src.size()) {\n        size = pw(clg(n));\n\
+    \        val.resize(size << 1);\n        copy(all(src), val.begin() + size);\n\
     \        for (ll i : per(1, size)) val[i] = P::op(val[i << 1 | 0], val[i << 1\
     \ | 1]);\n    }\n    void set(ll i, const V &a) {\n        val[i += size] = a;\n\
     \        while (i >>= 1) val[i] = P::op(val[i << 1 | 0], val[i << 1 | 1]);\n \
@@ -129,18 +99,47 @@ data:
     \ 0;\n    }\n};\n\nstruct min_monoid {\n    using V = ll;\n    static V op(V a,\
     \ V b) { return min(a, b); }\n    static V e() { return LLONG_MAX; }\n};\n\nstruct\
     \ sum_monoid {\n    using V = ll;\n    static V op(V a, V b) { return a + b; }\n\
-    \    static V e() { return 0; }\n};"
+    \    static V e() { return 0; }\n};\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename P> struct\
+    \ segtree {\n    using V = typename P::V;\n    ll n, size;\n    vector<V> val;\n\
+    \    segtree(ll n) : segtree(vector(n, P::e())) {}\n    segtree(const vector<V>\
+    \ &src) : n(src.size()) {\n        size = pw(clg(n));\n        val.resize(size\
+    \ << 1);\n        copy(all(src), val.begin() + size);\n        for (ll i : per(1,\
+    \ size)) val[i] = P::op(val[i << 1 | 0], val[i << 1 | 1]);\n    }\n    void set(ll\
+    \ i, const V &a) {\n        val[i += size] = a;\n        while (i >>= 1) val[i]\
+    \ = P::op(val[i << 1 | 0], val[i << 1 | 1]);\n    }\n    V get(ll i) const { return\
+    \ val[i + size]; }\n    V prod(ll l, ll r) const {\n        V a = P::e(), b =\
+    \ P::e();\n        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {\n   \
+    \         if (l & 1) a = P::op(a, val[l++]);\n            if (r & 1) b = P::op(val[--r],\
+    \ b);\n        }\n        return P::op(a, b);\n    }\n    template <typename F>\
+    \ ll max_right(ll l, F f) const {\n        if (l == n) return n;\n        V a\
+    \ = P::e();\n        l += size;\n        do {\n            while (~l & 1) l >>=\
+    \ 1;\n            if (!f(P::op(a, val[l]))) {\n                while (l < size)\
+    \ {\n                    l = l << 1;\n                    if (f(P::op(a, val[l])))\
+    \ a = P::op(a, val[l++]);\n                }\n                return l - size;\n\
+    \            }\n            a = P::op(a, val[l++]);\n        } while ((l & -l)\
+    \ != l);\n        return n;\n    }\n    template <typename F> ll min_left(ll r,\
+    \ F f) const {\n        if (r == 0) return 0;\n        V a = P::e();\n       \
+    \ r += size;\n        do {\n            r--;\n            while (r > 1 && r &\
+    \ 1) r >>= 1;\n            if (!f(P::op(val[r], a))) {\n                while\
+    \ (r < size) {\n                    r = r << 1 | 1;\n                    if (f(P::op(val[r],\
+    \ a))) a = P::op(val[r--], a);\n                }\n                return r +\
+    \ 1 - size;\n            }\n            a = P::op(val[r], a);\n        } while\
+    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\nstruct min_monoid {\n    using\
+    \ V = ll;\n    static V op(V a, V b) { return min(a, b); }\n    static V e() {\
+    \ return LLONG_MAX; }\n};\n\nstruct sum_monoid {\n    using V = ll;\n    static\
+    \ V op(V a, V b) { return a + b; }\n    static V e() { return 0; }\n};"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: data_structure/segtree.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-20 00:26:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/unit/hld.test.cpp
-  - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
+  - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
+  - test/unit/hld.test.cpp
 documentation_of: data_structure/segtree.hpp
 layout: document
 title: Segment Tree

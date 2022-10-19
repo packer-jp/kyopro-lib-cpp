@@ -31,8 +31,8 @@ data:
     \ ll b) { return a / b - ((a ^ b) < 0 && a % b); }\nconstexpr ll cdiv(ll a, ll\
     \ b) { return -fdiv(-a, b); }\nconstexpr ll pw(ll n) { return 1ll << n; }\nconstexpr\
     \ ll flg(ll n) { return 63 - __builtin_clzll(n); }\nconstexpr ll clg(ll n) { return\
-    \ flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod) { return (x % mod + mod)\
-    \ % mod; }\ntemplate <typename T> using priority_queue_rev = priority_queue<T,\
+    \ n == 1 ? 0 : flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod) { return\
+    \ (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev = priority_queue<T,\
     \ vector<T>, greater<T>>;\ntemplate <typename T> constexpr T sq(const T &a) {\
     \ return a * a; }\ntemplate <typename T, typename U> constexpr bool chmax(T &a,\
     \ const U &b) { return a < b ? a = b, true : false; }\ntemplate <typename T, typename\
@@ -105,11 +105,11 @@ data:
   path: data_structure/persistent_array.hpp
   requiredBy:
   - data_structure/persistent_unionfind.hpp
-  timestamp: '2022-10-19 16:09:32+09:00'
+  timestamp: '2022-10-20 00:25:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/judge.yosupo.jp/Persistent_UnionFind.0.test.cpp
   - test/judge.yosupo.jp/Persistent_Queue.0.test.cpp
+  - test/judge.yosupo.jp/Persistent_UnionFind.0.test.cpp
 documentation_of: data_structure/persistent_array.hpp
 layout: document
 title: "\u5B8C\u5168\u6C38\u7D9A\u914D\u5217"

@@ -8,16 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: math/bostan_mori.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution.hpp
     title: "\u7573\u307F\u8FBC\u307F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: math/kth_of_lrs.hpp
     title: math/kth_of_lrs.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
     title: test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
     title: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/ntt.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include <bits/stdc++.h>\n\
@@ -57,57 +57,57 @@ data:
     \ 0); }\nconstexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b);\
     \ }\nconstexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }\nconstexpr ll pw(ll\
     \ n) { return 1ll << n; }\nconstexpr ll flg(ll n) { return 63 - __builtin_clzll(n);\
-    \ }\nconstexpr ll clg(ll n) { return flg(n - 1) + 1; }\nconstexpr ll safemod(ll\
-    \ x, ll mod) { return (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev\
-    \ = priority_queue<T, vector<T>, greater<T>>;\ntemplate <typename T> constexpr\
-    \ T sq(const T &a) { return a * a; }\ntemplate <typename T, typename U> constexpr\
-    \ bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }\ntemplate\
-    \ <typename T, typename U> constexpr bool chmin(T &a, const U &b) { return a >\
-    \ b ? a = b, true : false; }\ntemplate <typename T, typename U> ostream &operator<<(ostream\
-    \ &os, const pair<T, U> &a) {\n    os << \"(\" << a.first << \", \" << a.second\
-    \ << \")\";\n    return os;\n}\ntemplate <typename T, typename U, typename V>\
-    \ ostream &operator<<(ostream &os, const tuple<T, U, V> &a) {\n    os << \"(\"\
-    \ << get<0>(a) << \", \" << get<1>(a) << \", \" << get<2>(a) << \")\";\n    return\
-    \ os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T>\
-    \ &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end(); ++itr)\
-    \ os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\";\n  \
-    \  return os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const\
-    \ set<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end();\
-    \ ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\"\
-    ;\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const\
-    \ multiset<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end();\
-    \ ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\"\
-    ;\n    return os;\n}\ntemplate <typename T, typename U> ostream &operator<<(ostream\
-    \ &os, const map<T, U> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
+    \ }\nconstexpr ll clg(ll n) { return n == 1 ? 0 : flg(n - 1) + 1; }\nconstexpr\
+    \ ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }\ntemplate <typename\
+    \ T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;\ntemplate\
+    \ <typename T> constexpr T sq(const T &a) { return a * a; }\ntemplate <typename\
+    \ T, typename U> constexpr bool chmax(T &a, const U &b) { return a < b ? a = b,\
+    \ true : false; }\ntemplate <typename T, typename U> constexpr bool chmin(T &a,\
+    \ const U &b) { return a > b ? a = b, true : false; }\ntemplate <typename T, typename\
+    \ U> ostream &operator<<(ostream &os, const pair<T, U> &a) {\n    os << \"(\"\
+    \ << a.first << \", \" << a.second << \")\";\n    return os;\n}\ntemplate <typename\
+    \ T, typename U, typename V> ostream &operator<<(ostream &os, const tuple<T, U,\
+    \ V> &a) {\n    os << \"(\" << get<0>(a) << \", \" << get<1>(a) << \", \" << get<2>(a)\
+    \ << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const vector<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
     \ itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n\
-    \    os << \")\";\n    return os;\n}\n#ifdef ONLINE_JUDGE\n#define dump(...) (void(0))\n\
-    #else\nvoid debug() { cerr << endl; }\ntemplate <typename Head, typename... Tail>\
-    \ void debug(Head &&head, Tail &&... tail) {\n    cerr << head;\n    if (sizeof...(Tail))\
-    \ cerr << \", \";\n    debug(tail...);\n}\n#define dump(...) cerr << __LINE__\
-    \ << \": \" << #__VA_ARGS__ << \" = \", debug(__VA_ARGS__)\n#endif\nstruct rep\
-    \ {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v) {}\n        void\
-    \ operator++() { ++v; }\n        ll operator*() const { return v; }\n        bool\
-    \ operator!=(itr i) const { return v < *i; }\n    };\n    ll l, r;\n    rep(ll\
-    \ l, ll r) : l(l), r(r) {}\n    rep(ll r) : rep(0, r) {}\n    itr begin() const\
-    \ { return l; };\n    itr end() const { return r; };\n};\nstruct per {\n    struct\
-    \ itr {\n        ll v;\n        itr(ll v) : v(v) {}\n        void operator++()\
-    \ { --v; }\n        ll operator*() const { return v; }\n        bool operator!=(itr\
-    \ i) const { return v > *i; }\n    };\n    ll l, r;\n    per(ll l, ll r) : l(l),\
-    \ r(r) {}\n    per(ll r) : per(0, r) {}\n    itr begin() const { return r - 1;\
-    \ };\n    itr end() const { return l - 1; };\n};\nstruct io_setup {\n    static\
-    \ constexpr int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
-    \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"math/ntt.hpp\"\
-    \n\ntemplate <typename mint> void ntt(vector<mint> &a, bool inv = false) {\n \
-    \   ll n = a.size(), m = n >> 1;\n    mint root = 2;\n    while (root.pow((mint::mod()\
-    \ - 1) >> 1) == 1) root += 1;\n    mint wn = root.pow((mint::mod() - 1) / n);\n\
-    \    if (inv) wn = wn.inv();\n    vector<mint> b(n);\n    for (ll i = 1; i < n;\
-    \ i <<= 1, wn *= wn, swap(a, b)) {\n        mint wj = 1;\n        for (ll j =\
-    \ 0; j < m; j += i, wj *= wn) {\n            for (ll k : rep(i)) {\n         \
-    \       b[0 + (j << 1) + k] = (a[0 + j + k] + a[m + j + k]);\n               \
-    \ b[i + (j << 1) + k] = (a[0 + j + k] - a[m + j + k]) * wj;\n            }\n \
-    \       }\n    }\n    if (inv) {\n        mint ninv = mint(n).inv();\n       \
-    \ for (mint &ai : a) ai *= ninv;\n    }\n}\ntemplate <typename mint> void intt(vector<mint>\
-    \ &a) { ntt(a, true); }\n"
+    \    os << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const set<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr\
+    \ != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n \
+    \   os << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const multiset<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
+    \ itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n\
+    \    os << \")\";\n    return os;\n}\ntemplate <typename T, typename U> ostream\
+    \ &operator<<(ostream &os, const map<T, U> &a) {\n    os << \"(\";\n    for (auto\
+    \ itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end()\
+    \ ? \", \" : \"\");\n    os << \")\";\n    return os;\n}\n#ifdef ONLINE_JUDGE\n\
+    #define dump(...) (void(0))\n#else\nvoid debug() { cerr << endl; }\ntemplate <typename\
+    \ Head, typename... Tail> void debug(Head &&head, Tail &&... tail) {\n    cerr\
+    \ << head;\n    if (sizeof...(Tail)) cerr << \", \";\n    debug(tail...);\n}\n\
+    #define dump(...) cerr << __LINE__ << \": \" << #__VA_ARGS__ << \" = \", debug(__VA_ARGS__)\n\
+    #endif\nstruct rep {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v)\
+    \ {}\n        void operator++() { ++v; }\n        ll operator*() const { return\
+    \ v; }\n        bool operator!=(itr i) const { return v < *i; }\n    };\n    ll\
+    \ l, r;\n    rep(ll l, ll r) : l(l), r(r) {}\n    rep(ll r) : rep(0, r) {}\n \
+    \   itr begin() const { return l; };\n    itr end() const { return r; };\n};\n\
+    struct per {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v) {}\n \
+    \       void operator++() { --v; }\n        ll operator*() const { return v; }\n\
+    \        bool operator!=(itr i) const { return v > *i; }\n    };\n    ll l, r;\n\
+    \    per(ll l, ll r) : l(l), r(r) {}\n    per(ll r) : per(0, r) {}\n    itr begin()\
+    \ const { return r - 1; };\n    itr end() const { return l - 1; };\n};\nstruct\
+    \ io_setup {\n    static constexpr int PREC = 20;\n    io_setup() {\n        cout\
+    \ << fixed << setprecision(PREC);\n        cerr << fixed << setprecision(PREC);\n\
+    \    };\n} iOS;\n#line 4 \"math/ntt.hpp\"\n\ntemplate <typename mint> void ntt(vector<mint>\
+    \ &a, bool inv = false) {\n    ll n = a.size(), m = n >> 1;\n    mint root = 2;\n\
+    \    while (root.pow((mint::mod() - 1) >> 1) == 1) root += 1;\n    mint wn = root.pow((mint::mod()\
+    \ - 1) / n);\n    if (inv) wn = wn.inv();\n    vector<mint> b(n);\n    for (ll\
+    \ i = 1; i < n; i <<= 1, wn *= wn, swap(a, b)) {\n        mint wj = 1;\n     \
+    \   for (ll j = 0; j < m; j += i, wj *= wn) {\n            for (ll k : rep(i))\
+    \ {\n                b[0 + (j << 1) + k] = (a[0 + j + k] + a[m + j + k]);\n  \
+    \              b[i + (j << 1) + k] = (a[0 + j + k] - a[m + j + k]) * wj;\n   \
+    \         }\n        }\n    }\n    if (inv) {\n        mint ninv = mint(n).inv();\n\
+    \        for (mint &ai : a) ai *= ninv;\n    }\n}\ntemplate <typename mint> void\
+    \ intt(vector<mint> &a) { ntt(a, true); }\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename mint>\
     \ void ntt(vector<mint> &a, bool inv = false) {\n    ll n = a.size(), m = n >>\
     \ 1;\n    mint root = 2;\n    while (root.pow((mint::mod() - 1) >> 1) == 1) root\
@@ -125,21 +125,21 @@ data:
   isVerificationFile: false
   path: math/ntt.hpp
   requiredBy:
-  - math/subset_convolution.hpp
   - math/kth_of_lrs.hpp
-  - math/fps.hpp
-  - math/bostan_mori.hpp
+  - math/subset_convolution.hpp
   - math/convolution.hpp
-  timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - math/bostan_mori.hpp
+  - math/fps.hpp
+  timestamp: '2022-10-20 00:25:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Inv_of_Formal_Power_Series.0.test.cpp
-  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Exp_of_Formal_Power_Series.0.test.cpp
   - test/judge.yosupo.jp/Convolution.0.test.cpp
+  - test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
   - test/judge.yosupo.jp/Kth_Term_of_Linearly_Recurrent_Sequence.0.test.cpp
-  - test/judge.yosupo.jp/Log_of_Formal_Power_Series.0.test.cpp
+  - test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
 documentation_of: math/ntt.hpp
 layout: document
 title: "\u6570\u8AD6\u5909\u63DB"

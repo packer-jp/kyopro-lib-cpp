@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/fenwick_tree.hpp
     title: data_structure/fenwick_tree.hpp
   - icon: ':question:'
@@ -25,8 +25,8 @@ data:
     constexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b); }\nconstexpr\
     \ ll cdiv(ll a, ll b) { return -fdiv(-a, b); }\nconstexpr ll pw(ll n) { return\
     \ 1ll << n; }\nconstexpr ll flg(ll n) { return 63 - __builtin_clzll(n); }\nconstexpr\
-    \ ll clg(ll n) { return flg(n - 1) + 1; }\nconstexpr ll safemod(ll x, ll mod)\
-    \ { return (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev\
+    \ ll clg(ll n) { return n == 1 ? 0 : flg(n - 1) + 1; }\nconstexpr ll safemod(ll\
+    \ x, ll mod) { return (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev\
     \ = priority_queue<T, vector<T>, greater<T>>;\ntemplate <typename T> constexpr\
     \ T sq(const T &a) { return a * a; }\ntemplate <typename T, typename U> constexpr\
     \ bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }\ntemplate\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: util/inversion.hpp
   requiredBy: []
-  timestamp: '2022-10-19 21:20:42+09:00'
+  timestamp: '2022-10-20 00:25:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: util/inversion.hpp

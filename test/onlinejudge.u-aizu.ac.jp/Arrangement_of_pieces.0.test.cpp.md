@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dinic.hpp
     title: "Dinic \u6CD5"
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/TUATPC/3198
@@ -29,58 +29,59 @@ data:
     \ 0); }\nconstexpr ll fdiv(ll a, ll b) { return a / b - ((a ^ b) < 0 && a % b);\
     \ }\nconstexpr ll cdiv(ll a, ll b) { return -fdiv(-a, b); }\nconstexpr ll pw(ll\
     \ n) { return 1ll << n; }\nconstexpr ll flg(ll n) { return 63 - __builtin_clzll(n);\
-    \ }\nconstexpr ll clg(ll n) { return flg(n - 1) + 1; }\nconstexpr ll safemod(ll\
-    \ x, ll mod) { return (x % mod + mod) % mod; }\ntemplate <typename T> using priority_queue_rev\
-    \ = priority_queue<T, vector<T>, greater<T>>;\ntemplate <typename T> constexpr\
-    \ T sq(const T &a) { return a * a; }\ntemplate <typename T, typename U> constexpr\
-    \ bool chmax(T &a, const U &b) { return a < b ? a = b, true : false; }\ntemplate\
-    \ <typename T, typename U> constexpr bool chmin(T &a, const U &b) { return a >\
-    \ b ? a = b, true : false; }\ntemplate <typename T, typename U> ostream &operator<<(ostream\
-    \ &os, const pair<T, U> &a) {\n    os << \"(\" << a.first << \", \" << a.second\
-    \ << \")\";\n    return os;\n}\ntemplate <typename T, typename U, typename V>\
-    \ ostream &operator<<(ostream &os, const tuple<T, U, V> &a) {\n    os << \"(\"\
-    \ << get<0>(a) << \", \" << get<1>(a) << \", \" << get<2>(a) << \")\";\n    return\
-    \ os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const vector<T>\
-    \ &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end(); ++itr)\
-    \ os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\";\n  \
-    \  return os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const\
-    \ set<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end();\
-    \ ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\"\
-    ;\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream &os, const\
-    \ multiset<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr != a.end();\
-    \ ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n    os << \")\"\
-    ;\n    return os;\n}\ntemplate <typename T, typename U> ostream &operator<<(ostream\
-    \ &os, const map<T, U> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
+    \ }\nconstexpr ll clg(ll n) { return n == 1 ? 0 : flg(n - 1) + 1; }\nconstexpr\
+    \ ll safemod(ll x, ll mod) { return (x % mod + mod) % mod; }\ntemplate <typename\
+    \ T> using priority_queue_rev = priority_queue<T, vector<T>, greater<T>>;\ntemplate\
+    \ <typename T> constexpr T sq(const T &a) { return a * a; }\ntemplate <typename\
+    \ T, typename U> constexpr bool chmax(T &a, const U &b) { return a < b ? a = b,\
+    \ true : false; }\ntemplate <typename T, typename U> constexpr bool chmin(T &a,\
+    \ const U &b) { return a > b ? a = b, true : false; }\ntemplate <typename T, typename\
+    \ U> ostream &operator<<(ostream &os, const pair<T, U> &a) {\n    os << \"(\"\
+    \ << a.first << \", \" << a.second << \")\";\n    return os;\n}\ntemplate <typename\
+    \ T, typename U, typename V> ostream &operator<<(ostream &os, const tuple<T, U,\
+    \ V> &a) {\n    os << \"(\" << get<0>(a) << \", \" << get<1>(a) << \", \" << get<2>(a)\
+    \ << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const vector<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
     \ itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n\
-    \    os << \")\";\n    return os;\n}\n#ifdef ONLINE_JUDGE\n#define dump(...) (void(0))\n\
-    #else\nvoid debug() { cerr << endl; }\ntemplate <typename Head, typename... Tail>\
-    \ void debug(Head &&head, Tail &&... tail) {\n    cerr << head;\n    if (sizeof...(Tail))\
-    \ cerr << \", \";\n    debug(tail...);\n}\n#define dump(...) cerr << __LINE__\
-    \ << \": \" << #__VA_ARGS__ << \" = \", debug(__VA_ARGS__)\n#endif\nstruct rep\
-    \ {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v) {}\n        void\
-    \ operator++() { ++v; }\n        ll operator*() const { return v; }\n        bool\
-    \ operator!=(itr i) const { return v < *i; }\n    };\n    ll l, r;\n    rep(ll\
-    \ l, ll r) : l(l), r(r) {}\n    rep(ll r) : rep(0, r) {}\n    itr begin() const\
-    \ { return l; };\n    itr end() const { return r; };\n};\nstruct per {\n    struct\
-    \ itr {\n        ll v;\n        itr(ll v) : v(v) {}\n        void operator++()\
-    \ { --v; }\n        ll operator*() const { return v; }\n        bool operator!=(itr\
-    \ i) const { return v > *i; }\n    };\n    ll l, r;\n    per(ll l, ll r) : l(l),\
-    \ r(r) {}\n    per(ll r) : per(0, r) {}\n    itr begin() const { return r - 1;\
-    \ };\n    itr end() const { return l - 1; };\n};\nstruct io_setup {\n    static\
-    \ constexpr int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
-    \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"graph/dinic.hpp\"\
-    \n\ntemplate <typename S> struct dinic {\n    using C = typename S::C;\n    struct\
-    \ _edge {\n        ll to, rev;\n        C cap;\n    };\n    struct edge {\n  \
-    \      ll from, to;\n        C cap, flow;\n        friend ostream &operator<<(ostream\
-    \ &os, const edge &e) {\n            return os << \"(from: \" << e.from << \"\
-    , to: \" << e.to << \", cap: \" << e.cap << \", flow: \" << e.flow << \")\";\n\
-    \        }\n    };\n    vector<vector<_edge>> g;\n    vector<ll> level, iter;\n\
-    \    vector<pair<ll, ll>> pos;\n    dinic(ll n) : g(n), level(n), iter(n) {}\n\
-    \    ll add_edge(ll from, ll to, C cap) {\n        ll from_id = g[from].size();\n\
-    \        ll to_id = g[to].size();\n        if (from == to) ++to_id;\n        g[from].push_back({to,\
-    \ to_id, cap});\n        g[to].push_back({from, from_id, S::zero()});\n      \
-    \  pos.emplace_back(from, from_id);\n        return pos.size() - 1;\n    }\n \
-    \   void change_edge(ll i, C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
+    \    os << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const set<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin(); itr\
+    \ != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n \
+    \   os << \")\";\n    return os;\n}\ntemplate <typename T> ostream &operator<<(ostream\
+    \ &os, const multiset<T> &a) {\n    os << \"(\";\n    for (auto itr = a.begin();\
+    \ itr != a.end(); ++itr) os << *itr << (next(itr) != a.end() ? \", \" : \"\");\n\
+    \    os << \")\";\n    return os;\n}\ntemplate <typename T, typename U> ostream\
+    \ &operator<<(ostream &os, const map<T, U> &a) {\n    os << \"(\";\n    for (auto\
+    \ itr = a.begin(); itr != a.end(); ++itr) os << *itr << (next(itr) != a.end()\
+    \ ? \", \" : \"\");\n    os << \")\";\n    return os;\n}\n#ifdef ONLINE_JUDGE\n\
+    #define dump(...) (void(0))\n#else\nvoid debug() { cerr << endl; }\ntemplate <typename\
+    \ Head, typename... Tail> void debug(Head &&head, Tail &&... tail) {\n    cerr\
+    \ << head;\n    if (sizeof...(Tail)) cerr << \", \";\n    debug(tail...);\n}\n\
+    #define dump(...) cerr << __LINE__ << \": \" << #__VA_ARGS__ << \" = \", debug(__VA_ARGS__)\n\
+    #endif\nstruct rep {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v)\
+    \ {}\n        void operator++() { ++v; }\n        ll operator*() const { return\
+    \ v; }\n        bool operator!=(itr i) const { return v < *i; }\n    };\n    ll\
+    \ l, r;\n    rep(ll l, ll r) : l(l), r(r) {}\n    rep(ll r) : rep(0, r) {}\n \
+    \   itr begin() const { return l; };\n    itr end() const { return r; };\n};\n\
+    struct per {\n    struct itr {\n        ll v;\n        itr(ll v) : v(v) {}\n \
+    \       void operator++() { --v; }\n        ll operator*() const { return v; }\n\
+    \        bool operator!=(itr i) const { return v > *i; }\n    };\n    ll l, r;\n\
+    \    per(ll l, ll r) : l(l), r(r) {}\n    per(ll r) : per(0, r) {}\n    itr begin()\
+    \ const { return r - 1; };\n    itr end() const { return l - 1; };\n};\nstruct\
+    \ io_setup {\n    static constexpr int PREC = 20;\n    io_setup() {\n        cout\
+    \ << fixed << setprecision(PREC);\n        cerr << fixed << setprecision(PREC);\n\
+    \    };\n} iOS;\n#line 4 \"graph/dinic.hpp\"\n\ntemplate <typename S> struct dinic\
+    \ {\n    using C = typename S::C;\n    struct _edge {\n        ll to, rev;\n \
+    \       C cap;\n    };\n    struct edge {\n        ll from, to;\n        C cap,\
+    \ flow;\n        friend ostream &operator<<(ostream &os, const edge &e) {\n  \
+    \          return os << \"(from: \" << e.from << \", to: \" << e.to << \", cap:\
+    \ \" << e.cap << \", flow: \" << e.flow << \")\";\n        }\n    };\n    vector<vector<_edge>>\
+    \ g;\n    vector<ll> level, iter;\n    vector<pair<ll, ll>> pos;\n    dinic(ll\
+    \ n) : g(n), level(n), iter(n) {}\n    ll add_edge(ll from, ll to, C cap) {\n\
+    \        ll from_id = g[from].size();\n        ll to_id = g[to].size();\n    \
+    \    if (from == to) ++to_id;\n        g[from].push_back({to, to_id, cap});\n\
+    \        g[to].push_back({from, from_id, S::zero()});\n        pos.emplace_back(from,\
+    \ from_id);\n        return pos.size() - 1;\n    }\n    void change_edge(ll i,\
+    \ C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
     \ &re = g[e.to][e.rev];\n        e.cap = new_cap - new_flow;\n        re.cap =\
     \ new_flow;\n    }\n    C flow(ll s, ll t, C lim = S::inf()) {\n        auto bfs\
     \ = [&](ll s) -> void {\n            fill(level.begin(), level.end(), -1);\n \
@@ -149,8 +150,8 @@ data:
   isVerificationFile: true
   path: test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
   requiredBy: []
-  timestamp: '2022-10-19 19:47:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-20 00:25:59+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
 layout: document
