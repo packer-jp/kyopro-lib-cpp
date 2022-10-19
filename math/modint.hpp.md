@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: math/bostan_mori.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: math/kth_of_lrs.hpp
     title: math/kth_of_lrs.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
     title: test/judge.yosupo.jp/Pow_of_Formal_Power_Series.0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
     title: test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
     title: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/modint.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include\
@@ -177,7 +177,7 @@ data:
   - math/bostan_mori.hpp
   - math/fps.hpp
   timestamp: '2022-10-20 00:25:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/judge.yosupo.jp/Determinant_of_Matrix.0.test.cpp
   - test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp

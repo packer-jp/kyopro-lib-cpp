@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/hld.test.cpp
     title: test/unit/hld.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/segtree.hpp\"\n\n#line 2 \"template.hpp\"\
@@ -135,7 +135,7 @@ data:
   path: data_structure/segtree.hpp
   requiredBy: []
   timestamp: '2022-10-20 00:26:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.1.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/The_Smallest_Window_I.0.test.cpp

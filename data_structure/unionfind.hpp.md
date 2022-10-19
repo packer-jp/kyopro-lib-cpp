@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/judge.yosupo.jp/Unionfind.0.test.cpp
     title: test/judge.yosupo.jp/Unionfind.0.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/unionfind.hpp\"\n\n#line 2 \"template.hpp\"\
@@ -65,33 +65,42 @@ data:
     \ end() const { return l - 1; };\n};\nstruct io_setup {\n    static constexpr\
     \ int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
     \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/unionfind.hpp\"\
-    \n\nstruct unionfind {\n    ll n;\n    vector<ll> ps;\n    unionfind(ll n) : n(n),\
-    \ ps(n, -1) {}\n    ll find(ll i) {\n        if (ps[i] < 0) return i;\n      \
-    \  return ps[i] = find(ps[i]);\n    }\n    ll size(ll i) { return -ps[find(i)];\
-    \ }\n    void unite(ll i, ll j) {\n        if ((i = find(i)) == (j = find(j)))\
-    \ return;\n        if (-ps[i] < -ps[j]) swap(i, j);\n        ps[i] += ps[j];\n\
-    \        ps[j] = i;\n    }\n    bool same(ll i, ll j) { return find(i) == find(j);\
-    \ }\n    vector<vector<ll>> groups() {\n        vector<vector<ll>> ret(n);\n \
-    \       for (ll i : rep(n)) ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret),\
+    \n\ntemplate <typename P> struct unionfind {\n    using V = typename P::V;\n \
+    \   ll n;\n    vector<ll> ps;\n    vector<V> val;\n    unionfind(const vector<V>\
+    \ &val) : n(val.size()), ps(n, -1), val(val) {}\n    unionfind(ll n, const V &a\
+    \ = {}) : unionfind(vector<V>(n, a)) {}\n    ll find(ll i) {\n        if (ps[i]\
+    \ < 0) return i;\n        return ps[i] = find(ps[i]);\n    }\n    ll size(ll i)\
+    \ { return -ps[find(i)]; }\n    void unite(ll i, ll j) {\n        if ((i = find(i))\
+    \ == (j = find(j))) return;\n        if (-ps[i] < -ps[j]) swap(i, j);\n      \
+    \  ps[i] += ps[j];\n        P::merge(val[i], val[j]);\n        ps[j] = i;\n  \
+    \  }\n    bool same(ll i, ll j) { return find(i) == find(j); }\n    V &operator[](ll\
+    \ i) { return val[find(i)]; }\n    vector<vector<ll>> groups() {\n        vector<vector<ll>>\
+    \ ret(n);\n        for (ll i : rep(n)) ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret),\
     \ [](const vector<ll> &v) { return v.empty(); }), ret.end());\n        return\
-    \ ret;\n    }\n};\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n\nstruct unionfind {\n    ll\
-    \ n;\n    vector<ll> ps;\n    unionfind(ll n) : n(n), ps(n, -1) {}\n    ll find(ll\
-    \ i) {\n        if (ps[i] < 0) return i;\n        return ps[i] = find(ps[i]);\n\
-    \    }\n    ll size(ll i) { return -ps[find(i)]; }\n    void unite(ll i, ll j)\
-    \ {\n        if ((i = find(i)) == (j = find(j))) return;\n        if (-ps[i] <\
-    \ -ps[j]) swap(i, j);\n        ps[i] += ps[j];\n        ps[j] = i;\n    }\n  \
-    \  bool same(ll i, ll j) { return find(i) == find(j); }\n    vector<vector<ll>>\
+    \ ret;\n    }\n};\nstruct normal_uf {\n    using V = struct {};\n    static void\
+    \ merge(V &a, const V &b) {}\n};\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename P> struct\
+    \ unionfind {\n    using V = typename P::V;\n    ll n;\n    vector<ll> ps;\n \
+    \   vector<V> val;\n    unionfind(const vector<V> &val) : n(val.size()), ps(n,\
+    \ -1), val(val) {}\n    unionfind(ll n, const V &a = {}) : unionfind(vector<V>(n,\
+    \ a)) {}\n    ll find(ll i) {\n        if (ps[i] < 0) return i;\n        return\
+    \ ps[i] = find(ps[i]);\n    }\n    ll size(ll i) { return -ps[find(i)]; }\n  \
+    \  void unite(ll i, ll j) {\n        if ((i = find(i)) == (j = find(j))) return;\n\
+    \        if (-ps[i] < -ps[j]) swap(i, j);\n        ps[i] += ps[j];\n        P::merge(val[i],\
+    \ val[j]);\n        ps[j] = i;\n    }\n    bool same(ll i, ll j) { return find(i)\
+    \ == find(j); }\n    V &operator[](ll i) { return val[find(i)]; }\n    vector<vector<ll>>\
     \ groups() {\n        vector<vector<ll>> ret(n);\n        for (ll i : rep(n))\
     \ ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret), [](const vector<ll>\
-    \ &v) { return v.empty(); }), ret.end());\n        return ret;\n    }\n};"
+    \ &v) { return v.empty(); }), ret.end());\n        return ret;\n    }\n};\nstruct\
+    \ normal_uf {\n    using V = struct {};\n    static void merge(V &a, const V &b)\
+    \ {}\n};"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: data_structure/unionfind.hpp
   requiredBy: []
-  timestamp: '2022-10-20 00:25:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-20 01:28:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/judge.yosupo.jp/Unionfind.0.test.cpp
 documentation_of: data_structure/unionfind.hpp

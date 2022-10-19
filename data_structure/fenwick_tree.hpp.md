@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
@@ -9,12 +9,12 @@ data:
     path: util/inversion.hpp
     title: util/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/onlinejudge.u-aizu.ac.jp/Range_Sum_Query.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Range_Sum_Query.0.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/fenwick_tree.hpp\"\n\n#line 2 \"template.hpp\"\
@@ -93,7 +93,7 @@ data:
   requiredBy:
   - util/inversion.hpp
   timestamp: '2022-10-20 00:25:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/onlinejudge.u-aizu.ac.jp/Range_Sum_Query.0.test.cpp
 documentation_of: data_structure/fenwick_tree.hpp

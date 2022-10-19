@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modlog.hpp
     title: "\u96E2\u6563\u5BFE\u6570\u554F\u984C"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []

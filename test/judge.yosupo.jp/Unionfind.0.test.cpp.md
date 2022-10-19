@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/unionfind.hpp
     title: data_structure/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -69,33 +69,37 @@ data:
     \ };\n    itr end() const { return l - 1; };\n};\nstruct io_setup {\n    static\
     \ constexpr int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
     \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/unionfind.hpp\"\
-    \n\nstruct unionfind {\n    ll n;\n    vector<ll> ps;\n    unionfind(ll n) : n(n),\
-    \ ps(n, -1) {}\n    ll find(ll i) {\n        if (ps[i] < 0) return i;\n      \
-    \  return ps[i] = find(ps[i]);\n    }\n    ll size(ll i) { return -ps[find(i)];\
-    \ }\n    void unite(ll i, ll j) {\n        if ((i = find(i)) == (j = find(j)))\
-    \ return;\n        if (-ps[i] < -ps[j]) swap(i, j);\n        ps[i] += ps[j];\n\
-    \        ps[j] = i;\n    }\n    bool same(ll i, ll j) { return find(i) == find(j);\
-    \ }\n    vector<vector<ll>> groups() {\n        vector<vector<ll>> ret(n);\n \
-    \       for (ll i : rep(n)) ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret),\
+    \n\ntemplate <typename P> struct unionfind {\n    using V = typename P::V;\n \
+    \   ll n;\n    vector<ll> ps;\n    vector<V> val;\n    unionfind(const vector<V>\
+    \ &val) : n(val.size()), ps(n, -1), val(val) {}\n    unionfind(ll n, const V &a\
+    \ = {}) : unionfind(vector<V>(n, a)) {}\n    ll find(ll i) {\n        if (ps[i]\
+    \ < 0) return i;\n        return ps[i] = find(ps[i]);\n    }\n    ll size(ll i)\
+    \ { return -ps[find(i)]; }\n    void unite(ll i, ll j) {\n        if ((i = find(i))\
+    \ == (j = find(j))) return;\n        if (-ps[i] < -ps[j]) swap(i, j);\n      \
+    \  ps[i] += ps[j];\n        P::merge(val[i], val[j]);\n        ps[j] = i;\n  \
+    \  }\n    bool same(ll i, ll j) { return find(i) == find(j); }\n    V &operator[](ll\
+    \ i) { return val[find(i)]; }\n    vector<vector<ll>> groups() {\n        vector<vector<ll>>\
+    \ ret(n);\n        for (ll i : rep(n)) ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret),\
     \ [](const vector<ll> &v) { return v.empty(); }), ret.end());\n        return\
-    \ ret;\n    }\n};\n#line 3 \"test/judge.yosupo.jp/Unionfind.0.test.cpp\"\n\nint\
-    \ main() {\n    ll n, q;\n    cin >> n >> q;\n    unionfind uf(n);\n    while\
-    \ (q--) {\n        ll t, u, v;\n        cin >> t >> u >> v;\n        if (t ==\
-    \ 0) uf.unite(u, v);\n        if (t == 1) cout << uf.same(u, v) << endl;\n   \
-    \ }\n}\n"
+    \ ret;\n    }\n};\nstruct normal_uf {\n    using V = struct {};\n    static void\
+    \ merge(V &a, const V &b) {}\n};\n#line 3 \"test/judge.yosupo.jp/Unionfind.0.test.cpp\"\
+    \n\nint main() {\n    ll n, q;\n    cin >> n >> q;\n    unionfind<normal_uf> uf(n);\n\
+    \    while (q--) {\n        ll t, u, v;\n        cin >> t >> u >> v;\n       \
+    \ if (t == 0) uf.unite(u, v);\n        if (t == 1) cout << uf.same(u, v) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     ../../data_structure/unionfind.hpp\"\n\nint main() {\n    ll n, q;\n    cin >>\
-    \ n >> q;\n    unionfind uf(n);\n    while (q--) {\n        ll t, u, v;\n    \
-    \    cin >> t >> u >> v;\n        if (t == 0) uf.unite(u, v);\n        if (t ==\
-    \ 1) cout << uf.same(u, v) << endl;\n    }\n}"
+    \ n >> q;\n    unionfind<normal_uf> uf(n);\n    while (q--) {\n        ll t, u,\
+    \ v;\n        cin >> t >> u >> v;\n        if (t == 0) uf.unite(u, v);\n     \
+    \   if (t == 1) cout << uf.same(u, v) << endl;\n    }\n}"
   dependsOn:
   - data_structure/unionfind.hpp
   - template.hpp
   isVerificationFile: true
   path: test/judge.yosupo.jp/Unionfind.0.test.cpp
   requiredBy: []
-  timestamp: '2022-10-20 00:25:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-20 01:28:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/judge.yosupo.jp/Unionfind.0.test.cpp
 layout: document

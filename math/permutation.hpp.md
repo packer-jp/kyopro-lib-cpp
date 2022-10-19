@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unit/permutation.test.cpp
     title: test/unit/permutation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/permutation.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include\
@@ -123,7 +123,7 @@ data:
   path: math/permutation.hpp
   requiredBy: []
   timestamp: '2022-10-20 00:25:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/unit/permutation.test.cpp
 documentation_of: math/permutation.hpp
