@@ -8,7 +8,7 @@ template <typename P> struct segtree {
     vector<V> val;
     segtree(ll n) : segtree(vector(n, P::e())) {}
     segtree(const vector<V> &src) : n(src.size()) {
-        for (size = 1; size < n; size <<= 1) {}
+        size = pw(clg(n));
         val.resize(size << 1);
         copy(all(src), val.begin() + size);
         for (ll i : per(1, size)) val[i] = P::op(val[i << 1 | 0], val[i << 1 | 1]);
