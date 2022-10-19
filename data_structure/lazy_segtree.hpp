@@ -5,7 +5,7 @@
 template <typename P> struct lazy_segtree {
     using V = typename P::V;
     using F = typename P::F;
-    ll n, size, log;
+    ll n, size;
     vector<V> val;
     vector<F> lazy;
     lazy_segtree(ll n) : lazy_segtree(vector(n, P::e())) {}
