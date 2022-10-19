@@ -2,12 +2,12 @@
 
 #include "../template.hpp"
 
-struct oibfs {
+struct bfs01 {
     struct edge {
         ll to, cost;
     };
     vector<vector<edge>> g;
-    oibfs(ll n) : g(n) {}
+    bfs01(ll n) : g(n) {}
     void add_edge(ll from, ll to, ll cost) { g[from].push_back({to, cost}); }
     pair<vector<ll>, vector<ll>> get(ll s) const {
         vector<ll> dist(g.size(), LLONG_MAX), prev(g.size(), -1);
