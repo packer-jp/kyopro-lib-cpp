@@ -11,16 +11,16 @@ struct dynamic_bitset {
         ref(ull &p, ll i) : p(p), i(i) {}
         ref &operator=(bool a) {
             if (a) {
-                p |= bit(i);
+                p |= pw(i);
             } else
-                p &= ~bit(i);
+                p &= ~pw(i);
             return *this;
         }
         ref &operator=(const ref &a) { return *this = a; }
-        operator bool() const { return (p & bit(i)) != 0; }
+        operator bool() const { return (p & pw(i)) != 0; }
         bool operator~() const { return !*this; }
         ref &flip() {
-            p ^= bit(i);
+            p ^= pw(i);
             return *this;
         }
     };

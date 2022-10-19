@@ -11,6 +11,9 @@ template <typename S> struct dinic {
     struct edge {
         ll from, to;
         C cap, flow;
+        friend ostream &operator<<(ostream &os, const edge &e) {
+            return os << "(from: " << e.from << ", to: " << e.to << ", cap: " << e.cap << ", flow: " << e.flow << ")";
+        }
     };
     vector<vector<_edge>> g;
     vector<ll> level, iter;
