@@ -2,23 +2,19 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data_structure/unionfind.hpp
-    title: data_structure/unionfind.hpp
+    path: data_structure/fenwick_tree.hpp
+    title: data_structure/fenwick_tree.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
-    links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/judge.yosupo.jp/Unionfind.0.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/unionfind\"\n#line 2 \"data_structure/unionfind.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"util/inversion.hpp\"\n\n#line 2 \"data_structure/fenwick_tree.hpp\"\
     \n\n#line 2 \"template.hpp\"\n\n#include <bits/stdc++.h>\nusing namespace std;\n\
     \n#define all(a) begin(a), end(a)\n#define rall(a) rbegin(a), rend(a)\n#define\
     \ uniq(a) (a).erase(unique(all(a)), (a).end())\n#define t0 first\n#define t1 second\n\
@@ -68,39 +64,36 @@ data:
     \ r(r) {}\n    per(ll r) : per(0, r) {}\n    itr begin() const { return r - 1;\
     \ };\n    itr end() const { return l - 1; };\n};\nstruct io_setup {\n    static\
     \ constexpr int PREC = 20;\n    io_setup() {\n        cout << fixed << setprecision(PREC);\n\
-    \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/unionfind.hpp\"\
-    \n\nstruct unionfind {\n    ll n;\n    vector<ll> ps;\n    unionfind(ll n) : n(n),\
-    \ ps(n, -1) {}\n    ll find(ll i) {\n        if (ps[i] < 0) return i;\n      \
-    \  return ps[i] = find(ps[i]);\n    }\n    ll size(ll i) { return -ps[find(i)];\
-    \ }\n    void unite(ll i, ll j) {\n        if ((i = find(i)) == (j = find(j)))\
-    \ return;\n        if (-ps[i] < -ps[j]) swap(i, j);\n        ps[i] += ps[j];\n\
-    \        ps[j] = i;\n    }\n    bool same(ll i, ll j) { return find(i) == find(j);\
-    \ }\n    vector<vector<ll>> groups() {\n        vector<vector<ll>> ret(n);\n \
-    \       for (ll i : rep(n)) ret[find(i)].push_back(i);\n        ret.erase(remove_if(all(ret),\
-    \ [](const vector<ll> &v) { return v.empty(); }), ret.end());\n        return\
-    \ ret;\n    }\n};\n#line 3 \"test/judge.yosupo.jp/Unionfind.0.test.cpp\"\n\nint\
-    \ main() {\n    ll n, q;\n    cin >> n >> q;\n    unionfind uf(n);\n    while\
-    \ (q--) {\n        ll t, u, v;\n        cin >> t >> u >> v;\n        if (t ==\
-    \ 0) uf.unite(u, v);\n        if (t == 1) cout << uf.same(u, v) << endl;\n   \
-    \ }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
-    ../../data_structure/unionfind.hpp\"\n\nint main() {\n    ll n, q;\n    cin >>\
-    \ n >> q;\n    unionfind uf(n);\n    while (q--) {\n        ll t, u, v;\n    \
-    \    cin >> t >> u >> v;\n        if (t == 0) uf.unite(u, v);\n        if (t ==\
-    \ 1) cout << uf.same(u, v) << endl;\n    }\n}"
+    \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"data_structure/fenwick_tree.hpp\"\
+    \n\ntemplate <typename V> struct fenwick_tree {\n    vector<V> data;\n    fenwick_tree(ll\
+    \ n) : data(n + 1, V()) {}\n    void add(ll i, const V &x) {\n        for (++i;\
+    \ i < (ll)data.size(); i += i & -i) data[i] += x;\n    }\n    V sum(ll i) const\
+    \ {\n        V ret = V();\n        for (; i > 0; i -= i & -i) ret += data[i];\n\
+    \        return ret;\n    }\n    V sum(ll l, ll r) const { return sum(r) - sum(l);\
+    \ }\n};\n\ntemplate <typename V> struct fenwick_tree_range {\n    fenwick_tree<V>\
+    \ ft;\n    fenwick_tree_range(ll n) : ft(n) {}\n    void add(ll l, ll r, const\
+    \ V &x) { ft.add(l, x), ft.add(r, -x); }\n    V get(ll i) const { return ft.sum(i\
+    \ + 1); }\n};\n#line 5 \"util/inversion.hpp\"\n\nll inversion(const vll &v) {\n\
+    \    ll n = v.size();\n    fenwick_tree<ll> ft(n);\n    ll ret = 0;\n    for (ll\
+    \ vi : v) {\n        ret += ft.sum(vi, n);\n        ft.add(vi, 1);\n    }\n  \
+    \  return ret;\n}\n"
+  code: "#pragma once\n\n#include \"../data_structure/fenwick_tree.hpp\"\n#include\
+    \ \"../template.hpp\"\n\nll inversion(const vll &v) {\n    ll n = v.size();\n\
+    \    fenwick_tree<ll> ft(n);\n    ll ret = 0;\n    for (ll vi : v) {\n       \
+    \ ret += ft.sum(vi, n);\n        ft.add(vi, 1);\n    }\n    return ret;\n}"
   dependsOn:
-  - data_structure/unionfind.hpp
+  - data_structure/fenwick_tree.hpp
   - template.hpp
-  isVerificationFile: true
-  path: test/judge.yosupo.jp/Unionfind.0.test.cpp
+  isVerificationFile: false
+  path: util/inversion.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-19 21:20:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/judge.yosupo.jp/Unionfind.0.test.cpp
+documentation_of: util/inversion.hpp
 layout: document
 redirect_from:
-- /verify/test/judge.yosupo.jp/Unionfind.0.test.cpp
-- /verify/test/judge.yosupo.jp/Unionfind.0.test.cpp.html
-title: test/judge.yosupo.jp/Unionfind.0.test.cpp
+- /library/util/inversion.hpp
+- /library/util/inversion.hpp.html
+title: util/inversion.hpp
 ---

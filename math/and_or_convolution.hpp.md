@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/fzt_fmt.hpp
     title: "\u9AD8\u901F Zeta / Moebius \u5909\u63DB"
   - icon: ':question:'
