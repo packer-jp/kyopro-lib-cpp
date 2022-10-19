@@ -10,7 +10,7 @@ template <typename P> struct lazy_segtree {
     vector<F> lazy;
     lazy_segtree(ll n) : lazy_segtree(vector(n, P::e())) {}
     lazy_segtree(const vector<V> &src) : n(src.size()) {
-        for (size = 1, log = 0; size < n; size <<= 1, ++log) {}
+        size = pw(clg(n));
         val.resize(size << 1, P::e());
         copy(all(src), val.begin() + size);
         lazy.resize(size << 1, P::id());
@@ -24,7 +24,7 @@ template <typename P> struct lazy_segtree {
         lazy[i] = P::id();
     }
     void thrust(ll i) {
-        for (ll j = log; j; j--) push(i >> j);
+        for (ll j = flg(n); j; j--) push(i >> j);
     }
     void recalc(ll i) {
         while (i >>= 1) val[i] = P::op(reflect(i << 1 | 0), reflect(i << 1 | 1));

@@ -5,7 +5,7 @@
 ll modlog(ll a, ll b, ll m) {
     a = safemod(a, m), b = safemod(b, m);
     ll t = 1, c;
-    for (c = 1; bit(c) < m; ++c) {
+    for (c = 1; pw(c) < m; ++c) {
         (t *= a) %= m;
         if (t == b) return c;
     }

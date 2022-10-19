@@ -48,7 +48,7 @@ template <typename S> struct dinic {
         };
         auto dfs = [&](auto dfs, ll v, ll t, C lim) -> C {
             if (v == t) return lim;
-            for (ll &i = iter[v]; i < g[v].size(); ++i) {
+            for (ll &i = iter[v]; i < (ll)g[v].size(); ++i) {
                 _edge &e = g[v][i];
                 if (level[v] >= level[e.to] || e.cap == S::zero()) continue;
                 C d = dfs(dfs, e.to, t, lim > e.cap ? e.cap : lim);

@@ -11,8 +11,8 @@ int main() {
     vll a(n), p(n);
     for (ll i : rep(n)) cin >> a[i];
     for (ll i : rep(n)) cin >> p[i];
-    vll x(bit(n));
-    for (ll i : rep(bit(n))) {
+    vll x(pw(n));
+    for (ll i : rep(pw(n))) {
         ll l = 1;
         for (ll j : rep(n)) {
             if ((i >> j) & 1) {
@@ -31,7 +31,7 @@ int main() {
 
     fmt_sub(x);
     double ans = 0;
-    for (ll i : rep(bit(n))) {
+    for (ll i : rep(pw(n))) {
         double q = 1;
         for (ll j : rep(n)) {
             if ((i >> j) & 1) {

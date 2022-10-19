@@ -4,7 +4,7 @@
 #include "../util/xorshift.hpp"
 
 struct rolling_hash {
-    static constexpr ull MOD = bit(61) - 1;
+    static constexpr ull MOD = pw(61) - 1;
     static vector<ull> pbase;
     vector<ull> hash;
     static void resize_pbase(ll n) {

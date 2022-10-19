@@ -6,9 +6,9 @@ int main() {
     using mint = modint998244353;
     ll n;
     cin >> n;
-    vector<mint> a(bit(n)), b(bit(n));
-    for (ll i : rep(bit(n))) cin >> a[i];
-    for (ll i : rep(bit(n))) cin >> b[i];
+    vector<mint> a(pw(n)), b(pw(n));
+    for (ll i : rep(pw(n))) cin >> a[i];
+    for (ll i : rep(pw(n))) cin >> b[i];
     vector<mint> c = subset_convolution(a, b);
     for (mint ci : c) { cout << ci << " "; }
     cout << endl;
