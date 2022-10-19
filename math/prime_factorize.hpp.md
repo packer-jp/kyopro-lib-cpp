@@ -6,12 +6,12 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Prime_Factorization.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Prime_Factorization.0.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/prime_factorize.hpp\"\n\n#line 2 \"template.hpp\"\n\
@@ -80,7 +80,7 @@ data:
   path: math/prime_factorize.hpp
   requiredBy: []
   timestamp: '2022-10-19 18:39:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/onlinejudge.u-aizu.ac.jp/Prime_Factorization.0.test.cpp
 documentation_of: math/prime_factorize.hpp

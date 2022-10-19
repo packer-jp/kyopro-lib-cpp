@@ -6,12 +6,12 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/hld.test.cpp
     title: test/unit/hld.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/hld.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include\
@@ -133,7 +133,7 @@ data:
   path: graph/hld.hpp
   requiredBy: []
   timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/hld.test.cpp
 documentation_of: graph/hld.hpp

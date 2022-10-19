@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: util/xorshift.hpp
     title: Xorshift
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/String_Search.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/String_Search.0.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/rolling_hash.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
@@ -111,7 +111,7 @@ data:
   path: string/rolling_hash.hpp
   requiredBy: []
   timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/onlinejudge.u-aizu.ac.jp/String_Search.0.test.cpp
 documentation_of: string/rolling_hash.hpp

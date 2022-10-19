@@ -8,13 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bostan_mori.hpp
     title: math/bostan_mori.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: math/kth_of_lrs.hpp
     title: math/kth_of_lrs.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/subset_convolution.hpp
     title: Subset Convolution
   _extendedVerifiedWith:
@@ -51,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
     title: test/judge.yosupo.jp/Range_Affine_Range_Sum.0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
     title: test/judge.yosupo.jp/Subset_Convolution.0.test.cpp
   _isVerificationFailed: true

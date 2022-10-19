@@ -6,24 +6,24 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Arrangement_of_pieces.0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.0.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.0.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.1.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.2.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.3.test.cpp
     title: test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.3.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/dinic.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include\
@@ -79,14 +79,16 @@ data:
     \        cerr << fixed << setprecision(PREC);\n    };\n} iOS;\n#line 4 \"graph/dinic.hpp\"\
     \n\ntemplate <typename S> struct dinic {\n    using C = typename S::C;\n    struct\
     \ _edge {\n        ll to, rev;\n        C cap;\n    };\n    struct edge {\n  \
-    \      ll from, to;\n        C cap, flow;\n    };\n    vector<vector<_edge>> g;\n\
-    \    vector<ll> level, iter;\n    vector<pair<ll, ll>> pos;\n    dinic(ll n) :\
-    \ g(n), level(n), iter(n) {}\n    ll add_edge(ll from, ll to, C cap) {\n     \
-    \   ll from_id = g[from].size();\n        ll to_id = g[to].size();\n        if\
-    \ (from == to) ++to_id;\n        g[from].push_back({to, to_id, cap});\n      \
-    \  g[to].push_back({from, from_id, S::zero()});\n        pos.emplace_back(from,\
-    \ from_id);\n        return pos.size() - 1;\n    }\n    void change_edge(ll i,\
-    \ C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
+    \      ll from, to;\n        C cap, flow;\n        friend ostream &operator<<(ostream\
+    \ &os, const edge &e) {\n            return os << \"(from: \" << e.from << \"\
+    , to: \" << e.to << \", cap: \" << e.cap << \", flow: \" << e.flow << \")\";\n\
+    \        }\n    };\n    vector<vector<_edge>> g;\n    vector<ll> level, iter;\n\
+    \    vector<pair<ll, ll>> pos;\n    dinic(ll n) : g(n), level(n), iter(n) {}\n\
+    \    ll add_edge(ll from, ll to, C cap) {\n        ll from_id = g[from].size();\n\
+    \        ll to_id = g[to].size();\n        if (from == to) ++to_id;\n        g[from].push_back({to,\
+    \ to_id, cap});\n        g[to].push_back({from, from_id, S::zero()});\n      \
+    \  pos.emplace_back(from, from_id);\n        return pos.size() - 1;\n    }\n \
+    \   void change_edge(ll i, C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
     \ &re = g[e.to][e.rev];\n        e.cap = new_cap - new_flow;\n        re.cap =\
     \ new_flow;\n    }\n    C flow(ll s, ll t, C lim = S::inf()) {\n        auto bfs\
     \ = [&](ll s) -> void {\n            fill(level.begin(), level.end(), -1);\n \
@@ -121,13 +123,16 @@ data:
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate <typename S> struct\
     \ dinic {\n    using C = typename S::C;\n    struct _edge {\n        ll to, rev;\n\
     \        C cap;\n    };\n    struct edge {\n        ll from, to;\n        C cap,\
-    \ flow;\n    };\n    vector<vector<_edge>> g;\n    vector<ll> level, iter;\n \
-    \   vector<pair<ll, ll>> pos;\n    dinic(ll n) : g(n), level(n), iter(n) {}\n\
-    \    ll add_edge(ll from, ll to, C cap) {\n        ll from_id = g[from].size();\n\
-    \        ll to_id = g[to].size();\n        if (from == to) ++to_id;\n        g[from].push_back({to,\
-    \ to_id, cap});\n        g[to].push_back({from, from_id, S::zero()});\n      \
-    \  pos.emplace_back(from, from_id);\n        return pos.size() - 1;\n    }\n \
-    \   void change_edge(ll i, C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
+    \ flow;\n        friend ostream &operator<<(ostream &os, const edge &e) {\n  \
+    \          return os << \"(from: \" << e.from << \", to: \" << e.to << \", cap:\
+    \ \" << e.cap << \", flow: \" << e.flow << \")\";\n        }\n    };\n    vector<vector<_edge>>\
+    \ g;\n    vector<ll> level, iter;\n    vector<pair<ll, ll>> pos;\n    dinic(ll\
+    \ n) : g(n), level(n), iter(n) {}\n    ll add_edge(ll from, ll to, C cap) {\n\
+    \        ll from_id = g[from].size();\n        ll to_id = g[to].size();\n    \
+    \    if (from == to) ++to_id;\n        g[from].push_back({to, to_id, cap});\n\
+    \        g[to].push_back({from, from_id, S::zero()});\n        pos.emplace_back(from,\
+    \ from_id);\n        return pos.size() - 1;\n    }\n    void change_edge(ll i,\
+    \ C new_cap, C new_flow) {\n        _edge &e = g[pos[i].first][pos[i].second],\
     \ &re = g[e.to][e.rev];\n        e.cap = new_cap - new_flow;\n        re.cap =\
     \ new_flow;\n    }\n    C flow(ll s, ll t, C lim = S::inf()) {\n        auto bfs\
     \ = [&](ll s) -> void {\n            fill(level.begin(), level.end(), -1);\n \
@@ -164,8 +169,8 @@ data:
   isVerificationFile: false
   path: graph/dinic.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-19 19:47:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.3.test.cpp
   - test/onlinejudge.u-aizu.ac.jp/Maximum_Flow.0.test.cpp

@@ -9,12 +9,12 @@ data:
     path: graph/offline_dag_reachability.hpp
     title: graph/offline_dag_reachability.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/unit/khan.test.cpp
     title: test/unit/khan.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/khan.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include\
@@ -91,7 +91,7 @@ data:
   requiredBy:
   - graph/offline_dag_reachability.hpp
   timestamp: '2022-10-19 16:09:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/unit/khan.test.cpp
 documentation_of: graph/khan.hpp

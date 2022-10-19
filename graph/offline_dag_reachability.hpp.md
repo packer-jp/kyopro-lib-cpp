@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/khan.hpp
     title: "Khan \u306E\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8"
   - icon: ':question:'
@@ -71,53 +71,53 @@ data:
     \n\n#line 4 \"util/dynamic_bitset.hpp\"\n\nstruct dynamic_bitset {\n    using\
     \ db = dynamic_bitset;\n    vector<ull> val;\n    struct ref {\n        ull &p;\n\
     \        ll i;\n        ref(ull &p, ll i) : p(p), i(i) {}\n        ref &operator=(bool\
-    \ a) {\n            if (a) {\n                p |= bit(i);\n            } else\n\
-    \                p &= ~bit(i);\n            return *this;\n        }\n       \
-    \ ref &operator=(const ref &a) { return *this = a; }\n        operator bool()\
-    \ const { return (p & bit(i)) != 0; }\n        bool operator~() const { return\
-    \ !*this; }\n        ref &flip() {\n            p ^= bit(i);\n            return\
-    \ *this;\n        }\n    };\n    ref operator[](ll i) {\n        if (val.size()\
-    \ <= i >> 4) val.resize((i >> 4) + 1);\n        return {val[i >> 4], i & 63};\n\
-    \    }\n    db &operator&=(const db &a) {\n        if (a.val.size() < val.size())\
-    \ val.resize(a.val.size());\n        for (ll i : rep(a.val.size())) val[i] &=\
-    \ a.val[i];\n        return *this;\n    }\n    db &operator|=(const db &a) {\n\
+    \ a) {\n            if (a) {\n                p |= pw(i);\n            } else\n\
+    \                p &= ~pw(i);\n            return *this;\n        }\n        ref\
+    \ &operator=(const ref &a) { return *this = a; }\n        operator bool() const\
+    \ { return (p & pw(i)) != 0; }\n        bool operator~() const { return !*this;\
+    \ }\n        ref &flip() {\n            p ^= pw(i);\n            return *this;\n\
+    \        }\n    };\n    ref operator[](ll i) {\n        if (val.size() <= i >>\
+    \ 4) val.resize((i >> 4) + 1);\n        return {val[i >> 4], i & 63};\n    }\n\
+    \    db &operator&=(const db &a) {\n        if (a.val.size() < val.size()) val.resize(a.val.size());\n\
+    \        for (ll i : rep(a.val.size())) val[i] &= a.val[i];\n        return *this;\n\
+    \    }\n    db &operator|=(const db &a) {\n        if (a.val.size() > val.size())\
+    \ val.resize(a.val.size());\n        for (ll i : rep(a.val.size())) val[i] |=\
+    \ a.val[i];\n        return *this;\n    }\n    db &operator^=(const db &a) {\n\
     \        if (a.val.size() > val.size()) val.resize(a.val.size());\n        for\
-    \ (ll i : rep(a.val.size())) val[i] |= a.val[i];\n        return *this;\n    }\n\
-    \    db &operator^=(const db &a) {\n        if (a.val.size() > val.size()) val.resize(a.val.size());\n\
-    \        for (ll i : rep(a.val.size())) val[i] ^= a.val[i];\n        return *this;\n\
-    \    }\n    ll count() const {\n        ll ret = 0;\n        for (ull p : val)\
-    \ ret += __builtin_popcountll(p);\n        return ret;\n    }\n    friend bool\
-    \ operator==(const db &a, const db &b) { return (a ^ b).count() == 0; }\n    friend\
-    \ bool operator!=(const db &a, const db &b) { return rel_ops::operator!=(a, b);\
-    \ }\n    friend bool operator<(const db &a, const db &b) {\n        for (ll i\
-    \ : per(max(a.val.size(), b.val.size()))) {\n            ull pa = i < a.val.size()\
-    \ ? a.val[i] : 0;\n            ull pb = i < b.val.size() ? b.val[i] : 0;\n   \
-    \         if (pa < pb) return true;\n            if (pa > pb) return false;\n\
-    \        }\n        return false;\n    }\n    friend bool operator>(const db &a,\
-    \ const db &b) { return rel_ops::operator>(a, b); }\n    friend bool operator<=(const\
-    \ db &a, const db &b) { return rel_ops::operator<=(a, b); }\n    friend bool operator>=(const\
-    \ db &a, const db &b) { return rel_ops::operator>=(a, b); }\n    friend db operator&(const\
-    \ db &a, const db &b) { return db(a) &= b; }\n    friend db operator|(const db\
-    \ &a, const db &b) { return db(a) |= b; }\n    friend db operator^(const db &a,\
-    \ const db &b) { return db(a) ^= b; }\n};\n#line 2 \"graph/khan.hpp\"\n\n#line\
-    \ 4 \"graph/khan.hpp\"\n\nstruct khan {\n    vector<vector<ll>> g;\n    vector<ll>\
-    \ indeg;\n    khan(ll n) : g(n), indeg(n) {}\n    void add_edge(ll from, ll to)\
-    \ { g[from].push_back(to), ++indeg[to]; }\n    vector<ll> get() {\n        vector<ll>\
-    \ _indeg(indeg), ret;\n        for (ll i : rep(g.size())) {\n            if (_indeg[i]\
-    \ == 0) ret.push_back(i);\n        }\n        for (ll i : rep(g.size())) {\n \
-    \           if (i >= ret.size()) return {};\n            for (ll to : g[ret[i]])\
-    \ {\n                if (--_indeg[to] == 0) ret.push_back(to);\n            }\n\
-    \        }\n        return ret;\n    }\n};\n#line 6 \"graph/offline_dag_reachability.hpp\"\
-    \n\nstruct offline_dag_reachability {\n    khan ts;\n    offline_dag_reachability(ll\
-    \ n) : ts(n) {}\n    void add_edge(ll from, ll to) { ts.add_edge(from, to); }\n\
-    \    vector<bool> get(const vector<pair<ll, ll>> &q) {\n        vector<bool> ret(q.size());\n\
-    \        vector<pll> edges;\n        for (ll from : ts.get()) {\n            for\
-    \ (ll to : ts.g[from]) edges.emplace_back(from, to);\n        }\n        for (ll\
-    \ i = 0; i < q.size(); i += 64) {\n            ll m = min(64ll, (ll)q.size() -\
-    \ i);\n            vector<ull> dp(ts.g.size());\n            for (ll j : rep(m))\
-    \ dp[q[i + j].first] |= bit(j);\n            for (auto [from, to] : edges) dp[to]\
-    \ |= dp[from];\n            for (ll j : rep(m)) ret[i + j] = (dp[q[i + j].second]\
-    \ >> j) & 1;\n        }\n        return ret;\n    }\n};\n"
+    \ (ll i : rep(a.val.size())) val[i] ^= a.val[i];\n        return *this;\n    }\n\
+    \    ll count() const {\n        ll ret = 0;\n        for (ull p : val) ret +=\
+    \ __builtin_popcountll(p);\n        return ret;\n    }\n    friend bool operator==(const\
+    \ db &a, const db &b) { return (a ^ b).count() == 0; }\n    friend bool operator!=(const\
+    \ db &a, const db &b) { return rel_ops::operator!=(a, b); }\n    friend bool operator<(const\
+    \ db &a, const db &b) {\n        for (ll i : per(max(a.val.size(), b.val.size())))\
+    \ {\n            ull pa = i < a.val.size() ? a.val[i] : 0;\n            ull pb\
+    \ = i < b.val.size() ? b.val[i] : 0;\n            if (pa < pb) return true;\n\
+    \            if (pa > pb) return false;\n        }\n        return false;\n  \
+    \  }\n    friend bool operator>(const db &a, const db &b) { return rel_ops::operator>(a,\
+    \ b); }\n    friend bool operator<=(const db &a, const db &b) { return rel_ops::operator<=(a,\
+    \ b); }\n    friend bool operator>=(const db &a, const db &b) { return rel_ops::operator>=(a,\
+    \ b); }\n    friend db operator&(const db &a, const db &b) { return db(a) &= b;\
+    \ }\n    friend db operator|(const db &a, const db &b) { return db(a) |= b; }\n\
+    \    friend db operator^(const db &a, const db &b) { return db(a) ^= b; }\n};\n\
+    #line 2 \"graph/khan.hpp\"\n\n#line 4 \"graph/khan.hpp\"\n\nstruct khan {\n  \
+    \  vector<vector<ll>> g;\n    vector<ll> indeg;\n    khan(ll n) : g(n), indeg(n)\
+    \ {}\n    void add_edge(ll from, ll to) { g[from].push_back(to), ++indeg[to];\
+    \ }\n    vector<ll> get() {\n        vector<ll> _indeg(indeg), ret;\n        for\
+    \ (ll i : rep(g.size())) {\n            if (_indeg[i] == 0) ret.push_back(i);\n\
+    \        }\n        for (ll i : rep(g.size())) {\n            if (i >= ret.size())\
+    \ return {};\n            for (ll to : g[ret[i]]) {\n                if (--_indeg[to]\
+    \ == 0) ret.push_back(to);\n            }\n        }\n        return ret;\n  \
+    \  }\n};\n#line 6 \"graph/offline_dag_reachability.hpp\"\n\nstruct offline_dag_reachability\
+    \ {\n    khan ts;\n    offline_dag_reachability(ll n) : ts(n) {}\n    void add_edge(ll\
+    \ from, ll to) { ts.add_edge(from, to); }\n    vector<bool> get(const vector<pair<ll,\
+    \ ll>> &q) {\n        vector<bool> ret(q.size());\n        vector<pll> edges;\n\
+    \        for (ll from : ts.get()) {\n            for (ll to : ts.g[from]) edges.emplace_back(from,\
+    \ to);\n        }\n        for (ll i = 0; i < q.size(); i += 64) {\n         \
+    \   ll m = min(64ll, (ll)q.size() - i);\n            vector<ull> dp(ts.g.size());\n\
+    \            for (ll j : rep(m)) dp[q[i + j].first] |= bit(j);\n            for\
+    \ (auto [from, to] : edges) dp[to] |= dp[from];\n            for (ll j : rep(m))\
+    \ ret[i + j] = (dp[q[i + j].second] >> j) & 1;\n        }\n        return ret;\n\
+    \    }\n};\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n#include \"../util/dynamic_bitset.hpp\"\
     \n#include \"khan.hpp\"\n\nstruct offline_dag_reachability {\n    khan ts;\n \
     \   offline_dag_reachability(ll n) : ts(n) {}\n    void add_edge(ll from, ll to)\
@@ -137,7 +137,7 @@ data:
   isVerificationFile: false
   path: graph/offline_dag_reachability.hpp
   requiredBy: []
-  timestamp: '2022-10-19 16:09:32+09:00'
+  timestamp: '2022-10-19 19:47:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/offline_dag_reachability.hpp
