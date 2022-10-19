@@ -4,7 +4,7 @@
 int main() {
     ll n, q;
     cin >> n >> q;
-    unionfind uf(n);
+    unionfind<normal_uf> uf(n);
     while (q--) {
         ll t, u, v;
         cin >> t >> u >> v;
